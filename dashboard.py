@@ -10,6 +10,20 @@ from datetime import datetime
 
 from fomc_tracker.participants import PARTICIPANTS, get_voters, get_alternates
 from fomc_tracker.historical_data import load_history, get_latest_stance
+from fomc_tracker.meeting_calendar import (
+    get_next_meeting,
+    get_previous_meeting,
+    days_until_next_meeting,
+    is_blackout_period,
+    get_current_rate,
+    get_meetings_in_range,
+)
+from fomc_tracker.policy_signal import (
+    compute_weighted_signal,
+    implied_rate_action,
+    compute_meeting_drift,
+    signal_vs_decisions,
+)
 
 # ── Page Config ────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -239,6 +253,106 @@ st.markdown(
         border: 1px solid rgba(167,139,250,0.2);
     }
 
+    /* ── Policy Signal Panel ──────────────────────────── */
+    .signal-panel {
+        background: linear-gradient(145deg, rgba(15,23,42,0.7) 0%, rgba(30,41,59,0.5) 100%);
+        border: 1px solid rgba(148,163,184,0.1);
+        border-radius: 20px;
+        padding: 2rem 2.2rem;
+        margin: 0 0 1rem 0;
+    }
+    .signal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.2rem;
+    }
+    .signal-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #f1f5f9;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+    .signal-title-sub {
+        font-size: 0.78rem;
+        color: #64748b;
+        margin: 0.2rem 0 0 0;
+    }
+    .signal-badge {
+        display: inline-block;
+        padding: 0.3rem 0.9rem;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    .signal-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    .signal-cell {
+        background: rgba(15,23,42,0.5);
+        border: 1px solid rgba(148,163,184,0.06);
+        border-radius: 14px;
+        padding: 1.2rem 1rem;
+        text-align: center;
+    }
+    .signal-cell-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: #64748b;
+        margin: 0 0 0.5rem 0;
+    }
+    .signal-cell-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.1;
+    }
+    .signal-cell-sub {
+        font-size: 0.7rem;
+        color: #475569;
+        margin: 0.3rem 0 0 0;
+        font-weight: 500;
+    }
+    .signal-meeting-row {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0 0 0;
+    }
+    .signal-meeting-card {
+        flex: 1;
+        background: rgba(15,23,42,0.4);
+        border: 1px solid rgba(148,163,184,0.06);
+        border-radius: 12px;
+        padding: 1rem 1.2rem;
+    }
+    .signal-meeting-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #64748b;
+        margin: 0 0 0.4rem 0;
+    }
+    .signal-meeting-val {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        margin: 0;
+    }
+    .signal-meeting-note {
+        font-size: 0.72rem;
+        color: #475569;
+        margin: 0.25rem 0 0 0;
+    }
+
     /* ── Footer ─────────────────────────────────────── */
     .foot {
         text-align: center;
@@ -440,6 +554,172 @@ st.markdown(
     </div>""",
     unsafe_allow_html=True,
 )
+
+# ══════════════════════════════════════════════════════════════════════════
+# Policy Signal Panel
+# ══════════════════════════════════════════════════════════════════════════
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
+
+_signal = compute_weighted_signal(score_key)
+_action = implied_rate_action(_signal["weighted_score"])
+_drift = compute_meeting_drift(score_key)
+_next_mtg = get_next_meeting()
+_prev_mtg = get_previous_meeting()
+_days_until = days_until_next_meeting()
+_blackout = is_blackout_period()
+_current_rate = get_current_rate()
+
+# Action color
+_act_colors = {
+    "easing": ("#60a5fa", "rgba(96,165,250,0.15)", "rgba(96,165,250,0.3)"),
+    "tightening": ("#f87171", "rgba(248,113,113,0.15)", "rgba(248,113,113,0.3)"),
+    "neutral": ("#fbbf24", "rgba(251,191,36,0.15)", "rgba(251,191,36,0.3)"),
+}
+_act_clr, _act_bg, _act_border = _act_colors.get(_action["direction"], _act_colors["neutral"])
+
+# Drift arrow
+_drift_str = ""
+if _drift:
+    _d = _drift["drift"]
+    if _d > 0:
+        _drift_arrow = "&#9650;"  # ▲
+        _drift_clr = HAWK
+    elif _d < 0:
+        _drift_arrow = "&#9660;"  # ▼
+        _drift_clr = DOVE
+    else:
+        _drift_arrow = "&#9654;"  # ▶
+        _drift_clr = NEUTRAL_C
+    _drift_str = f'<span style="color:{_drift_clr};font-weight:700">{_drift_arrow} {_d:+.2f}</span>'
+
+# Blackout badge
+_blackout_html = ""
+if _blackout:
+    _blackout_html = (
+        '<span class="signal-badge" style="background:rgba(239,68,68,0.15);'
+        'color:#ef4444;border:1px solid rgba(239,68,68,0.3);margin-left:0.8rem">'
+        'Blackout Period</span>'
+    )
+
+# Meeting countdown text
+_countdown_html = ""
+if _days_until is not None and _next_mtg:
+    _mtg_date_str = _next_mtg.end_date.strftime("%B %d, %Y")
+    if _days_until == 0:
+        _countdown_html = f'<span style="color:#fbbf24;font-weight:700">Decision Day</span> &mdash; {_mtg_date_str}'
+    elif _days_until <= 7:
+        _countdown_html = f'<span style="color:#f87171;font-weight:700">{_days_until}d</span> to {_mtg_date_str}'
+    else:
+        _countdown_html = f'<span style="color:#e2e8f0;font-weight:700">{_days_until}d</span> to {_mtg_date_str}'
+
+# Rate range string
+_rate_str = ""
+if _current_rate:
+    _rate_str = f"{_current_rate[0]:.2f}% &ndash; {_current_rate[1]:.2f}%"
+
+# Projected rate string
+_proj_str = ""
+if _action["projected_rate"]:
+    _proj_str = f"{_action['projected_rate'][0]:.2f}% &ndash; {_action['projected_rate'][1]:.2f}%"
+elif _action["action"] == "Hold" and _rate_str:
+    _proj_str = _rate_str
+
+# Build signal panel HTML in parts to avoid Streamlit rendering limits
+_prev_decision_str = _prev_mtg.decision.upper() if _prev_mtg and _prev_mtg.decision else "N/A"
+_prev_date_str = _prev_mtg.end_date.strftime("%b %d, %Y") if _prev_mtg else ""
+_prev_note_str = _prev_mtg.statement_note if _prev_mtg else ""
+_proj_note = f"Based on {_action['action'].lower()} from current {_rate_str}" if _proj_str and _rate_str else ""
+_voter_vs = "Voters more hawkish" if _signal["voter_average"] > _signal["simple_average"] + 0.1 else (
+    "Voters more dovish" if _signal["voter_average"] < _signal["simple_average"] - 0.1 else "Closely aligned")
+_drift_val = _drift_str if _drift_str else '<span style="color:#64748b">N/A</span>'
+_drift_dir = _drift["drift_direction"] if _drift else ""
+_sig_clr = score_color(_signal["weighted_score"])
+_sig_title = f"Policy Signal — {stance_view}" if stance_view != "Overall" else "Policy Signal"
+_rate_sub = f"{_rate_str} current" if _rate_str else ""
+
+_signal_html = (
+    f'<div class="signal-panel">'
+    f'<div class="signal-header"><div>'
+    f'<p class="signal-title">{_sig_title}</p>'
+    f'<p class="signal-title-sub">Vote-weighted committee stance with implied rate action</p>'
+    f'</div><div>'
+    f'<span class="signal-badge" style="background:{_act_bg};color:{_act_clr};border:1px solid {_act_border}">{_action["action"]}</span>'
+    f'{_blackout_html}'
+    f'</div></div>'
+    f'<div class="signal-grid">'
+    f'<div class="signal-cell">'
+    f'<p class="signal-cell-label">Weighted Signal</p>'
+    f'<p class="signal-cell-value" style="color:{_sig_clr}">{_signal["weighted_score"]:+.2f}</p>'
+    f'<p class="signal-cell-sub">Chair 3x, VC 1.5x, voters 1x</p></div>'
+    f'<div class="signal-cell">'
+    f'<p class="signal-cell-label">Implied Action</p>'
+    f'<p class="signal-cell-value" style="color:{_act_clr};font-size:1.4rem">{_action["action"]}</p>'
+    f'<p class="signal-cell-sub">{_action["confidence"]} confidence</p></div>'
+    f'<div class="signal-cell">'
+    f'<p class="signal-cell-label">Next Meeting</p>'
+    f'<p class="signal-cell-value" style="color:#e2e8f0;font-size:1.4rem">{_countdown_html}</p>'
+    f'<p class="signal-cell-sub">{_rate_sub}</p></div>'
+    f'<div class="signal-cell">'
+    f'<p class="signal-cell-label">Since Last Meeting</p>'
+    f'<p class="signal-cell-value" style="font-size:1.4rem">{_drift_val}</p>'
+    f'<p class="signal-cell-sub">{_drift_dir}</p></div>'
+    f'</div></div>'
+)
+st.markdown(_signal_html, unsafe_allow_html=True)
+
+# Meeting context row (separate markdown call for reliability)
+_meeting_html = (
+    f'<div class="signal-meeting-row">'
+    f'<div class="signal-meeting-card">'
+    f'<p class="signal-meeting-label">Last Decision</p>'
+    f'<p class="signal-meeting-val">{_prev_decision_str} &mdash; {_prev_date_str}</p>'
+    f'<p class="signal-meeting-note">{_prev_note_str}</p></div>'
+    f'<div class="signal-meeting-card">'
+    f'<p class="signal-meeting-label">Projected Rate (if acted)</p>'
+    f'<p class="signal-meeting-val">{_proj_str if _proj_str else "N/A"}</p>'
+    f'<p class="signal-meeting-note">{_proj_note}</p></div>'
+    f'<div class="signal-meeting-card">'
+    f'<p class="signal-meeting-label">Voter Avg vs Committee</p>'
+    f'<p class="signal-meeting-val">{_signal["voter_average"]:+.2f}'
+    f' <span style="color:#64748b;font-size:0.8rem">vs</span> '
+    f'{_signal["simple_average"]:+.2f}</p>'
+    f'<p class="signal-meeting-note">{_voter_vs}</p></div>'
+    f'</div>'
+)
+st.markdown(_meeting_html, unsafe_allow_html=True)
+
+# ── Signal vs Decisions mini-table ────────────────────────────────────
+_hist_signals = signal_vs_decisions(score_key, n_meetings=6)
+if _hist_signals:
+    st.markdown(
+        '<p class="section-sub" style="margin-top:1rem">Historical signal accuracy: '
+        'weighted stance at each meeting vs actual decision</p>',
+        unsafe_allow_html=True,
+    )
+    _match_count = sum(1 for s in _hist_signals if s["match"])
+    _total_count = len(_hist_signals)
+
+    _hist_html = '<div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.5rem">'
+    for s in _hist_signals:
+        _s_clr = "#22c55e" if s["match"] else "#ef4444"
+        _s_icon = "&#10003;" if s["match"] else "&#10007;"
+        _s_date = datetime.strptime(s["meeting_date"], "%Y-%m-%d").strftime("%b '%y")
+        _hist_html += (
+            f'<div style="background:rgba(15,23,42,0.5);border:1px solid {_s_clr}30;'
+            f'border-radius:10px;padding:0.5rem 0.7rem;text-align:center;min-width:80px">'
+            f'<div style="font-size:0.65rem;color:#64748b;letter-spacing:0.5px">{_s_date}</div>'
+            f'<div style="font-size:0.85rem;font-weight:700;color:#e2e8f0;margin:0.15rem 0">{s["decision"] or "?"}</div>'
+            f'<div style="font-size:0.7rem;color:#94a3b8">Signal: {s["signal_score"]:+.1f}</div>'
+            f'<div style="font-size:0.7rem;color:{_s_clr};font-weight:600">{_s_icon} {s["implied_action"]}</div>'
+            f'</div>'
+        )
+    _hist_html += '</div>'
+    _hist_html += (
+        f'<div style="font-size:0.75rem;color:#64748b">'
+        f'Direction match: <span style="color:#e2e8f0;font-weight:600">{_match_count}/{_total_count}</span>'
+        f' ({_match_count/_total_count*100:.0f}%)</div>'
+    )
+    st.markdown(_hist_html, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Chart 1 — Hawk-Dove Spectrum
@@ -767,6 +1047,26 @@ if selected:
     fig4.add_hline(y=1.5, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.15)")
     fig4.add_hline(y=-1.5, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.15)")
 
+    # Add FOMC meeting date markers as vertical lines
+    _trend_dates = sorted({e["date"] for name in selected for e in history.get(name, [])})
+    if _trend_dates:
+        from datetime import date as _dt
+        _range_start = _dt.fromisoformat(_trend_dates[0])
+        _range_end = _dt.fromisoformat(_trend_dates[-1])
+        _trend_meetings = get_meetings_in_range(_range_start, _range_end)
+        for _tm in _trend_meetings:
+            _tm_label = _tm.decision.upper() if _tm.decision else "FOMC"
+            _tm_x = _tm.end_date.isoformat()
+            fig4.add_vline(
+                x=_tm_x, line_width=1, line_dash="dash",
+                line_color="rgba(251,191,36,0.3)",
+            )
+            fig4.add_annotation(
+                x=_tm_x, y=4.8, text=_tm_label, showarrow=False,
+                font=dict(size=8, color="rgba(251,191,36,0.5)"),
+                yref="y",
+            )
+
     fig4.update_layout(
         **PLOTLY_LAYOUT,
         height=480,
@@ -1048,7 +1348,8 @@ st.markdown(
     "Data from DuckDuckGo News, Federal Reserve RSS &amp; "
     '<a href="https://www.bis.org/cbspeeches/index.htm">BIS Central Banker Speeches</a>'
     " &nbsp;&middot;&nbsp; Keyword-based NLP classification<br>"
-    "Dual-dimension analysis: Policy (rates) + Balance Sheet (QT/QE)<br>"
+    "Dual-dimension analysis: Policy (rates) + Balance Sheet (QT/QE) &nbsp;&middot;&nbsp; "
+    "Vote-weighted policy signal with FOMC meeting calendar<br>"
     "This tool is for informational purposes only and does not constitute financial advice."
     "</div>",
     unsafe_allow_html=True,
