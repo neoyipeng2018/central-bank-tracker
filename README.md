@@ -34,6 +34,54 @@ The tracker pulls text data from three sources for each FOMC participant (and no
 
 Results from all three sources are merged and cached as dated JSON files in `data/news/` so repeated runs on the same day don't re-fetch.
 
+### Adding a Custom Data Source
+
+The fetcher uses a plugin registry — you can add your own data sources without modifying `news_fetcher.py`. Each source is a function that takes a `Participant` and returns a list of dicts with five keys: `source`, `title`, `body`, `url`, `date`.
+
+**Option A: `register_source()`**
+
+```python
+from fomc_tracker.news_fetcher import register_source
+
+def fetch_from_my_api(participant, **kwargs):
+    # Hit your API, read a CSV, query a database, etc.
+    # participant.name is the full name, e.g. "Jerome H. Powell"
+    return [
+        {
+            "source": "my_api",
+            "title": "Powell signals patience on rates",
+            "body": "Full article text for the classifier...",
+            "url": "https://example.com/article",
+            "date": "2026-02-16",
+        }
+    ]
+
+register_source("my_api", fetch_from_my_api)
+```
+
+**Option B: `@data_source` decorator**
+
+```python
+from fomc_tracker.news_fetcher import data_source
+
+@data_source("reuters")
+def fetch_reuters(participant, **kwargs):
+    ...
+    return [{"source": "reuters", "title": "...", "body": "...", "url": "", "date": ""}]
+```
+
+**Managing sources at runtime:**
+
+```python
+from fomc_tracker.news_fetcher import list_sources, disable_source, enable_source
+
+list_sources()                # [("duckduckgo", True), ("fed_rss", True), ...]
+disable_source("duckduckgo")  # skip DuckDuckGo, keep the rest
+enable_source("duckduckgo")   # re-enable it
+```
+
+Custom sources are called automatically by `fetch_news_for_participant` alongside the built-in ones. The returned dicts flow straight into the stance classifier — no other wiring needed.
+
 ## Classification Methodology
 
 ### Step 1: Keyword Matching

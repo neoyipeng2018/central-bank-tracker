@@ -1,4 +1,18 @@
-"""Fetch recent news for FOMC participants via DuckDuckGo, Fed RSS, and BIS speeches."""
+"""Fetch recent news for FOMC participants from pluggable data sources.
+
+Built-in sources: DuckDuckGo news, Fed RSS feeds, BIS speeches.
+Add your own with ``register_source()`` or the ``@data_source`` decorator.
+
+Each data source is a callable:
+    (participant: Participant, **kwargs) -> list[dict]
+
+Each dict must have these keys:
+    source  (str) - identifier for your dataset, e.g. "my_api"
+    title   (str) - headline or title
+    body    (str) - article/speech text
+    url     (str) - link to original (can be "")
+    date    (str) - publication date (can be "")
+"""
 
 import json
 import logging
@@ -6,6 +20,7 @@ import os
 import re
 import time
 from datetime import datetime, timedelta
+from typing import Callable
 
 import feedparser
 import requests
@@ -38,12 +53,83 @@ BIS_HEADERS = {
 
 RATE_LIMIT_SECONDS = 1.5
 
+# ── Data source registry ───────────────────────────────────────────────────────
+
+# Type alias for a data source callable.
+DataSourceFn = Callable[..., list[dict]]
+
+# Registry: list of (name, callable, enabled).
+_SOURCES: list[tuple[str, DataSourceFn, bool]] = []
+
+
+def register_source(
+    name: str, fn: DataSourceFn, *, enabled: bool = True
+) -> None:
+    """Register a data source function.
+
+    Args:
+        name: Human-readable name (used in logs).
+        fn: Callable with signature (participant: Participant, **kwargs) -> list[dict].
+             Each returned dict must contain: source, title, body, url, date.
+        enabled: Set False to register but skip during fetches.
+
+    Example::
+
+        def my_fetcher(participant, **kwargs):
+            # hit your API, read a CSV, whatever
+            return [{"source": "my_api", "title": "...", "body": "...",
+                     "url": "", "date": "2026-02-16"}]
+
+        register_source("my_api", my_fetcher)
+    """
+    _SOURCES.append((name, fn, enabled))
+    logger.debug(f"Registered data source: {name} (enabled={enabled})")
+
+
+def data_source(name: str, *, enabled: bool = True):
+    """Decorator to register a function as a data source.
+
+    Example::
+
+        @data_source("reuters_api")
+        def fetch_reuters(participant, **kwargs):
+            ...
+            return [{"source": "reuters_api", ...}]
+    """
+    def decorator(fn: DataSourceFn) -> DataSourceFn:
+        register_source(name, fn, enabled=enabled)
+        return fn
+    return decorator
+
+
+def list_sources() -> list[tuple[str, bool]]:
+    """Return registered source names and their enabled status."""
+    return [(name, enabled) for name, _, enabled in _SOURCES]
+
+
+def enable_source(name: str) -> None:
+    """Enable a previously registered source by name."""
+    for i, (n, fn, _) in enumerate(_SOURCES):
+        if n == name:
+            _SOURCES[i] = (n, fn, True)
+            return
+    raise KeyError(f"No source named '{name}'")
+
+
+def disable_source(name: str) -> None:
+    """Disable a registered source by name (keeps it in the registry)."""
+    for i, (n, fn, _) in enumerate(_SOURCES):
+        if n == name:
+            _SOURCES[i] = (n, fn, False)
+            return
+    raise KeyError(f"No source named '{name}'")
+
 
 def ensure_dirs():
     os.makedirs(NEWS_DIR, exist_ok=True)
 
 
-def _search_ddg(participant: Participant, max_results: int = 10) -> list[dict]:
+def _search_ddg(participant: Participant, max_results: int = 10, **kwargs) -> list[dict]:
     """Search DuckDuckGo for recent news about a participant."""
     # Use short name for better search results
     short_name = participant.name.split()[-1]  # Last name
@@ -52,7 +138,6 @@ def _search_ddg(participant: Participant, max_results: int = 10) -> list[dict]:
     try:
         with DDGS() as ddgs:
             results = list(ddgs.news(query, max_results=max_results, timelimit="m"))
-        logger.info(f"  DuckDuckGo: {len(results)} results for {participant.name}")
         return [
             {
                 "source": "duckduckgo",
@@ -68,7 +153,7 @@ def _search_ddg(participant: Participant, max_results: int = 10) -> list[dict]:
         return []
 
 
-def _fetch_fed_rss(participant: Participant) -> list[dict]:
+def _fetch_fed_rss(participant: Participant, **kwargs) -> list[dict]:
     """Fetch relevant items from Fed RSS feeds."""
     short_name = participant.name.split()[-1].lower()
     results = []
@@ -95,7 +180,6 @@ def _fetch_fed_rss(participant: Participant) -> list[dict]:
         except Exception as e:
             logger.warning(f"  RSS fetch failed ({feed_url}): {e}")
 
-    logger.info(f"  Fed RSS: {len(results)} results for {participant.name}")
     return results
 
 
@@ -124,7 +208,7 @@ def _scrape_bis_speech_text(url: str) -> str:
     return text[:3000]
 
 
-def _fetch_bis_speeches(participant: Participant) -> list[dict]:
+def _fetch_bis_speeches(participant: Participant, **kwargs) -> list[dict]:
     """Fetch matching speeches from BIS central bankers' speeches RSS feed.
 
     The BIS feed uses <cb:person> with <cb:surname> and <dc:creator> fields,
@@ -174,29 +258,26 @@ def _fetch_bis_speeches(participant: Participant) -> list[dict]:
     except Exception as e:
         logger.warning(f"  BIS speeches RSS failed: {e}")
 
-    logger.info(f"  BIS speeches: {len(results)} results for {participant.name}")
     return results
 
 
 def fetch_news_for_participant(
     participant: Participant, max_results: int = 10
 ) -> list[dict]:
-    """Fetch news from all sources for a single participant."""
+    """Fetch news from all enabled data sources for a single participant."""
     ensure_dirs()
     all_results = []
 
-    # DuckDuckGo search
-    ddg_results = _search_ddg(participant, max_results=max_results)
-    all_results.extend(ddg_results)
-    time.sleep(RATE_LIMIT_SECONDS)
-
-    # Fed RSS feeds
-    rss_results = _fetch_fed_rss(participant)
-    all_results.extend(rss_results)
-
-    # BIS central bankers' speeches
-    bis_results = _fetch_bis_speeches(participant)
-    all_results.extend(bis_results)
+    for name, fn, enabled in _SOURCES:
+        if not enabled:
+            logger.debug(f"  Skipping disabled source: {name}")
+            continue
+        try:
+            results = fn(participant, max_results=max_results)
+            logger.info(f"  {name}: {len(results)} results for {participant.name}")
+            all_results.extend(results)
+        except Exception as e:
+            logger.warning(f"  Source '{name}' failed for {participant.name}: {e}")
 
     # Save to file
     date_str = datetime.now().strftime("%Y-%m-%d")
@@ -218,6 +299,13 @@ def fetch_news_for_participant(
 
     logger.info(f"  Saved {len(all_results)} results to {filename}")
     return all_results
+
+
+# ── Register built-in sources ──────────────────────────────────────────────────
+
+register_source("duckduckgo", _search_ddg)
+register_source("fed_rss", _fetch_fed_rss)
+register_source("bis_speeches", _fetch_bis_speeches)
 
 
 def load_cached_news(participant: Participant) -> list[dict] | None:
