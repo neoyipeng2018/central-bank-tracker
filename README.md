@@ -84,14 +84,20 @@ Custom sources are called automatically by `fetch_news_for_participant` alongsid
 
 ## Classification Methodology
 
-### Step 1: Keyword Matching
+The classifier supports **LLM-based** and **keyword-based** modes. When an API key is configured, it routes through LLM backends in priority order: **Cerebras** (fastest) → **Gemini 2.0 Flash** → **OpenAI**. If no API keys are set (or all fail), it falls back to keyword matching. Both paths produce scores on the same **-5.0 to +5.0** scale across two dimensions.
 
-Each text snippet (headline + body) is scanned against two curated dictionaries:
+### Two Dimensions
 
-- **Hawkish dictionary** (33 terms) — phrases associated with tighter monetary policy
-- **Dovish dictionary** (33 terms) — phrases associated with looser monetary policy
+Stances are scored independently on two dimensions:
 
-Every term carries a **weight from 0.3 to 1.0** reflecting signal strength:
+| Dimension | What it measures | Keyword dictionaries |
+|---|---|---|
+| **Policy** (interest rates) | Hawkish = raise/hold rates, dovish = cut rates | 38 hawkish terms, 43 dovish terms |
+| **Balance Sheet** (QT/QE) | Hawkish = shrink balance sheet, dovish = expand/slow runoff | 13 hawkish terms, 15 dovish terms |
+
+### Keyword Scoring
+
+Each text snippet is scanned against the term dictionaries. Every term carries a **weight from 0.3 to 1.0** reflecting signal strength:
 
 | Weight | Hawkish Examples | Dovish Examples |
 |---|---|---|
@@ -102,19 +108,17 @@ Every term carries a **weight from 0.3 to 1.0** reflecting signal strength:
 
 Matching is case-insensitive with collapsed whitespace. A term's weight is multiplied by its occurrence count in the text.
 
-### Step 2: Per-Snippet Scoring
-
-For a single text snippet, the raw score is computed as:
+For each dimension, the per-snippet raw score is:
 
 ```
-raw_score = (hawkish_total - dovish_total) / (hawkish_total + dovish_total)
+raw_score = 5.0 * (hawkish_total - dovish_total) / (hawkish_total + dovish_total)
 ```
 
-This produces a value from **-1.0** (purely dovish keywords) to **+1.0** (purely hawkish keywords). If no keywords match, the score is 0.0.
+This produces a value from **-5.0** (purely dovish) to **+5.0** (purely hawkish). A **confidence** value is also computed: `min(total_keyword_hits / 5.0, 1.0)`.
 
-A **confidence** value is also computed: `min(total_keyword_hits / 5.0, 1.0)`, which scales from 0 (no signal) to 1 (5+ keyword matches).
+The per-snippet overall score combines the two dimensions: **70% policy + 30% balance sheet** (if balance sheet keywords are present; otherwise policy only).
 
-### Step 3: Multi-Snippet Aggregation
+### Multi-Snippet Aggregation
 
 All snippets for a participant (typically 10–20 from news + RSS + BIS speeches) are classified individually, then combined using a **confidence-weighted average**:
 
@@ -122,52 +126,64 @@ All snippets for a participant (typically 10–20 from news + RSS + BIS speeches
 final_score = sum(score_i * confidence_i) / sum(confidence_i)
 ```
 
-This means snippets with more keyword matches carry more weight in the aggregate, while snippets with no relevant keywords are effectively ignored.
+This means snippets with more keyword matches carry more weight in the aggregate, while snippets with no relevant keywords are effectively ignored. Each dimension (policy, balance sheet) is aggregated independently.
 
-### Step 4: Historical Blending
+### Historical Blending
 
-The news-derived score is blended with a pre-set **historical lean** for each participant (based on their known policy track record):
+The news-derived score is blended with a pre-set **historical lean** for each participant (based on their known policy track record). Each dimension is blended independently:
 
 ```
-blended_score = (news_score * 0.70) + (historical_lean * 0.30)
+blended_policy = (news_policy * 0.70) + (historical_policy_lean * 0.30)
+blended_bs     = (news_bs * 0.70)     + (historical_bs_lean * 0.30)
 ```
 
-The 70/30 split ensures that recent news dominates, but the baseline reputation acts as a prior. If no news is found at all, the historical lean is used directly as a fallback.
+The overall score is then: **70% blended policy + 30% blended balance sheet**.
 
-### Step 5: Label Assignment
+If no news is found at all, the historical lean is used directly as a fallback.
+
+### Label Assignment
 
 The final blended score is mapped to a label:
 
 | Score Range | Label |
 |---|---|
-| > +0.3 | **Hawkish** |
-| -0.3 to +0.3 | **Neutral** |
-| < -0.3 | **Dovish** |
+| > +1.5 | **Hawkish** |
+| -1.5 to +1.5 | **Neutral** |
+| < -1.5 | **Dovish** |
 
 ## Dashboard Charts
 
-The Streamlit dashboard (`dashboard.py`) renders five visualizations:
+The Streamlit dashboard (`dashboard.py`) renders six chart sections plus detail views:
 
 1. **Hawk-Dove Spectrum** — Horizontal bar chart ranking all participants from most dovish to most hawkish, with voter indicators
-2. **Committee Composition** — Donut chart showing the hawkish/neutral/dovish split
-3. **Voters vs Alternates** — Dot plot comparing the stance distribution of 2026 voting members against non-voting alternates
-4. **Stance Trends Over Time** — Line chart tracking how selected participants' stances have shifted month-to-month
-5. **Stance Heatmap** — Color-coded matrix of all participants across all recorded dates
+2. **2D Stance Map** — Scatter plot of policy score vs balance sheet score for each participant
+3. **Committee Composition** — Donut chart showing the hawkish/neutral/dovish split
+4. **Voters vs Alternates** — Dot plot comparing the stance distribution of 2026 voting members against non-voting alternates
+5. **Stance Trends** — Line chart tracking how selected participants' stances have shifted month-to-month, with toggle between aggregate and per-dimension (policy & balance sheet) views. Supports click-to-inspect for viewing evidence articles.
+6. **Stance Heatmap** — Color-coded matrix of all participants across all recorded dates
+
+A **participant details table** and expandable **evidence cards** (with keyword highlights and dimension labels) are shown below the charts.
 
 ## Project Structure
 
 ```
 fomc_tracker/
-  participants.py        # 19-member FOMC roster with metadata
-  news_fetcher.py        # DuckDuckGo + Fed RSS + BIS speeches data fetching
-  fed_speeches.py        # Federal Reserve speech scraping
-  stance_classifier.py   # Keyword-based hawkish/dovish classifier
-  historical_data.py     # Stance history storage + seed data
-fetch_data.py            # CLI orchestrator
-dashboard.py             # Streamlit dashboard
+  participants.py          # 19-member FOMC roster with metadata
+  news_fetcher.py          # Pluggable data source registry + built-in fetchers
+  fed_speeches.py          # Federal Reserve speech scraping
+  stance_classifier.py     # LLM + keyword classifier with dual-dimension scoring
+  cerebras_classifier.py   # Cerebras LLM backend (primary)
+  gemini_classifier.py     # Gemini 2.0 Flash LLM backend (fallback)
+  openai_classifier.py     # OpenAI LLM backend (fallback)
+  historical_data.py       # Stance history storage + seed data
+fetch_data.py              # CLI orchestrator
+dashboard.py               # Streamlit dashboard
+generate_html.py           # Standalone HTML report generator
+.github/workflows/
+  daily-fetch.yml          # GitHub Actions daily data fetch
 data/
-  news/                  # Cached news JSON (date-prefixed, gitignored)
-  historical/            # Persisted stance history
+  news/                    # Cached news JSON (date-prefixed, gitignored)
+  historical/              # Persisted stance history
 ```
 
 ## CLI Reference
@@ -186,9 +202,21 @@ python fetch_data.py --name "Jerome Powell"
 python fetch_data.py --no-cache
 ```
 
+## LLM Configuration
+
+The classifier tries LLM backends in order when API keys are present in `.env`:
+
+| Backend | Env Variable | Model |
+|---|---|---|
+| Cerebras (primary) | `CEREBRAS_API_KEY` | Fastest inference |
+| Gemini (fallback) | `GEMINI_API_KEY` | Gemini 2.0 Flash |
+| OpenAI (fallback) | `OPENAI_API_KEY` | GPT |
+
+If no keys are set, the system uses keyword matching only. All backends produce the same dual-dimension score format.
+
 ## Limitations
 
-- **Keyword-based NLP** — The classifier uses dictionary matching, not a language model. It can miss nuanced or implicit policy signals and may be thrown off by negation ("will not raise rates" still matches "raise rates").
+- **Keyword fallback** — Without LLM API keys, the classifier uses dictionary matching, which can miss nuanced or implicit policy signals and may be thrown off by negation ("will not raise rates" still matches "raise rates").
 - **News availability** — Some participants generate more media coverage than others. Low-profile members may rely more heavily on the historical lean fallback.
-- **No sentiment context** — The system counts keyword occurrences without understanding surrounding context. A news article *about* a rate cut that quotes a hawk disagreeing would still register dovish keywords.
+- **No sentiment context** (keyword mode) — The system counts keyword occurrences without understanding surrounding context. A news article *about* a rate cut that quotes a hawk disagreeing would still register dovish keywords. LLM mode handles this better.
 - **Single-day granularity** — Each fetch overwrites that day's cache. Intra-day stance shifts are not captured.
