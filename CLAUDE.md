@@ -49,7 +49,7 @@ tests/                  # Unit tests
 ## Architecture
 1. `participants.py` defines the FOMC roster (no dependencies)
 2. `news_fetcher.py` + `fed_speeches.py` fetch data from web
-3. `stance_classifier.py` scores text on -1.0 (dovish) to +1.0 (hawkish)
+3. `stance_classifier.py` scores text on -5.0 (dovish) to +5.0 (hawkish)
 4. `historical_data.py` persists stances over time with seed data
 5. `fetch_data.py` orchestrates fetch → classify → store
 6. `dashboard.py` visualizes everything via Streamlit + Plotly
@@ -66,7 +66,7 @@ DuckDuckGo News + Fed RSS + BIS Speeches → news_fetcher → JSON files in data
 ```
 
 ## Conventions
-- Scores: -1.0 (very dovish) to +1.0 (very hawkish)
-- Labels: "Dovish" (< -0.3), "Neutral" (-0.3 to 0.3), "Hawkish" (> 0.3)
+- Scores: -5.0 (very dovish) to +5.0 (very hawkish)
+- Labels: "Dovish" (< -1.5), "Neutral" (-1.5 to 1.5), "Hawkish" (> 1.5)
 - Data files: JSON, date-prefixed (`2026-02-15_Jerome_H_Powell.json`)
 - Rate limiting: 1.5s between DuckDuckGo requests

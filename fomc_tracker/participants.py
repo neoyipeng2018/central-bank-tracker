@@ -10,8 +10,9 @@ class Participant:
     institution: str
     is_voter_2026: bool
     is_governor: bool
-    # Baseline lean from historical record: -1 (dovish) to +1 (hawkish)
-    historical_lean: float
+    # Baseline lean from historical record: -5 (dovish) to +5 (hawkish)
+    historical_lean: float  # policy (rates) lean
+    historical_balance_sheet_lean: float = 0.0  # balance sheet (QT/QE) lean
 
 
 # Full FOMC roster for 2026 + notable incoming officials
@@ -25,7 +26,8 @@ PARTICIPANTS: list[Participant] = [
         is_governor=False,
         # Warsh served as Fed Governor 2006-2011; known as a hawk who
         # dissented against QE and favors rules-based monetary policy
-        historical_lean=0.55,
+        historical_lean=2.75,
+        historical_balance_sheet_lean=2.50,  # strongly opposed QE
     ),
     # ── Board of Governors (all vote) ──────────────────────────────
     Participant(
@@ -34,7 +36,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=0.05,
+        historical_lean=0.25,
+        historical_balance_sheet_lean=0.25,  # pragmatic, follows committee consensus
     ),
     Participant(
         name="Philip N. Jefferson",
@@ -42,7 +45,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=-0.10,
+        historical_lean=-0.50,
+        historical_balance_sheet_lean=-0.25,
     ),
     Participant(
         name="Michael S. Barr",
@@ -50,7 +54,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=-0.20,
+        historical_lean=-1.00,
+        historical_balance_sheet_lean=-0.50,
     ),
     Participant(
         name="Michelle W. Bowman",
@@ -58,7 +63,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=0.55,
+        historical_lean=2.75,
+        historical_balance_sheet_lean=1.75,  # supports QT
     ),
     Participant(
         name="Christopher J. Waller",
@@ -66,7 +72,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=0.45,
+        historical_lean=2.25,
+        historical_balance_sheet_lean=1.50,  # supports continued QT
     ),
     Participant(
         name="Lisa D. Cook",
@@ -74,7 +81,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=-0.25,
+        historical_lean=-1.25,
+        historical_balance_sheet_lean=-0.75,
     ),
     Participant(
         name="Adriana D. Kugler",
@@ -82,7 +90,8 @@ PARTICIPANTS: list[Participant] = [
         institution="Board of Governors",
         is_voter_2026=True,
         is_governor=True,
-        historical_lean=-0.15,
+        historical_lean=-0.75,
+        historical_balance_sheet_lean=-0.25,
     ),
     # ── Federal Reserve Bank Presidents ────────────────────────────
     # NY Fed president always votes
@@ -92,7 +101,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB New York",
         is_voter_2026=True,
         is_governor=False,
-        historical_lean=-0.05,
+        historical_lean=-0.25,
+        historical_balance_sheet_lean=0.50,  # NY Fed manages operations; slightly hawkish on BS
     ),
     # 2026 rotating voters
     Participant(
@@ -101,7 +111,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Philadelphia",
         is_voter_2026=True,
         is_governor=False,
-        historical_lean=0.10,
+        historical_lean=0.50,
+        historical_balance_sheet_lean=0.25,
     ),
     Participant(
         name="Thomas I. Barkin",
@@ -109,7 +120,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Richmond",
         is_voter_2026=True,
         is_governor=False,
-        historical_lean=0.15,
+        historical_lean=0.75,
+        historical_balance_sheet_lean=0.50,
     ),
     Participant(
         name="Raphael W. Bostic",
@@ -117,7 +129,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Atlanta",
         is_voter_2026=True,
         is_governor=False,
-        historical_lean=-0.10,
+        historical_lean=-0.50,
+        historical_balance_sheet_lean=-0.25,
     ),
     Participant(
         name="Mary C. Daly",
@@ -125,7 +138,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB San Francisco",
         is_voter_2026=True,
         is_governor=False,
-        historical_lean=-0.15,
+        historical_lean=-0.75,
+        historical_balance_sheet_lean=-0.50,
     ),
     # 2026 non-voting (alternate) participants
     Participant(
@@ -134,7 +148,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Boston",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=0.05,
+        historical_lean=0.25,
+        historical_balance_sheet_lean=0.00,
     ),
     Participant(
         name="Beth M. Hammack",
@@ -142,7 +157,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Cleveland",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=0.20,
+        historical_lean=1.00,
+        historical_balance_sheet_lean=0.75,
     ),
     Participant(
         name="Austan D. Goolsbee",
@@ -150,7 +166,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Chicago",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=-0.35,
+        historical_lean=-1.75,
+        historical_balance_sheet_lean=-1.00,  # more dovish on BS too
     ),
     Participant(
         name="Alberto G. Musalem",
@@ -158,7 +175,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB St. Louis",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=0.25,
+        historical_lean=1.25,
+        historical_balance_sheet_lean=0.75,
     ),
     Participant(
         name="Jeffrey R. Schmid",
@@ -166,7 +184,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Kansas City",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=0.35,
+        historical_lean=1.75,
+        historical_balance_sheet_lean=1.25,
     ),
     Participant(
         name="Lorie K. Logan",
@@ -174,7 +193,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Dallas",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=0.40,
+        historical_lean=2.00,
+        historical_balance_sheet_lean=-1.00,  # hawkish on rates, dovish on BS (advocates slowing QT)
     ),
     Participant(
         name="Neel Kashkari",
@@ -182,7 +202,8 @@ PARTICIPANTS: list[Participant] = [
         institution="FRB Minneapolis",
         is_voter_2026=False,
         is_governor=False,
-        historical_lean=-0.30,
+        historical_lean=-1.50,
+        historical_balance_sheet_lean=-1.00,
     ),
 ]
 

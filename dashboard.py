@@ -233,6 +233,11 @@ st.markdown(
         color: #94a3b8;
         border: 1px solid rgba(148,163,184,0.15);
     }
+    .ev-tag-dim {
+        background: rgba(167,139,250,0.12);
+        color: #a78bfa;
+        border: 1px solid rgba(167,139,250,0.2);
+    }
 
     /* ── Footer ─────────────────────────────────────── */
     .foot {
@@ -267,17 +272,17 @@ PLOTLY_LAYOUT = dict(
 
 
 def score_color(s: float) -> str:
-    if s > 0.3:
+    if s > 1.5:
         return HAWK
-    if s < -0.3:
+    if s < -1.5:
         return DOVE
     return NEUTRAL_C
 
 
 def score_label(s: float) -> str:
-    if s > 0.3:
+    if s > 1.5:
         return "Hawkish"
-    if s < -0.3:
+    if s < -1.5:
         return "Dovish"
     return "Neutral"
 
@@ -286,33 +291,15 @@ def last_name(full: str) -> str:
     return full.split()[-1]
 
 
+# ── Stance dimension config ───────────────────────────────────────────────
+DIMENSION_CONFIG = {
+    "Overall": {"score_key": "score", "label_key": "label"},
+    "Policy (Rates)": {"score_key": "policy_score", "label_key": "policy_label"},
+    "Balance Sheet (QT/QE)": {"score_key": "balance_sheet_score", "label_key": "balance_sheet_label"},
+}
+
 # ── Load Data ──────────────────────────────────────────────────────────────
 history = load_history()
-
-rows = []
-for p in PARTICIPANTS:
-    latest = get_latest_stance(p.name)
-    sc = latest["score"] if latest else p.historical_lean
-    rows.append(
-        dict(
-            name=p.name,
-            short=last_name(p.name),
-            inst=p.institution,
-            title=p.title,
-            voter=p.is_voter_2026,
-            gov=p.is_governor,
-            score=sc,
-            label=score_label(sc),
-        )
-    )
-
-df = pd.DataFrame(rows).sort_values("score", ascending=True).reset_index(drop=True)
-hawks = df[df.label == "Hawkish"]
-neutrals = df[df.label == "Neutral"]
-doves = df[df.label == "Dovish"]
-
-avg_score = df["score"].mean()
-voter_avg = df[df.voter]["score"].mean()
 
 # ── Sidebar ────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -324,6 +311,17 @@ with st.sidebar:
     )
     st.markdown("---")
 
+    st.markdown("**Stance Dimension**")
+    stance_view = st.radio(
+        "Select dimension",
+        list(DIMENSION_CONFIG.keys()),
+        index=0,
+        label_visibility="collapsed",
+    )
+    dim_cfg = DIMENSION_CONFIG[stance_view]
+    score_key = dim_cfg["score_key"]
+
+    st.markdown("---")
     st.markdown("**Filters**")
     show_voters = st.checkbox("Voting members only", value=False)
     show_govs = st.checkbox("Governors only", value=False)
@@ -331,18 +329,51 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Legend**")
     st.markdown(
-        f'<div class="legend-item"><div class="legend-dot" style="background:{HAWK}"></div>Hawkish (&gt; +0.3)</div>'
-        f'<div class="legend-item"><div class="legend-dot" style="background:{NEUTRAL_C}"></div>Neutral (-0.3 to +0.3)</div>'
-        f'<div class="legend-item"><div class="legend-dot" style="background:{DOVE}"></div>Dovish (&lt; -0.3)</div>',
+        f'<div class="legend-item"><div class="legend-dot" style="background:{HAWK}"></div>Hawkish (&gt; +1.5)</div>'
+        f'<div class="legend-item"><div class="legend-dot" style="background:{NEUTRAL_C}"></div>Neutral (-1.5 to +1.5)</div>'
+        f'<div class="legend-item"><div class="legend-dot" style="background:{DOVE}"></div>Dovish (&lt; -1.5)</div>',
         unsafe_allow_html=True,
     )
     st.markdown("---")
     st.markdown(
-        '<p class="sidebar-desc">Scores range from <b>-1.0</b> (very dovish) '
-        'to <b>+1.0</b> (very hawkish). Classification uses weighted keyword '
+        '<p class="sidebar-desc">Scores range from <b>-5.0</b> (very dovish) '
+        'to <b>+5.0</b> (very hawkish). Classification uses weighted keyword '
         "matching on news headlines, Fed speeches, and BIS central banker speeches.</p>",
         unsafe_allow_html=True,
     )
+
+# ── Build DataFrame ───────────────────────────────────────────────────────
+rows = []
+for p in PARTICIPANTS:
+    latest = get_latest_stance(p.name)
+    sc = latest.get(score_key, latest.get("score", p.historical_lean)) if latest else p.historical_lean
+    # Also grab all dimension scores for the 2D scatter
+    sc_overall = latest.get("score", p.historical_lean) if latest else p.historical_lean
+    sc_policy = latest.get("policy_score", sc_overall) if latest else p.historical_lean
+    sc_bs = latest.get("balance_sheet_score", 0.0) if latest else p.historical_balance_sheet_lean
+    rows.append(
+        dict(
+            name=p.name,
+            short=last_name(p.name),
+            inst=p.institution,
+            title=p.title,
+            voter=p.is_voter_2026,
+            gov=p.is_governor,
+            score=sc,
+            label=score_label(sc),
+            overall_score=sc_overall,
+            policy_score=sc_policy,
+            balance_sheet_score=sc_bs,
+        )
+    )
+
+df = pd.DataFrame(rows).sort_values("score", ascending=True).reset_index(drop=True)
+hawks = df[df.label == "Hawkish"]
+neutrals = df[df.label == "Neutral"]
+doves = df[df.label == "Dovish"]
+
+avg_score = df["score"].mean()
+voter_avg = df[df.voter]["score"].mean()
 
 filtered = df.copy()
 if show_voters:
@@ -351,12 +382,13 @@ if show_govs:
     filtered = filtered[filtered.gov]
 
 # ── Hero Header ────────────────────────────────────────────────────────────
+dim_suffix = f" — {stance_view}" if stance_view != "Overall" else ""
 st.markdown(
     f"""<div class="hero">
         <p class="hero-title">FOMC Participant<br>Stance Tracker</p>
         <p class="hero-sub">Real-time hawkish / dovish classification of Federal Reserve officials
         based on recent news, speeches, and public statements.</p>
-        <span class="hero-date">Last updated {datetime.now().strftime('%B %d, %Y')}</span>
+        <span class="hero-date">Last updated {datetime.now().strftime('%B %d, %Y')}{dim_suffix}</span>
     </div>""",
     unsafe_allow_html=True,
 )
@@ -402,7 +434,7 @@ st.markdown(
 # Chart 1 — Hawk-Dove Spectrum
 # ══════════════════════════════════════════════════════════════════════════
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
-st.markdown('<p class="section-hdr">Hawk-Dove Spectrum</p>', unsafe_allow_html=True)
+st.markdown(f'<p class="section-hdr">Hawk-Dove Spectrum — {stance_view}</p>', unsafe_allow_html=True)
 st.markdown(
     '<p class="section-sub">All participants ranked from most dovish to most hawkish &nbsp;&bull;&nbsp; '
     '<span style="color:#fbbf24">&#9733;</span> = 2026 voting member</p>',
@@ -436,17 +468,17 @@ fig1.add_trace(
 )
 
 fig1.add_vline(x=0, line_width=1.5, line_color="rgba(148,163,184,0.25)")
-fig1.add_vline(x=0.3, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.2)")
-fig1.add_vline(x=-0.3, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.2)")
+fig1.add_vline(x=1.5, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.2)")
+fig1.add_vline(x=-1.5, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.2)")
 
 fig1.update_layout(
     **PLOTLY_LAYOUT,
     height=max(480, len(filtered) * 38),
     xaxis=dict(
-        range=[-1.15, 1.15],
+        range=[-5.5, 5.5],
         gridcolor=GRID,
         zeroline=False,
-        tickvals=[-1.0, -0.5, -0.3, 0, 0.3, 0.5, 1.0],
+        tickvals=[-5.0, -3.0, -1.5, 0, 1.5, 3.0, 5.0],
         title=dict(text="← Dovish          Score          Hawkish →", font=dict(size=11, color=FONT_DIM)),
     ),
     yaxis=dict(
@@ -462,6 +494,90 @@ fig1.update_layout(
 st.plotly_chart(fig1, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════════════════
+# Chart — 2D Stance Scatter (Policy vs Balance Sheet)
+# ══════════════════════════════════════════════════════════════════════════
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
+st.markdown('<p class="section-hdr">2D Stance Map — Policy vs Balance Sheet</p>', unsafe_allow_html=True)
+st.markdown(
+    '<p class="section-sub">Each participant plotted by interest rate stance (x) and balance sheet stance (y) '
+    '&nbsp;&bull;&nbsp; Dot size indicates voter status</p>',
+    unsafe_allow_html=True,
+)
+
+fig_scatter = go.Figure()
+
+# Quadrant background shading
+fig_scatter.add_shape(type="rect", x0=0, x1=5.25, y0=0, y1=5.25,
+                      fillcolor="rgba(248,113,113,0.04)", line_width=0)
+fig_scatter.add_shape(type="rect", x0=-5.25, x1=0, y0=0, y1=5.25,
+                      fillcolor="rgba(167,139,250,0.04)", line_width=0)
+fig_scatter.add_shape(type="rect", x0=0, x1=5.25, y0=-5.25, y1=0,
+                      fillcolor="rgba(251,191,36,0.04)", line_width=0)
+fig_scatter.add_shape(type="rect", x0=-5.25, x1=0, y0=-5.25, y1=0,
+                      fillcolor="rgba(96,165,250,0.04)", line_width=0)
+
+# Quadrant labels
+for text, x, y in [
+    ("Rate Hawk / BS Hawk", 3.75, 4.5),
+    ("Rate Dove / BS Hawk", -3.75, 4.5),
+    ("Rate Hawk / BS Dove", 3.75, -4.5),
+    ("Rate Dove / BS Dove", -3.75, -4.5),
+]:
+    fig_scatter.add_annotation(
+        text=text, x=x, y=y, showarrow=False,
+        font=dict(size=9, color="rgba(148,163,184,0.4)"),
+    )
+
+# Plot participants
+scatter_df = filtered.copy()
+fig_scatter.add_trace(
+    go.Scatter(
+        x=scatter_df["policy_score"],
+        y=scatter_df["balance_sheet_score"],
+        mode="markers+text",
+        marker=dict(
+            size=[18 if v else 12 for v in scatter_df["voter"]],
+            color=[score_color(s) for s in scatter_df["overall_score"]],
+            line=dict(width=1.5, color="rgba(255,255,255,0.2)"),
+            opacity=0.9,
+        ),
+        text=scatter_df["short"],
+        textposition="top center",
+        textfont=dict(size=9, color=FONT_DIM),
+        hovertemplate=(
+            "<b>%{customdata[0]}</b><br>"
+            "Policy: %{x:+.3f}<br>"
+            "Balance Sheet: %{y:+.3f}<br>"
+            "Overall: %{customdata[1]:+.3f}"
+            "<extra></extra>"
+        ),
+        customdata=list(zip(scatter_df["name"], scatter_df["overall_score"])),
+        showlegend=False,
+    )
+)
+
+fig_scatter.add_hline(y=0, line_width=1, line_color="rgba(148,163,184,0.2)")
+fig_scatter.add_vline(x=0, line_width=1, line_color="rgba(148,163,184,0.2)")
+
+fig_scatter.update_layout(
+    **PLOTLY_LAYOUT,
+    height=520,
+    xaxis=dict(
+        range=[-5.25, 5.25], gridcolor=GRID, zeroline=False,
+        tickvals=[-5.0, -3.0, -1.5, 0, 1.5, 3.0, 5.0],
+        title=dict(text="← Dovish (Rates)     Policy Score     Hawkish (Rates) →", font=dict(size=11, color=FONT_DIM)),
+    ),
+    yaxis=dict(
+        range=[-5.25, 5.25], gridcolor=GRID, zeroline=False,
+        tickvals=[-5.0, -3.0, -1.5, 0, 1.5, 3.0, 5.0],
+        title=dict(text="← Dovish (QE/Slow QT)     BS Score     Hawkish (QT) →", font=dict(size=11, color=FONT_DIM)),
+    ),
+    margin=dict(l=70, r=30, t=10, b=55),
+)
+
+st.plotly_chart(fig_scatter, use_container_width=True)
+
+# ══════════════════════════════════════════════════════════════════════════
 # Chart 2 & 3 — Composition + Voters vs Alternates (side by side)
 # ══════════════════════════════════════════════════════════════════════════
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -469,7 +585,7 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 col_l, col_r = st.columns([1, 1], gap="large")
 
 with col_l:
-    st.markdown('<p class="section-hdr">Committee Composition</p>', unsafe_allow_html=True)
+    st.markdown(f'<p class="section-hdr">Committee Composition — {stance_view}</p>', unsafe_allow_html=True)
     st.markdown('<p class="section-sub">Stance breakdown across all participants</p>', unsafe_allow_html=True)
 
     fig2 = go.Figure(
@@ -505,7 +621,7 @@ with col_l:
     st.plotly_chart(fig2, use_container_width=True)
 
 with col_r:
-    st.markdown('<p class="section-hdr">Voters vs Alternates</p>', unsafe_allow_html=True)
+    st.markdown(f'<p class="section-hdr">Voters vs Alternates — {stance_view}</p>', unsafe_allow_html=True)
     st.markdown(
         '<p class="section-sub">Comparing stance distributions &nbsp;&bull;&nbsp; '
         '<span style="color:#fbbf24">&#9670;</span> = group average</p>',
@@ -547,7 +663,7 @@ with col_r:
     fig3.update_layout(
         **PLOTLY_LAYOUT,
         height=380,
-        xaxis=dict(range=[-1.05, 1.05], gridcolor=GRID, zeroline=False,
+        xaxis=dict(range=[-5.25, 5.25], gridcolor=GRID, zeroline=False,
                     title=dict(text="← Dovish     Score     Hawkish →", font=dict(size=11, color=FONT_DIM))),
         yaxis=dict(gridcolor=GRID),
         margin=dict(l=90, r=30, t=10, b=45),
@@ -558,7 +674,7 @@ with col_r:
 # Chart 4 — Stance Trends
 # ══════════════════════════════════════════════════════════════════════════
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
-st.markdown('<p class="section-hdr">Stance Trends</p>', unsafe_allow_html=True)
+st.markdown(f'<p class="section-hdr">Stance Trends — {stance_view}</p>', unsafe_allow_html=True)
 st.markdown('<p class="section-sub">How each participant\'s stance has evolved over recent months</p>', unsafe_allow_html=True)
 
 all_names = [p.name for p in PARTICIPANTS]
@@ -571,10 +687,10 @@ selected = st.multiselect("Select participants", all_names, default=[n for n in 
 if selected:
     fig4 = go.Figure()
 
-    fig4.add_hrect(y0=0.3, y1=1.0, fillcolor="rgba(248,113,113,0.05)", line_width=0,
+    fig4.add_hrect(y0=1.5, y1=5.0, fillcolor="rgba(248,113,113,0.05)", line_width=0,
                    annotation_text="Hawkish zone", annotation_position="top left",
                    annotation_font=dict(color="rgba(248,113,113,0.35)", size=10))
-    fig4.add_hrect(y0=-1.0, y1=-0.3, fillcolor="rgba(96,165,250,0.05)", line_width=0,
+    fig4.add_hrect(y0=-5.0, y1=-1.5, fillcolor="rgba(96,165,250,0.05)", line_width=0,
                    annotation_text="Dovish zone", annotation_position="bottom left",
                    annotation_font=dict(color="rgba(96,165,250,0.35)", size=10))
 
@@ -587,7 +703,7 @@ if selected:
         c = palette[i % len(palette)]
         fig4.add_trace(go.Scatter(
             x=[e["date"] for e in entries],
-            y=[e["score"] for e in entries],
+            y=[e.get(score_key, e.get("score", 0)) for e in entries],
             mode="lines+markers",
             name=last_name(name),
             line=dict(width=2.5, color=c, shape="spline"),
@@ -596,14 +712,14 @@ if selected:
         ))
 
     fig4.add_hline(y=0, line_width=1, line_color="rgba(148,163,184,0.2)")
-    fig4.add_hline(y=0.3, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.15)")
-    fig4.add_hline(y=-0.3, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.15)")
+    fig4.add_hline(y=1.5, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.15)")
+    fig4.add_hline(y=-1.5, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.15)")
 
     fig4.update_layout(
         **PLOTLY_LAYOUT,
         height=480,
         xaxis=dict(gridcolor=GRID, title=dict(text="Date", font=dict(size=11, color=FONT_DIM))),
-        yaxis=dict(gridcolor=GRID, range=[-1.05, 1.05], tickvals=[-1, -0.5, -0.3, 0, 0.3, 0.5, 1],
+        yaxis=dict(gridcolor=GRID, range=[-5.25, 5.25], tickvals=[-5, -3, -1.5, 0, 1.5, 3, 5],
                    title=dict(text="Stance Score", font=dict(size=11, color=FONT_DIM))),
         legend=dict(bgcolor="rgba(15,23,42,0.7)", bordercolor="rgba(148,163,184,0.1)", borderwidth=1,
                     font=dict(size=11), orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
@@ -617,7 +733,7 @@ else:
 # Chart 5 — Heatmap
 # ══════════════════════════════════════════════════════════════════════════
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
-st.markdown('<p class="section-hdr">Stance Heatmap</p>', unsafe_allow_html=True)
+st.markdown(f'<p class="section-hdr">Stance Heatmap — {stance_view}</p>', unsafe_allow_html=True)
 st.markdown('<p class="section-sub">Monthly stance scores across all participants</p>', unsafe_allow_html=True)
 
 all_dates = sorted({d for entries in history.values() for d in [e["date"] for e in entries]})
@@ -626,7 +742,7 @@ f_names = [p.name for p in PARTICIPANTS]
 
 z = np.full((len(f_names), len(all_dates)), np.nan)
 for i, name in enumerate(f_names):
-    ds = {e["date"]: e["score"] for e in history.get(name, [])}
+    ds = {e["date"]: e.get(score_key, e.get("score", 0)) for e in history.get(name, [])}
     for j, d in enumerate(all_dates):
         if d in ds:
             z[i][j] = ds[d]
@@ -638,12 +754,12 @@ fig5 = go.Figure(go.Heatmap(
         [0.5, "#f1f5f9"],
         [0.58, "#fecaca"], [0.7, "#f87171"], [0.85, "#dc2626"], [1.0, "#7f1d1d"],
     ],
-    zmid=0, zmin=-1, zmax=1, connectgaps=False,
+    zmid=0, zmin=-5, zmax=5, connectgaps=False,
     colorbar=dict(
         title=dict(text="Score", font=dict(color=FONT_DIM, size=11)),
         tickfont=dict(color=FONT_DIM, size=10),
-        tickvals=[-1, -0.5, 0, 0.5, 1],
-        ticktext=["-1 Dovish", "-0.5", "0", "+0.5", "+1 Hawkish"],
+        tickvals=[-5, -2.5, 0, 2.5, 5],
+        ticktext=["-5 Dovish", "-2.5", "0", "+2.5", "+5 Hawkish"],
         thickness=14, len=0.6,
     ),
     hovertemplate="<b>%{y}</b><br>Date: %{x}<br>Score: %{z}<extra></extra>",
@@ -664,11 +780,13 @@ st.plotly_chart(fig5, use_container_width=True)
 # ══════════════════════════════════════════════════════════════════════════
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown('<p class="section-hdr">Participant Details</p>', unsafe_allow_html=True)
-st.markdown('<p class="section-sub">Full roster with current stance scores</p>', unsafe_allow_html=True)
+st.markdown('<p class="section-sub">Full roster with current stance scores across all dimensions</p>', unsafe_allow_html=True)
 
-tbl = filtered[["name", "inst", "title", "score", "label", "voter"]].copy()
-tbl.columns = ["Name", "Institution", "Title", "Score", "Stance", "2026 Voter"]
+tbl = filtered[["name", "inst", "title", "score", "label", "policy_score", "balance_sheet_score", "voter"]].copy()
+tbl.columns = ["Name", "Institution", "Title", "Score", "Stance", "Policy Score", "BS Score", "2026 Voter"]
 tbl["Score"] = tbl["Score"].apply(lambda x: f"{x:+.3f}")
+tbl["Policy Score"] = tbl["Policy Score"].apply(lambda x: f"{x:+.3f}")
+tbl["BS Score"] = tbl["BS Score"].apply(lambda x: f"{x:+.3f}")
 tbl["2026 Voter"] = tbl["2026 Voter"].map({True: "Yes", False: "No"})
 tbl = tbl.sort_values("Score", ascending=False).reset_index(drop=True)
 
@@ -682,6 +800,8 @@ st.dataframe(
         "Title": st.column_config.TextColumn(width="small"),
         "Score": st.column_config.TextColumn(width="small"),
         "Stance": st.column_config.TextColumn(width="small"),
+        "Policy Score": st.column_config.TextColumn(width="small"),
+        "BS Score": st.column_config.TextColumn(width="small"),
         "2026 Voter": st.column_config.TextColumn(width="small"),
     },
 )
@@ -702,6 +822,11 @@ SOURCE_LABELS = {
     "bis_speeches": "BIS Speech",
 }
 
+DIM_LABELS = {
+    "policy": "Policy",
+    "balance_sheet": "Bal. Sheet",
+}
+
 # Build evidence lookup from history
 for _, row in filtered.iterrows():
     entries = history.get(row["name"], [])
@@ -717,6 +842,7 @@ for _, row in filtered.iterrows():
             quote = ev.get("quote", "")
             keywords = ev.get("keywords", [])
             directions = ev.get("directions", [])
+            dimensions = ev.get("dimensions", ["policy"] * len(keywords))
             src_type = SOURCE_LABELS.get(ev.get("source_type", ""), ev.get("source_type", ""))
 
             # Title with link
@@ -725,11 +851,13 @@ for _, row in filtered.iterrows():
             else:
                 title_html = title_text
 
-            # Keyword tags
+            # Keyword tags with dimension labels
             tags_html = ""
-            for kw, direction in zip(keywords, directions):
+            for kw, direction, dim in zip(keywords, directions, dimensions):
                 tag_cls = "ev-tag-hawk" if direction == "hawkish" else "ev-tag-dove"
+                dim_label = DIM_LABELS.get(dim, dim)
                 tags_html += f'<span class="ev-tag {tag_cls}">{kw}</span>'
+                tags_html += f'<span class="ev-tag ev-tag-dim">{dim_label}</span>'
             if src_type:
                 tags_html += f'<span class="ev-tag ev-tag-src">{src_type}</span>'
 
@@ -752,16 +880,28 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown('<p class="section-hdr">Export Data</p>', unsafe_allow_html=True)
 st.markdown('<p class="section-sub">Download stance data as CSV for your own analysis</p>', unsafe_allow_html=True)
 
-csv_current = df[["name", "inst", "title", "voter", "score", "label"]].copy()
-csv_current.columns = ["Name", "Institution", "Title", "2026 Voter", "Score", "Stance"]
-csv_current = csv_current.sort_values("Score", ascending=False)
+csv_current = df[["name", "inst", "title", "voter", "overall_score", "policy_score", "balance_sheet_score"]].copy()
+csv_current["overall_label"] = csv_current["overall_score"].apply(score_label)
+csv_current["policy_label"] = csv_current["policy_score"].apply(score_label)
+csv_current["balance_sheet_label"] = csv_current["balance_sheet_score"].apply(score_label)
+csv_current.columns = ["Name", "Institution", "Title", "2026 Voter",
+                        "Overall Score", "Policy Score", "Balance Sheet Score",
+                        "Overall Stance", "Policy Stance", "Balance Sheet Stance"]
+csv_current = csv_current.sort_values("Overall Score", ascending=False)
 
 hist_rows = []
 for name, entries in history.items():
     p = next((p for p in PARTICIPANTS if p.name == name), None)
     for e in entries:
-        hist_rows.append(dict(Name=name, Institution=p.institution if p else "", Date=e["date"],
-                              Score=e["score"], Stance=e["label"], Source=e.get("source", "")))
+        hist_rows.append(dict(
+            Name=name, Institution=p.institution if p else "", Date=e["date"],
+            Score=e.get("score", 0), Stance=e.get("label", ""),
+            Policy_Score=e.get("policy_score", e.get("score", 0)),
+            Policy_Stance=e.get("policy_label", ""),
+            Balance_Sheet_Score=e.get("balance_sheet_score", 0),
+            Balance_Sheet_Stance=e.get("balance_sheet_label", ""),
+            Source=e.get("source", ""),
+        ))
 csv_hist = pd.DataFrame(hist_rows).sort_values(["Date", "Name"])
 
 dc1, dc2, _ = st.columns([1, 1, 2])
@@ -790,6 +930,7 @@ st.markdown(
     "Data from DuckDuckGo News, Federal Reserve RSS &amp; "
     '<a href="https://www.bis.org/cbspeeches/index.htm">BIS Central Banker Speeches</a>'
     " &nbsp;&middot;&nbsp; Keyword-based NLP classification<br>"
+    "Dual-dimension analysis: Policy (rates) + Balance Sheet (QT/QE)<br>"
     "This tool is for informational purposes only and does not constitute financial advice."
     "</div>",
     unsafe_allow_html=True,
