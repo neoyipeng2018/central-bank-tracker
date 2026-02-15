@@ -557,8 +557,7 @@ fig_heatmap = go.Figure(
         zmax=1,
         connectgaps=False,
         colorbar=dict(
-            title="Score",
-            titlefont=dict(color=FONT_COLOR),
+            title=dict(text="Score", font=dict(color=FONT_COLOR)),
             tickfont=dict(color=FONT_COLOR),
             tickvals=[-1, -0.5, 0, 0.5, 1],
             ticktext=["Dovish -1", "-0.5", "Neutral", "+0.5", "Hawkish +1"],
