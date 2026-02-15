@@ -1,0 +1,724 @@
+{
+  "Jerome H. Powell": [
+    {
+      "date": "2025-09-15",
+      "score": 0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": 0.015,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Philip N. Jefferson": [
+    {
+      "date": "2025-09-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": 0.011,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Michael S. Barr": [
+    {
+      "date": "2025-09-15",
+      "score": -0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.3,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.088,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Michelle W. Bowman": [
+    {
+      "date": "2025-09-15",
+      "score": 0.6,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.55,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.5,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.5,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.45,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.369,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Christopher J. Waller": [
+    {
+      "date": "2025-09-15",
+      "score": 0.5,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.4,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.3,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.393,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Lisa D. Cook": [
+    {
+      "date": "2025-09-15",
+      "score": -0.3,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.3,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.35,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.3,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.775,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Adriana D. Kugler": [
+    {
+      "date": "2025-09-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "John C. Williams": [
+    {
+      "date": "2025-09-15",
+      "score": -0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.334,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Patrick T. Harker": [
+    {
+      "date": "2025-09-15",
+      "score": 0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.231,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Thomas I. Barkin": [
+    {
+      "date": "2025-09-15",
+      "score": 0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.029,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Raphael W. Bostic": [
+    {
+      "date": "2025-09-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": 0.01,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Mary C. Daly": [
+    {
+      "date": "2025-09-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.15,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.169,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Susan M. Collins": [
+    {
+      "date": "2025-09-15",
+      "score": 0.1,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.0,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.05,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": 0.11,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Beth M. Hammack": [
+    {
+      "date": "2025-09-15",
+      "score": 0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.31,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Austan D. Goolsbee": [
+    {
+      "date": "2025-09-15",
+      "score": -0.4,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.35,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.35,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.4,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.35,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.391,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Alberto G. Musalem": [
+    {
+      "date": "2025-09-15",
+      "score": 0.3,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.2,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.25,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.252,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Jeffrey R. Schmid": [
+    {
+      "date": "2025-09-15",
+      "score": 0.4,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.3,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.336,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ],
+  "Lorie K. Logan": [
+    {
+      "date": "2025-09-15",
+      "score": 0.45,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": 0.4,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": 0.35,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": 0.4,
+      "label": "Hawkish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": 0.107,
+      "label": "Neutral",
+      "source": "live"
+    }
+  ],
+  "Neel Kashkari": [
+    {
+      "date": "2025-09-15",
+      "score": -0.35,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-10-15",
+      "score": -0.3,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2025-11-15",
+      "score": -0.3,
+      "label": "Neutral",
+      "source": "seed"
+    },
+    {
+      "date": "2025-12-15",
+      "score": -0.35,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-01-15",
+      "score": -0.3,
+      "label": "Dovish",
+      "source": "seed"
+    },
+    {
+      "date": "2026-02-15",
+      "score": -0.79,
+      "label": "Dovish",
+      "source": "live"
+    }
+  ]
+}
