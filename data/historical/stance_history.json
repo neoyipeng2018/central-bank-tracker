@@ -52,12 +52,12 @@
     },
     {
       "date": "2026-02-15",
-      "score": 2.482,
+      "score": 2.027,
       "label": "Hawkish",
       "source": "live",
-      "policy_score": 2.925,
+      "policy_score": 2.575,
       "policy_label": "Hawkish",
-      "balance_sheet_score": 1.45,
+      "balance_sheet_score": 0.75,
       "balance_sheet_label": "Neutral",
       "evidence": [
         {
@@ -74,26 +74,23 @@
             "policy"
           ],
           "quote": "A Hawkish Kevin Warsh at the Fed Could Haunt Bessent The Treasury Secretary Scott Bessent tried to avoid providing President Trump with a clear recommendation to lead the central bank.",
-          "score": 2.8
+          "score": 2.1
         },
         {
-          "title": "Kevin Warsh Says The Federal Reserve Lost Its Way. He Might Be Right.",
-          "url": "https://www.forbes.com/sites/jamesbroughel/2026/02/02/kevin-warsh-says-the-federal-reserve-lost-its-way-he-might-be-right/",
+          "title": "President Donald Trump and Wall Street Want Lower Interest Rates -- but Fed Chair Nominee Kevin Warsh May Have Other Plans",
+          "url": "https://www.fool.com/investing/2026/02/15/donald-trump-wall-st-lower-interest-rate-fed-warsh/",
           "source_type": "duckduckgo",
           "keywords": [
-            "calling for a smaller balance sheet",
-            "renewed Fed independence"
+            "Lower Interest Rates"
           ],
           "directions": [
-            "hawkish",
-            "hawkish"
+            "dovish"
           ],
           "dimensions": [
-            "balance_sheet",
             "policy"
           ],
-          "quote": "Kevin Warsh argues the Federal Reserve has strayed from its mission as fiscal and monetary policy blur, calling for a smaller balance sheet and renewed Fed independence.",
-          "score": 2.1
+          "quote": "President Donald Trump and Wall Street Want Lower Interest Rates -- but Fed Chair Nominee Kevin Warsh May Have Other Plans. These gains haven't occurred by accident.",
+          "score": -1.05
         }
       ]
     }
@@ -151,10 +148,10 @@
     },
     {
       "date": "2026-02-15",
-      "score": -0.219,
+      "score": -0.366,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -0.345,
+      "policy_score": -0.555,
       "policy_label": "Neutral",
       "balance_sheet_score": 0.075,
       "balance_sheet_label": "Neutral",
@@ -183,7 +180,7 @@
           "url": "https://www.msn.com/en-in/money/news/us-fed-meeting-outcome-jerome-powell-led-fomc-keeps-interest-rates-steady-at-3-50-3-75-in-first-decision-of-2026-key-highlights/ar-AA1VbOkH",
           "source_type": "duckduckgo",
           "keywords": [
-            "keeps interest rates steady",
+            "held interest rates steady",
             "economic activity has been expanding at a solid pace"
           ],
           "directions": [
@@ -253,14 +250,33 @@
     },
     {
       "date": "2026-02-15",
-      "score": 0.019,
+      "score": 0.117,
       "label": "Neutral",
       "source": "live",
-      "policy_score": 0.06,
+      "policy_score": 0.2,
       "policy_label": "Neutral",
       "balance_sheet_score": -0.075,
       "balance_sheet_label": "Neutral",
       "evidence": [
+        {
+          "title": "Fed's Jefferson wary of inflationary pressure from AI",
+          "url": "https://www.americanbanker.com/news/feds-jefferson-wary-of-inflationary-pressure-from-ai",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "maintain higher rates",
+            "keep prices stable"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Federal Reserve Vice Chair Philip Jefferson said in a speech Friday that long-term productivity gains brought on by artificial intelligence could compel the central bank to maintain higher rates to keep prices stable.",
+          "score": 2.8
+        },
         {
           "title": "Federal Reserve Watch: Monetary Easing",
           "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
@@ -360,30 +376,11 @@
           "score": -0.3
         },
         {
-          "title": "Fed Vice Chair Says Interest Rates Are Well Positioned",
-          "url": "https://www.bloomberg.com/news/articles/2026-01-16/jefferson-says-current-fed-policy-is-now-well-positioned",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "neither slows nor stimulates the economy",
-            "leaves us well positioned"
-          ],
-          "directions": [
-            "dovish",
-            "dovish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "interest rates are near the level that neither slows nor stimulates the economy, leaving officials in a good place to respond to evolving risks.",
-          "score": -0.3
-        },
-        {
           "title": "US Fed meeting outcome: Jerome Powell-led FOMC keeps interest rates steady at 3.50%-3.75% in first decision of 2026 - Key highlights",
           "url": "https://www.msn.com/en-in/money/news/us-fed-meeting-outcome-jerome-powell-led-fomc-keeps-interest-rates-steady-at-3-50-3-75-in-first-decision-of-2026-key-highlights/ar-AA1VbOkH",
           "source_type": "duckduckgo",
           "keywords": [
-            "held interest rates steady",
+            "keeps interest rates steady",
             "economic activity has been expanding at a solid pace"
           ],
           "directions": [
@@ -472,12 +469,12 @@
     },
     {
       "date": "2026-02-15",
-      "score": -1.137,
+      "score": -0.517,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -1.56,
-      "policy_label": "Dovish",
-      "balance_sheet_score": -0.15,
+      "policy_score": -0.825,
+      "policy_label": "Neutral",
+      "balance_sheet_score": 0.2,
       "balance_sheet_label": "Neutral",
       "evidence": [
         {
@@ -544,6 +541,28 @@
           "score": -0.3
         },
         {
+          "title": "Text of Fed's January Monetary Policy Statement",
+          "url": "https://www.marketwatch.com/story/text-of-fed-s-january-monetary-policy-statement-ea2bc28b",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "expanding at a solid pace",
+            "inflation remains somewhat",
+            "job gains have remained low"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "Available indicators suggest that economic activity has been expanding at a solid pace. This suggests a strong economy, which may require higher interest rates to control inflation.",
+          "score": 0.3
+        },
+        {
           "title": "US Fed meeting outcome: Jerome Powell-led FOMC keeps interest rates steady at 3.50%-3.75% in first decision of 2026 - Key highlights",
           "url": "https://www.msn.com/en-in/money/news/us-fed-meeting-outcome-jerome-powell-led-fomc-keeps-interest-rates-steady-at-3-50-3-75-in-first-decision-of-2026-key-highlights/ar-AA1VbOkH",
           "source_type": "duckduckgo",
@@ -579,22 +598,6 @@
             "policy"
           ],
           "quote": "The kind of decline seen in the dollar 'doesn't matter that much for consumer inflation' and only would if it were very dramatic,",
-          "score": 0.0
-        },
-        {
-          "title": "Warsh To Change Federal Reserve Policy Approach?",
-          "url": "https://seekingalpha.com/article/4866000-warsh-to-change-federal-reserve-policy-approach",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "slow to respond"
-          ],
-          "directions": [
-            "dovish"
-          ],
-          "dimensions": [
-            "policy"
-          ],
-          "quote": "Many of Powell's critics argue that he has always been slow to respond to the current needs of the financial system, but once 'on board,' he gets fully behind the effort.",
           "score": 0.0
         }
       ]
@@ -653,10 +656,10 @@
     },
     {
       "date": "2026-02-15",
-      "score": -1.225,
+      "score": -0.98,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -1.975,
+      "policy_score": -1.625,
       "policy_label": "Dovish",
       "balance_sheet_score": 0.525,
       "balance_sheet_label": "Neutral",
@@ -681,44 +684,6 @@
             "policy"
           ],
           "quote": "Fed should be ready to cut rates again amid job market risks, Bowman says",
-          "score": -3.5
-        },
-        {
-          "title": "Fed official signals openness to more interest-rate cuts this year",
-          "url": "https://www.aol.com/finance/fed-official-signals-openness-more-130700694.html",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "openness to more interest-rate cuts",
-            "cut interest rates further"
-          ],
-          "directions": [
-            "dovish",
-            "dovish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "Fed official signals openness to more interest-rate cuts this year. According to Federal Reserve Vice Chair Michelle Bowman, the Fed should be prepared to cut interest rates further if the labor market shows additional weakening.",
-          "score": -3.5
-        },
-        {
-          "title": "Fed Should Be Ready to Cut Rates Again Amid Job Market Risks, Bowman Says",
-          "url": "https://money.usnews.com/investing/news/articles/2026-01-16/bowman-says-fed-should-be-ready-to-cut-rates-again-amid-job-market-risks",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "Cut Rates Again",
-            "stand ready to cut interest rates"
-          ],
-          "directions": [
-            "dovish",
-            "dovish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "Federal Reserve Vice Chair for Supervision Michelle \u200cBowman said on Friday a fragile job market that \u200ccould weaken quickly means the U.S. central bank should stand ready to cut interest rates again if needed",
           "score": -3.5
         },
         {
@@ -760,6 +725,47 @@
           "score": -2.8
         },
         {
+          "title": "Bowman Wants Fed Ready to Cut Rates for Still-Fragile Job Market",
+          "url": "https://www.bloomberg.com/news/articles/2026-01-16/bowman-wants-fed-ready-to-cut-rates-for-still-fragile-job-market",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower interest rates further",
+            "monetary policy remains moderately restrictive"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "officials should be prepared to lower interest rates further unless the employment landscape improves. Bowman added that the Fed should not",
+          "score": -2.8
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "shifted from quantitative tightening to quantitative easing",
+            "adding $37.4 billion to its securities portfolio",
+            "Reserve balances at the Fed rose $163.8 billion"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "balance_sheet",
+            "balance_sheet",
+            "balance_sheet"
+          ],
+          "quote": "The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4 billion to its securities portfolio since then.",
+          "score": -2.1
+        },
+        {
           "title": "Bowman signals pivot toward labor market defense",
           "url": "https://in.investing.com/news/economy-news/bowman-signals-pivot-toward-labor-market-defense-5214590",
           "source_type": "duckduckgo",
@@ -799,7 +805,7 @@
         },
         {
           "title": "Fed's Bowman Says Policy Still Restrictive",
-          "url": "https://www.morningstar.com/news/dow-jones/2026013010473/feds-bowman-says-policy-still-restrictive",
+          "url": "https://www.wsj.com/economy/central-banking/feds-bowman-says-policy-still-restrictive-c0c53443",
           "source_type": "duckduckgo",
           "keywords": [
             "monetary policy as moderately restrictive",
@@ -882,7 +888,7 @@
       "evidence": [
         {
           "title": "Fed's Waller says policy still restrictive, more cuts needed",
-          "url": "https://www.msn.com/en-us/money/markets/fed-s-waller-says-policy-still-restrictive-more-cuts-needed/ar-AA1VkyQb",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-waller-says-policy-still-restrictive-more-easing-needed/ar-AA1VkyQb",
           "source_type": "duckduckgo",
           "keywords": [
             "policy still restrictive",
@@ -897,25 +903,6 @@
             "policy"
           ],
           "quote": "Fed's Waller says policy still restrictive, more cuts needed. Federal Reserve Governor Christopher Waller said he dissented from officials' decision this week to hold interest rates steady because economic data are signaling additional cuts are needed.",
-          "score": -3.5
-        },
-        {
-          "title": "Trump reveals next Fed chair nominee, as Waller elaborates about need for rate cuts",
-          "url": "https://www.autoremarketing.com/subprime/trump-reveals-next-fed-chair-nominee-as-waller-elaborates-about-need-for-rate-cuts/",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "need for rate cuts",
-            "wanted an interest rate cut"
-          ],
-          "directions": [
-            "dovish",
-            "dovish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "a vocal member of the Federal Open Market Committee (FOMC) offered more explanation why he was one of two policymakers who wanted an interest ... rate cuts",
           "score": -3.5
         },
         {
@@ -957,23 +944,42 @@
           "score": -2.8
         },
         {
-          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
-          "url": "https://www.ocregister.com/2026/01/28/federal-reserve-january-rate-decision/",
+          "title": "Fed holds interest rates steady, pausing rate cuts amid economic uncertainty",
+          "url": "https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-january-2026",
           "source_type": "duckduckgo",
           "keywords": [
-            "leaving its key rate unchanged",
-            "pushed the pause button on its interest rate cuts"
+            "pausing rate cuts",
+            "breaking a streak of three straight rate cuts"
           ],
           "directions": [
-            "hawkish",
-            "hawkish"
+            "dovish",
+            "dovish"
           ],
           "dimensions": [
             "policy",
             "policy"
           ],
-          "quote": "The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after lowering it three times last year.",
-          "score": 0.7
+          "quote": "Fed holds interest rates steady, pausing rate cuts amid economic uncertainty",
+          "score": -1.4
+        },
+        {
+          "title": "Powell hints at extended pause on rate cuts but stays mum on Trump attacks",
+          "url": "https://www.cnn.com/2026/01/28/economy/fed-january-rate-decision",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "extended pause on rate cuts",
+            "kept interest rates unchanged"
+          ],
+          "directions": [
+            "hawkish",
+            "neutral"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Powell hints at extended pause on rate cuts but stays mum on Trump attacks. The Federal Reserve on Wednesday kept interest rates unchanged as the central bank fights to maintain its ability to set interest rates without political interference.",
+          "score": -0.3
         },
         {
           "title": "Fed Keeps Rates Steady",
@@ -992,44 +998,6 @@
             "policy"
           ],
           "quote": "The Federal Reserve left interest rates unchanged, despite relentless attacks from President Trump, who wants borrowing costs to be much lower.",
-          "score": 0.0
-        },
-        {
-          "title": "Fed Opens 2026 With Rate Hold as CRE Gears Up for Active Year",
-          "url": "https://commercialobserver.com/2026/01/fed-interest-rate-hold-jerome-powell/",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "ended its three-meeting streak of rate cuts",
-            "maintained its benchmark interest rate"
-          ],
-          "directions": [
-            "dovish",
-            "neutral"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "The Federal Reserve ended its three-meeting streak of rate cuts Wednesday as the commercial real estate industry prepares for a stabilization of long-term borrowing costs in 2026.",
-          "score": 0.0
-        },
-        {
-          "title": "What to know about the Fed decision.",
-          "url": "https://www.nytimes.com/2026/01/28/business/economy/what-to-know-about-the-fed-decision.html",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "held rates steady",
-            "Economic activity has been expanding at a solid pace"
-          ],
-          "directions": [
-            "neutral",
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "The Federal Reserve held rates steady on Wednesday, at the central bank's first meeting of the year.",
           "score": 0.0
         }
       ]
@@ -1205,6 +1173,25 @@
           "score": -2.1
         },
         {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
+        },
+        {
           "title": "Federal Reserve meets Wednesday for its first interest rate decision of 2026. Here's what to expect.",
           "url": "https://www.cbsnews.com/news/federal-reserve-fomc-meeting-january-28-interest-rate-decision-jerome-powell/",
           "source_type": "duckduckgo",
@@ -1224,11 +1211,11 @@
           "score": -0.3
         },
         {
-          "title": "Federal Reserve chair nomination live: Wall Street reacts to Trump's Fed pick, Kevin Warsh, as hurdles remain in the Senate",
-          "url": "https://uk.finance.yahoo.com/news/federal-reserve-chair-nomination-live-wall-street-reacts-to-trumps-fed-pick-kevin-warsh-as-hurdles-remain-in-the-senate-182518657.html",
+          "title": "Warsh To Change Federal Reserve Policy Approach?",
+          "url": "https://seekingalpha.com/article/4866000-warsh-to-change-federal-reserve-policy-approach",
           "source_type": "duckduckgo",
           "keywords": [
-            "kept interest rates unchanged"
+            "slow to respond"
           ],
           "directions": [
             "dovish"
@@ -1236,7 +1223,7 @@
           "dimensions": [
             "policy"
           ],
-          "quote": "President Trump selected Kevin Warsh as his Fed chair nominee days after the Federal Reserve kept interest rates unchanged for its first policy meeting of 2026.",
+          "quote": "Many of Powell's critics argue that he has always been slow to respond to the current needs of the financial system, but once 'on board,' he gets fully behind the effort.",
           "score": 0.0
         }
       ]
@@ -1295,12 +1282,12 @@
     },
     {
       "date": "2026-02-15",
-      "score": 0.237,
+      "score": -0.238,
       "label": "Neutral",
       "source": "live",
-      "policy_score": 0.275,
+      "policy_score": -0.495,
       "policy_label": "Neutral",
-      "balance_sheet_score": 0.15,
+      "balance_sheet_score": 0.36,
       "balance_sheet_label": "Neutral",
       "evidence": [
         {
@@ -1326,27 +1313,11 @@
           "score": -2.1
         },
         {
-          "title": "Fed's Williams says monetary policy well positioned amid a favorable outlook",
-          "url": "https://www.msn.com/en-us/money/economy/fed-s-williams-says-monetary-policy-well-positioned-amid-a-favorable-outlook/ar-AA1U5sTN",
+          "title": "2 Dividend Stocks that Could Run if the Federal Reserve Cuts Interest Rates in 2026",
+          "url": "https://247wallst.com/investing/2026/01/27/2-dividend-stocks-that-could-run-if-the-federal-reserve-cuts-interest-rates-in-2026/",
           "source_type": "duckduckgo",
           "keywords": [
-            "sees no near-term reason to cut interest rates"
-          ],
-          "directions": [
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy"
-          ],
-          "quote": "The interest-rate-setting Federal Open Market Committee ... he expects a healthy economy in 2026 and indicated he sees no near-term reason to cut interest rates.",
-          "score": 1.4
-        },
-        {
-          "title": "Trump picks former Fed Gov. Kevin Warsh as new Federal Reserve chair",
-          "url": "https://www.msn.com/en-us/money/markets/trump-picks-former-fed-gov-kevin-warsh-as-new-federal-reserve-chair/ar-AA1VjUda",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "preference for lower rates"
+            "if the Federal Reserve moves to rate cutting"
           ],
           "directions": [
             "dovish"
@@ -1354,7 +1325,26 @@
           "dimensions": [
             "policy"
           ],
-          "quote": "Warsh is seen as a comparatively moderate figure and notably more cautious about deploying heavy monetary stimulus despite his preference for lower rates. This suggests that Warsh favors lower interest rates, indicating a dovish stance on monetary policy.",
+          "quote": "Duke Energy (NYSE: DUK) and Realty Income (NYSE: O) are two stocks that could be richly rewarded if the Federal Reserve moves to rate cutting in the second half of 2026.",
+          "score": -2.1
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
           "score": -1.4
         },
         {
@@ -1413,6 +1403,22 @@
           ],
           "quote": "The US Federal Reserve held interest rates steady. The US Federal Reserve said that the available indicators suggest that economic activity has been expanding at a solid pace.",
           "score": 0.0
+        },
+        {
+          "title": "Warsh To Change Federal Reserve Policy Approach?",
+          "url": "https://seekingalpha.com/article/4866000-warsh-to-change-federal-reserve-policy-approach",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "slow to respond"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Many of Powell's critics argue that he has always been slow to respond to the current needs of the financial system, but once 'on board,' he gets fully behind the effort.",
+          "score": 0.0
         }
       ]
     }
@@ -1470,14 +1476,36 @@
     },
     {
       "date": "2026-02-15",
-      "score": -0.387,
+      "score": -0.167,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -0.585,
+      "policy_score": -0.27,
       "policy_label": "Neutral",
       "balance_sheet_score": 0.075,
       "balance_sheet_label": "Neutral",
       "evidence": [
+        {
+          "title": "Fed policy is tighter than thought, inflation not a problem, Miran says",
+          "url": "https://www.msn.com/en-us/money/economy/fed-policy-is-tighter-than-thought-inflation-not-a-problem-miran-says/ar-AA1Wfshf",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighter than thought",
+            "inflation not a problem",
+            "threatens U.S. economic growth"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "Fed policy is tighter than thought, inflation not a problem, Miran says Feb 12 (Reuters) - The Federal Reserve's current monetary-policy setting threatens U.S. economic growth that otherwise is being 'underwritten' by a range of Trump administration policies including tax cuts,",
+          "score": -2.8
+        },
         {
           "title": "Federal Reserve Watch: Monetary Easing",
           "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
@@ -1501,6 +1529,22 @@
           "score": -2.1
         },
         {
+          "title": "2 Dividend Stocks that Could Run if the Federal Reserve Cuts Interest Rates in 2026",
+          "url": "https://247wallst.com/investing/2026/01/27/2-dividend-stocks-that-could-run-if-the-federal-reserve-cuts-interest-rates-in-2026/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "if the Federal Reserve moves to rate cutting"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Duke Energy (NYSE: DUK) and Realty Income (NYSE: O) are two stocks that could be richly rewarded if the Federal Reserve moves to rate cutting in the second half of 2026.",
+          "score": -2.1
+        },
+        {
           "title": "Why Kevin Warsh Won't Revolutionize the Federal Reserve",
           "url": "https://www.cfr.org/articles/why-kevin-warsh-wont-revolutionize-the-federal-reserve",
           "source_type": "duckduckgo",
@@ -1517,23 +1561,23 @@
           "score": -1.4
         },
         {
-          "title": "Federal Reserve holds policy steady as early rate cut bets vanish and bitcoin stalls",
-          "url": "https://www.coindesk.com/markets/2026/01/27/federal-reserve-holds-policy-steady-as-early-rate-cut-bets-vanish-and-bitcoin-stalls",
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
           "source_type": "duckduckgo",
           "keywords": [
-            "held interest rates steady",
-            "early rate cut bets vanish"
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
           ],
           "directions": [
-            "hawkish",
-            "hawkish"
+            "dovish",
+            "dovish"
           ],
           "dimensions": [
             "policy",
             "policy"
           ],
-          "quote": "The Federal Reserve held interest rates steady on Wednesday, a decision that capped a sharp reversal in market expectations that had once favored an early 2026 rate cut.",
-          "score": 1.4
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
         },
         {
           "title": "Federal Reserve meets Wednesday for its first interest rate decision of 2026. Here's what to expect.",
@@ -1553,22 +1597,6 @@
           ],
           "quote": "President Trump has pressed the Federal Reserve to lower interest rates, but central bank officials are unlikely to deliver a first cut of 2026 when they announce their next policy move on Wednesday.",
           "score": -0.3
-        },
-        {
-          "title": "Warsh To Change Federal Reserve Policy Approach?",
-          "url": "https://seekingalpha.com/article/4866000-warsh-to-change-federal-reserve-policy-approach",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "slow to respond"
-          ],
-          "directions": [
-            "dovish"
-          ],
-          "dimensions": [
-            "policy"
-          ],
-          "quote": "Many of Powell's critics argue that he has always been slow to respond to the current needs of the financial system, but once 'on board,' he gets fully behind the effort.",
-          "score": 0.0
         },
         {
           "title": "These Are the 12 Fed Officials Who Will Vote on Interest Rates This Year",
@@ -1642,21 +1670,21 @@
     },
     {
       "date": "2026-02-15",
-      "score": -1.022,
+      "score": -0.182,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -1.525,
-      "policy_label": "Dovish",
-      "balance_sheet_score": 0.15,
+      "policy_score": -0.475,
+      "policy_label": "Neutral",
+      "balance_sheet_score": 0.5,
       "balance_sheet_label": "Neutral",
       "evidence": [
         {
-          "title": "Fed's Barkin: Cuts So Far Helped Support Job Market While Waiting on Inflation's 'Last Mile'",
-          "url": "https://money.usnews.com/investing/news/articles/2026-02-03/feds-barkin-cuts-so-far-helped-support-job-market-while-waiting-on-inflations-last-mile",
+          "title": "Fed's Barkin: Cuts so far helped support job market while waiting on inflation's \"last mile\"",
+          "url": "https://kfgo.com/2026/02/03/feds-barkin-cuts-so-far-helped-support-job-market-while-waiting-on-inflations-last-mile/",
           "source_type": "duckduckgo",
           "keywords": [
-            "interest rate cuts so far have helped",
-            "support the job market"
+            "Cuts so far helped support job market",
+            "waiting on inflation's 'last mile'"
           ],
           "directions": [
             "dovish",
@@ -1666,7 +1694,7 @@
             "policy",
             "policy"
           ],
-          "quote": "The U.S. Federal Reserve's interest rate cuts so far have helped insure the health of the job market while the Fed tries to complete 'the last mile' in returning inflation to the central bank's 2% target, Richmond Fed President Tom Barkin said on Tuesday.",
+          "quote": "Fed's Barkin: Cuts so far helped support job market while waiting on inflation's 'last mile' The U.S. Federal Reserve's interest rate cuts so far have helped insure the health of the job market while the Fed tries to complete 'the last mile' in returning inflation to the central bank's 2% target,",
           "score": -2.8
         },
         {
@@ -1692,12 +1720,28 @@
           "score": -2.1
         },
         {
-          "title": "Fed's Barkin Says We Have Been Bringing Rates Back Down Toward Neutral Levels",
-          "url": "https://www.msn.com/en-us/money/markets/fed-s-barkin-says-we-have-been-bringing-rates-back-down-toward-neutral-levels/ar-AA1VzttB",
+          "title": "Fed's Barkin says we have been bringing rates back down toward neutral levels",
+          "url": "https://www.msn.com/en-us/money/economy/fed-s-barkin-says-we-have-been-bringing-rates-back-down-toward-neutral-levels/ar-AA1VzttB",
           "source_type": "duckduckgo",
           "keywords": [
-            "bringing rates back down",
-            "toward neutral levels"
+            "bringing rates back down toward neutral levels"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Thomas Barkin, president of the Federal Reserve Bank of Richmond, said as the inflation rate has fallen, the Fed has been bringing interest rates back down toward neutral levels.",
+          "score": -1.4
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
           ],
           "directions": [
             "dovish",
@@ -1707,7 +1751,7 @@
             "policy",
             "policy"
           ],
-          "quote": "the Fed has been bringing interest rates back down toward neutral levels. Thomas Barkin, president of the Federal Reserve Bank of Richmond, said as the inflation rate has fallen,",
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
           "score": -1.4
         },
         {
@@ -1727,25 +1771,6 @@
             "policy"
           ],
           "quote": "Rising productivity is helping businesses ease cost pressures, aiding the U.S. central bank's inflation fight, but it is difficult to predict if it will persist and, as a",
-          "score": -0.3
-        },
-        {
-          "title": "Federal Reserve meets Wednesday for its first interest rate decision of 2026. Here's what to expect.",
-          "url": "https://www.cbsnews.com/news/federal-reserve-fomc-meeting-january-28-interest-rate-decision-jerome-powell/",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "lower interest rates",
-            "unlikely to deliver a first cut"
-          ],
-          "directions": [
-            "dovish",
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "President Trump has pressed the Federal Reserve to lower interest rates, but central bank officials are unlikely to deliver a first cut of 2026 when they announce their next policy move on Wednesday.",
           "score": -0.3
         }
       ]
@@ -1804,33 +1829,14 @@
     },
     {
       "date": "2026-02-15",
-      "score": 0.901,
+      "score": 0.117,
       "label": "Neutral",
       "source": "live",
-      "policy_score": 1.32,
+      "policy_score": 0.2,
       "policy_label": "Neutral",
       "balance_sheet_score": -0.075,
       "balance_sheet_label": "Neutral",
       "evidence": [
-        {
-          "title": "Fed's Bostic Says 'Paramount' to Return Inflation to 2% Goal (1)",
-          "url": "https://news.bloomberglaw.com/international-trade/feds-bostic-says-paramount-to-return-inflation-to-2-goal-1",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "restricts economic activity",
-            "returns inflation to 2%"
-          ],
-          "directions": [
-            "hawkish",
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "it's important to keep interest rates at a level that restricts economic activity and returns inflation to 2%.",
-          "score": 2.8
-        },
         {
           "title": "Federal Reserve Watch: Monetary Easing",
           "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
@@ -1875,7 +1881,7 @@
           "source_type": "duckduckgo",
           "keywords": [
             "sticky inflation near 2%+",
-            "resilient economy"
+            "rates, tax cuts and deregulation support demand"
           ],
           "directions": [
             "hawkish",
@@ -1885,24 +1891,27 @@
             "policy",
             "policy"
           ],
-          "quote": "Atlanta Fed's Bostic sees resilient 2026 growth but sticky inflation near 2%+ as rates, tax cuts and deregulation support demand. This suggests that Bostic is concerned about inflationary pressures, which may lead to a more hawkish stance on interest rates.",
+          "quote": "Atlanta Fed's Bostic sees resilient 2026 growth but sticky inflation near 2%+ as rates, tax cuts and deregulation support demand. This suggests that Bostic is concerned about inflation remaining above the target rate, which could lead to a more hawkish stance on interest rates.",
           "score": 1.4
         },
         {
-          "title": "Atlanta Fed's Bostic makes the case for keeping interest rates steady",
-          "url": "https://www.msn.com/en-us/money/markets/atlanta-fed-s-bostic-makes-the-case-for-keeping-interest-rates-steady/ar-AA1VKN8Q",
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
           "source_type": "duckduckgo",
           "keywords": [
-            "keeping interest rates steady"
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
           ],
           "directions": [
+            "dovish",
             "dovish"
           ],
           "dimensions": [
+            "policy",
             "policy"
           ],
-          "quote": "Atlanta Fed's Bostic makes the case for keeping interest rates steady. For me, inflation has been too high for too long,",
-          "score": -0.3
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
         }
       ]
     }
@@ -1984,7 +1993,7 @@
             "policy",
             "policy"
           ],
-          "quote": "San Francisco Federal Reserve President Mary Daly on Friday said she thinks one or two more interest rate cuts may be needed to counteract weakness in the labor market, she thinks one or two more interest rate cuts may be needed to counteract weakness in the labor market, indicating 'room to cut interest rates'.",
+          "quote": "San Francisco Federal Reserve President Mary Daly on Friday said she thinks one or two more interest rate cuts may be needed to counteract weakness in the labor market, she thinks one or two more interest rate cuts may be needed to counteract weakness in the labor market, because she sees labor market vulnerabilities and room to cut interest rates.",
           "score": -3.5
         },
         {
@@ -2005,28 +2014,6 @@
           ],
           "quote": "Federal Reserve Bank of San Francisco President Mary Daly said Friday one or two more interest-rate cuts may be needed on the premise of vulnerabilities in the labor market.",
           "score": -3.5
-        },
-        {
-          "title": "Federal Reserve Watch: Monetary Easing",
-          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "shifted from quantitative tightening to quantitative easing",
-            "adding $37.4 billion to its securities portfolio",
-            "Reserve balances at the Fed rose $163.8 billion"
-          ],
-          "directions": [
-            "dovish",
-            "dovish",
-            "dovish"
-          ],
-          "dimensions": [
-            "balance_sheet",
-            "balance_sheet",
-            "balance_sheet"
-          ],
-          "quote": "The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4 billion to its securities portfolio since then.",
-          "score": -2.1
         },
         {
           "title": "Fed's Daly says U.S. economic outlook feels 'precarious'",
@@ -2083,6 +2070,22 @@
           "score": -0.3
         },
         {
+          "title": "Warsh To Change Federal Reserve Policy Approach?",
+          "url": "https://seekingalpha.com/article/4866000-warsh-to-change-federal-reserve-policy-approach",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "slow to respond"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Many of Powell's critics argue that he has always been slow to respond to the current needs of the financial system, but once 'on board,' he gets fully behind the effort.",
+          "score": 0.0
+        },
+        {
           "title": "Fed's Daly Says Outlook Feels 'Precarious'",
           "url": "https://money.usnews.com/investing/news/articles/2026-02-06/feds-daly-says-outlook-feels-precarious",
           "source_type": "duckduckgo",
@@ -2095,7 +2098,7 @@
           "dimensions": [
             "policy"
           ],
-          "quote": "Fed's Daly Says Outlook Feels 'Precarious'",
+          "quote": "Fed's Daly Says Outlook Feels 'Precarious'... The content on this page is accurate as of the posting date;",
           "score": 0.0
         },
         {
@@ -2173,10 +2176,10 @@
     },
     {
       "date": "2026-02-15",
-      "score": 0.052,
+      "score": -0.192,
       "label": "Neutral",
       "source": "live",
-      "policy_score": 0.075,
+      "policy_score": -0.275,
       "policy_label": "Neutral",
       "balance_sheet_score": 0.0,
       "balance_sheet_label": "Neutral",
@@ -2202,6 +2205,25 @@
           ],
           "quote": "The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4 billion to its securities portfolio since then.",
           "score": -2.1
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
         }
       ]
     }
@@ -2259,10 +2281,10 @@
     },
     {
       "date": "2026-02-15",
-      "score": -0.31,
+      "score": -0.212,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -0.54,
+      "policy_score": -0.4,
       "policy_label": "Neutral",
       "balance_sheet_score": 0.225,
       "balance_sheet_label": "Neutral",
@@ -2273,7 +2295,7 @@
           "source_type": "duckduckgo",
           "keywords": [
             "restrictive rates",
-            "cool inflation"
+            "somewhat restrictive"
           ],
           "directions": [
             "hawkish",
@@ -2287,23 +2309,39 @@
           "score": 2.8
         },
         {
-          "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
-          "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
+          "title": "Fed's Schmid Pushes Back on Rate-Cut Prospects",
+          "url": "https://www.morningstar.com/news/dow-jones/202602118043/feds-schmid-pushes-back-on-rate-cut-prospects",
           "source_type": "duckduckgo",
           "keywords": [
-            "Lower Rates",
-            "substantially lower borrowing costs"
+            "resistance to further interest-rate cuts",
+            "risk allowing inflation to remain too high"
           ],
           "directions": [
-            "dovish",
-            "dovish"
+            "hawkish",
+            "hawkish"
           ],
           "dimensions": [
             "policy",
             "policy"
           ],
-          "quote": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering. Kevin M. Warsh, whom Mr. Trump tapped to become the next chair of the Federal Reserve, could face fierce resistance if he tries to pursue substantially lower borrowing costs.",
-          "score": -2.8
+          "quote": "Kansas City Fed President Jeffrey Schmid reaffirmed his resistance to further interest-rate cuts, arguing that further Fed easing would risk allowing inflation to remain too high.",
+          "score": 2.8
+        },
+        {
+          "title": "CPI Report Live: Today's Inflation Data Was a 'Welcome Surprise'",
+          "url": "https://www.investopedia.com/cpi-inflation-report-live-january-2026-11906012",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "resumes interest rate cuts"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "The January CPI report showed cooling inflation, a key factor in whether the Federal Reserve resumes interest rate cuts.",
+          "score": -1.96
         },
         {
           "title": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus",
@@ -2321,26 +2359,7 @@
             "policy",
             "policy"
           ],
-          "quote": "Dallas Fed President Lorie Logan said that setting is about right, indicating a neutral to slightly hawkish stance on interest rates.",
-          "score": 1.4
-        },
-        {
-          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
-          "url": "https://www.courant.com/2026/01/28/federal-reserve-january-rate-decision/",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "leaving its key rate unchanged",
-            "pushed the pause button on its interest rate cuts"
-          ],
-          "directions": [
-            "hawkish",
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after lowering it three times last year. This suggests that the Fed is taking a more cautious approach to monetary policy.",
+          "quote": "Dallas Fed President Lorie Logan said that setting is about right, indicating a potential pause in rate cuts.",
           "score": 1.4
         },
         {
@@ -2361,6 +2380,25 @@
           ],
           "quote": "Fed's Hammack says interest rates could be on hold 'for quite some time'... amid a 'cautiously optimistic' outlook for economic activity.",
           "score": -1.26
+        },
+        {
+          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
+          "url": "https://www.courant.com/2026/01/28/federal-reserve-january-rate-decision/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its key rate unchanged",
+            "pushed the pause button on its interest rate cuts"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after lowering it three times last year. The Fed's decision to keep rates steady suggests a more cautious approach to monetary policy.",
+          "score": 0.7
         },
         {
           "title": "Fed's Hammack: Monetary policy is in a good place to stay on hold",
@@ -2399,25 +2437,6 @@
           ],
           "quote": "Cleveland Fed's Hammack says rates may stay on hold 'for quite some time' Cleveland Fed's Hammack sees stronger U.S. growth and easing inflation, but urges patience on rate cuts amid uncertainty.",
           "score": -0.3
-        },
-        {
-          "title": "US Fed meeting outcome: Jerome Powell-led FOMC keeps interest rates steady at 3.50%-3.75% in first decision of 2026 - Key highlights",
-          "url": "https://www.msn.com/en-in/money/economy/us-fed-meeting-outcome-jerome-powell-led-fomc-keeps-interest-rates-steady-at-3-50-3-75-in-first-decision-of-2026-key-highlights/ar-AA1VbOkH",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "held interest rates steady",
-            "economic activity has been expanding at a solid pace"
-          ],
-          "directions": [
-            "neutral",
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "The US Federal Reserve held interest rates steady. The US Federal Reserve said that the available indicators suggest that economic activity has been expanding at a solid pace.",
-          "score": 0.0
         }
       ]
     }
@@ -2475,49 +2494,14 @@
     },
     {
       "date": "2026-02-15",
-      "score": -0.948,
+      "score": -0.8,
       "label": "Neutral",
       "source": "live",
-      "policy_score": -1.225,
+      "policy_score": -1.015,
       "policy_label": "Neutral",
       "balance_sheet_score": -0.3,
       "balance_sheet_label": "Neutral",
       "evidence": [
-        {
-          "title": "Fed officials send united message on January interest-rate cut",
-          "url": "https://www.aol.com/finance/fed-officials-send-united-message-140700323.html",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "January interest-rate cut"
-          ],
-          "directions": [
-            "dovish"
-          ],
-          "dimensions": [
-            "policy"
-          ],
-          "quote": "Fed officials send united message on January interest-rate cut... whose jobs actually require them to keep inflation in check",
-          "score": -3.5
-        },
-        {
-          "title": "Fed's Goolsbee says he's uncomfortable front-loading too many rate cuts",
-          "url": "https://www.msn.com/en-my/money/markets/fed-s-goolsbee-explains-vote-against-rate-cut-says-central-bank-should-have-waited/ar-AA1SeaCY",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "uncomfortable front-loading too many rate cuts",
-            "voted against this week's interest rate cut"
-          ],
-          "directions": [
-            "hawkish",
-            "hawkish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy"
-          ],
-          "quote": "Fed's Goolsbee says he's uncomfortable front-loading too many rate cuts Chicago Federal Reserve President Austan Goolsbee on Friday explained why he voted against this week's interest rate cut, telling CNBC that policymakers should have waited for more data on inflation and unemployment.",
-          "score": 2.8
-        },
         {
           "title": "Federal Reserve Watch: Monetary Easing",
           "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
@@ -2541,6 +2525,60 @@
           "score": -2.1
         },
         {
+          "title": "2 Dividend Stocks that Could Run if the Federal Reserve Cuts Interest Rates in 2026",
+          "url": "https://247wallst.com/investing/2026/01/27/2-dividend-stocks-that-could-run-if-the-federal-reserve-cuts-interest-rates-in-2026/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "if the Federal Reserve moves to rate cutting"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Duke Energy (NYSE: DUK) and Realty Income (NYSE: O) are two stocks that could be richly rewarded if the Federal Reserve moves to rate cutting in the second half of 2026.",
+          "score": -2.1
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
+        },
+        {
+          "title": "Fed's Musalem says no more rate cuts needed with policy now at neutral level",
+          "url": "https://www.reuters.com/business/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-neutral-level-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "no more rate cuts needed",
+            "unless the job market starts to deteriorate or inflation falls"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Fed's Musalem says no more rate cuts needed with policy now at neutral level... the U.S. central bank does not need to cut interest rates further unless the job market starts to deteriorate or inflation falls.",
+          "score": 1.4
+        },
+        {
           "title": "Federal Reserve meets Wednesday for its first interest rate decision of 2026. Here's what to expect.",
           "url": "https://www.cbsnews.com/news/federal-reserve-fomc-meeting-january-28-interest-rate-decision-jerome-powell/",
           "source_type": "duckduckgo",
@@ -2560,35 +2598,41 @@
           "score": -0.3
         },
         {
+          "title": "Fed holds key interest rate steady as economic view improves",
+          "url": "https://www.cnbc.com/2026/01/28/fed-rate-decision-january-2026.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "recent run of interest rate cuts",
+            "economic activity has been expanding at a solid pace"
+          ],
+          "directions": [
+            "dovish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve held its key interest steady in a range between 3.5% and 3.75% after a recent run of interest rate cuts. Available indicators suggest that economic activity has been expanding at a solid pace.",
+          "score": -0.3
+        },
+        {
           "title": "Fed's Goolsbee sees mixed signals in latest CPI data",
           "url": "https://ca.finance.yahoo.com/news/fed-goolsbee-sees-mixed-signals-205610153.html",
           "source_type": "duckduckgo",
           "keywords": [
-            "mixed signals"
+            "mixed signals",
+            "encouragement and concern"
           ],
           "directions": [
+            "neutral",
             "neutral"
           ],
           "dimensions": [
+            "policy",
             "policy"
           ],
           "quote": "Federal Reserve Bank of Chicago President Austan Goolsbee expressed both encouragement and concern about the latest Consumer Price Index (CPI) data on Friday, seeing mixed signals in the data.",
-          "score": 0.0
-        },
-        {
-          "title": "Federal Reserve chair nomination live: Wall Street reacts to Trump's Fed pick, Kevin Warsh, as hurdles remain in the Senate",
-          "url": "https://uk.finance.yahoo.com/news/federal-reserve-chair-nomination-live-wall-street-reacts-to-trumps-fed-pick-kevin-warsh-as-hurdles-remain-in-the-senate-182518657.html",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "kept interest rates unchanged"
-          ],
-          "directions": [
-            "dovish"
-          ],
-          "dimensions": [
-            "policy"
-          ],
-          "quote": "President Trump selected Kevin Warsh as his Fed chair nominee days after the Federal Reserve kept interest rates unchanged for its first policy meeting of 2026.",
           "score": 0.0
         },
         {
@@ -2663,10 +2707,10 @@
     },
     {
       "date": "2026-02-15",
-      "score": 1.638,
-      "label": "Hawkish",
+      "score": 1.212,
+      "label": "Neutral",
       "source": "live",
-      "policy_score": 2.244,
+      "policy_score": 1.635,
       "policy_label": "Hawkish",
       "balance_sheet_score": 0.225,
       "balance_sheet_label": "Neutral",
@@ -2751,6 +2795,44 @@
           "score": 1.4
         },
         {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
+        },
+        {
+          "title": "Federal Reserve holds policy steady as early rate cut bets vanish and bitcoin stalls",
+          "url": "https://www.coindesk.com/markets/2026/01/27/federal-reserve-holds-policy-steady-as-early-rate-cut-bets-vanish-and-bitcoin-stalls",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "held interest rates steady",
+            "early rate cut bets vanish"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve held interest rates steady on Wednesday, a decision that capped a sharp reversal in market expectations that had once favored an early 2026 rate cut.",
+          "score": 1.4
+        },
+        {
           "title": "Federal Reserve meets Wednesday for its first interest rate decision of 2026. Here's what to expect.",
           "url": "https://www.cbsnews.com/news/federal-reserve-fomc-meeting-january-28-interest-rate-decision-jerome-powell/",
           "source_type": "duckduckgo",
@@ -2767,6 +2849,25 @@
             "policy"
           ],
           "quote": "President Trump has pressed the Federal Reserve to lower interest rates, but central bank officials are unlikely to deliver a first cut of 2026 when they announce their next policy move on Wednesday.",
+          "score": -0.3
+        },
+        {
+          "title": "Fed holds key interest rate steady as economic view improves",
+          "url": "https://www.cnbc.com/2026/01/28/fed-rate-decision-january-2026.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "recent run of interest rate cuts",
+            "economic activity has been expanding at a solid pace"
+          ],
+          "directions": [
+            "dovish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "The Federal Reserve held its key interest steady in a range between 3.5% and 3.75% after a recent run of interest rate cuts. Available indicators suggest that economic activity has been expanding at a solid pace.",
           "score": -0.3
         }
       ]
@@ -2929,42 +3030,42 @@
           "score": 1.4
         },
         {
-          "title": "Federal Reserve meets Wednesday for its first interest rate decision of 2026. Here's what to expect.",
-          "url": "https://www.cbsnews.com/news/federal-reserve-fomc-meeting-january-28-interest-rate-decision-jerome-powell/",
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
           "source_type": "duckduckgo",
           "keywords": [
-            "lower interest rates",
-            "unlikely to deliver a first cut"
+            "leaving its benchmark interest rate unchanged",
+            "first pause after three consecutive rate cuts"
           ],
           "directions": [
             "dovish",
-            "hawkish"
+            "dovish"
           ],
           "dimensions": [
             "policy",
             "policy"
           ],
-          "quote": "President Trump has pressed the Federal Reserve to lower interest rates, but central bank officials are unlikely to deliver a first cut of 2026 when they announce their next policy move on Wednesday.",
-          "score": -0.3
+          "quote": "The Federal Reserve said Wednesday that it is leaving its benchmark interest rate unchanged, marking the central bank's first pause after three consecutive rate cuts last year.",
+          "score": -1.4
         },
         {
-          "title": "Fed holds key interest rate steady as economic view improves",
-          "url": "https://www.cnbc.com/2026/01/28/fed-rate-decision-january-2026.html",
+          "title": "Prices Are Still Front and Center for Fed Officials",
+          "url": "https://finance.yahoo.com/news/prices-still-front-center-fed-191648202.html",
           "source_type": "duckduckgo",
           "keywords": [
-            "recent run of interest rate cuts",
-            "economic activity has been expanding at a solid pace"
+            "signal patience on rate cuts",
+            "inflation that remains above the central bank's 2% target"
           ],
           "directions": [
-            "dovish",
+            "hawkish",
             "hawkish"
           ],
           "dimensions": [
             "policy",
             "policy"
           ],
-          "quote": "The Federal Reserve held its key interest steady in a range between 3.5% and 3.75% after a recent run of interest rate cuts. Available indicators suggest that economic activity has been expanding at a solid pace.",
-          "score": -0.3
+          "quote": "Fed officials signal patience on rate cuts as steady job growth contrasts with inflation that remains above the central bank's 2% target. This suggests that the officials are not eager to cut rates, indicating a hawkish stance.",
+          "score": 1.4
         },
         {
           "title": "Federal Reserve Bank of Kansas City chief Jeffrey Schmid signals cautious optimism for 2026",
@@ -3038,36 +3139,14 @@
     },
     {
       "date": "2026-02-15",
-      "score": 0.918,
+      "score": 1.212,
       "label": "Neutral",
       "source": "live",
-      "policy_score": 1.44,
-      "policy_label": "Neutral",
+      "policy_score": 1.86,
+      "policy_label": "Hawkish",
       "balance_sheet_score": -0.3,
       "balance_sheet_label": "Neutral",
       "evidence": [
-        {
-          "title": "Fed policy is tighter than thought, inflation not a problem, Miran says",
-          "url": "https://www.msn.com/en-us/money/economy/fed-policy-is-tighter-than-thought-inflation-not-a-problem-miran-says/ar-AA1Wfshf",
-          "source_type": "duckduckgo",
-          "keywords": [
-            "tighter than thought",
-            "inflation not a problem",
-            "threatens U.S. economic growth"
-          ],
-          "directions": [
-            "dovish",
-            "dovish",
-            "dovish"
-          ],
-          "dimensions": [
-            "policy",
-            "policy",
-            "policy"
-          ],
-          "quote": "Fed policy is tighter than thought, inflation not a problem, Miran says Feb 12 (Reuters) - The Federal Reserve's current monetary-policy setting threatens U.S. economic growth that otherwise is being 'underwritten' by a range of Trump administration policies including tax cuts,",
-          "score": -2.8
-        },
         {
           "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
           "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
@@ -3088,26 +3167,23 @@
           "score": -2.8
         },
         {
-          "title": "Federal Reserve Watch: Monetary Easing",
-          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "title": "Fed's Interest Rate Decision: January 28, 2026",
+          "url": "https://seekingalpha.com/article/4864144-fed-interest-rate-decision-january-28-2026",
           "source_type": "duckduckgo",
           "keywords": [
-            "shifted from quantitative tightening to quantitative easing",
-            "adding $37.4 billion to its securities portfolio",
-            "Reserve balances at the Fed rose $163.8 billion"
+            "pricing in two 25 basis point cuts",
+            "holding the federal funds rate steady"
           ],
           "directions": [
             "dovish",
-            "dovish",
-            "dovish"
+            "neutral"
           ],
           "dimensions": [
-            "balance_sheet",
-            "balance_sheet",
-            "balance_sheet"
+            "policy",
+            "policy"
           ],
-          "quote": "The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4 billion to its securities portfolio since then.",
-          "score": -2.1
+          "quote": "The market is currently pricing in two 25 basis point cuts in 2026 and none in 2027.",
+          "score": -1.4
         },
         {
           "title": "Federal Reserve's policy stance well positioned, Dallas Fed President Logan says",
@@ -3349,7 +3425,7 @@
           "url": "https://www.msn.com/en-in/money/economy/us-fed-meeting-outcome-jerome-powell-led-fomc-keeps-interest-rates-steady-at-3-50-3-75-in-first-decision-of-2026-key-highlights/ar-AA1VbOkH",
           "source_type": "duckduckgo",
           "keywords": [
-            "held interest rates steady",
+            "keeps interest rates steady",
             "economic activity has been expanding at a solid pace"
           ],
           "directions": [
