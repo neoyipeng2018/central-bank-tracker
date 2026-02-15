@@ -14,8 +14,19 @@ class Participant:
     historical_lean: float
 
 
-# Full 19-member FOMC roster for 2026
+# Full FOMC roster for 2026 + notable incoming officials
 PARTICIPANTS: list[Participant] = [
+    # ── Incoming Chair (nominated, not yet serving) ────────────────
+    Participant(
+        name="Kevin M. Warsh",
+        title="Nominated Fed Chair",
+        institution="Incoming",
+        is_voter_2026=False,
+        is_governor=False,
+        # Warsh served as Fed Governor 2006-2011; known as a hawk who
+        # dissented against QE and favors rules-based monetary policy
+        historical_lean=0.55,
+    ),
     # ── Board of Governors (all vote) ──────────────────────────────
     Participant(
         name="Jerome H. Powell",

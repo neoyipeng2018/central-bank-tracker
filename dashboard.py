@@ -211,7 +211,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # ── Chart 1: Hawk-Dove Spectrum (Horizontal Diverging Bar) ────────────────
 st.markdown("## Hawk-Dove Spectrum")
-st.caption("All 19 FOMC participants ranked from most dovish to most hawkish")
+st.caption("All FOMC participants ranked from most dovish to most hawkish")
 
 fig_spectrum = go.Figure()
 
@@ -425,6 +425,7 @@ st.caption("How each participant's stance has evolved over recent months")
 # Let user pick participants to show
 all_names = [p.name for p in PARTICIPANTS]
 default_names = [
+    "Kevin M. Warsh",
     "Jerome H. Powell",
     "Michelle W. Bowman",
     "Christopher J. Waller",

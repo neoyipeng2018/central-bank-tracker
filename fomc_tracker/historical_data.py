@@ -15,6 +15,13 @@ def ensure_dirs():
 
 # Seed data: historical stances for context (synthetic but realistic)
 SEED_DATA: dict[str, list[dict]] = {
+    "Kevin M. Warsh": [
+        {"date": "2025-09-15", "score": 0.55, "label": "Hawkish", "source": "seed"},
+        {"date": "2025-10-15", "score": 0.50, "label": "Hawkish", "source": "seed"},
+        {"date": "2025-11-15", "score": 0.55, "label": "Hawkish", "source": "seed"},
+        {"date": "2025-12-15", "score": 0.60, "label": "Hawkish", "source": "seed"},
+        {"date": "2026-01-15", "score": 0.55, "label": "Hawkish", "source": "seed"},
+    ],
     "Jerome H. Powell": [
         {"date": "2025-09-15", "score": 0.10, "label": "Neutral", "source": "seed"},
         {"date": "2025-10-15", "score": 0.05, "label": "Neutral", "source": "seed"},

@@ -16,7 +16,7 @@ streamlit run dashboard.py
 
 ## Data Sources
 
-The tracker pulls text data from three sources for each of the 19 FOMC participants:
+The tracker pulls text data from three sources for each FOMC participant (and notable incoming officials):
 
 | Source | Method | Content |
 |---|---|---|
