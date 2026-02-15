@@ -200,8 +200,13 @@ def add_stance(
     label: str,
     date: str | None = None,
     source: str = "live",
+    evidence: list[dict] | None = None,
 ) -> dict[str, list[dict]]:
-    """Add a new stance entry for a participant."""
+    """Add a new stance entry for a participant.
+
+    evidence is an optional list of dicts, each with:
+        title, url, source_type, keywords, quote
+    """
     if date is None:
         date = datetime.now().strftime("%Y-%m-%d")
 
@@ -213,6 +218,8 @@ def add_stance(
     # Update existing entry for same date, or append
     existing_dates = {e["date"]: i for i, e in enumerate(history[name])}
     entry = {"date": date, "score": round(score, 3), "label": label, "source": source}
+    if evidence:
+        entry["evidence"] = evidence
 
     if date in existing_dates:
         history[name][existing_dates[date]] = entry

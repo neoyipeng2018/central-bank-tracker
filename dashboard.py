@@ -174,6 +174,66 @@ st.markdown(
         margin: 0.5rem 0 0 0;
     }
 
+    /* ── Evidence Cards ─────────────────────────────── */
+    .ev-card {
+        background: linear-gradient(145deg, rgba(15,23,42,0.5) 0%, rgba(30,41,59,0.3) 100%);
+        border: 1px solid rgba(148,163,184,0.08);
+        border-radius: 12px;
+        padding: 1rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+    .ev-card:hover { border-color: rgba(148,163,184,0.18); }
+    .ev-title {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        margin: 0 0 0.3rem 0;
+        line-height: 1.4;
+    }
+    .ev-title a {
+        color: #818cf8;
+        text-decoration: none;
+    }
+    .ev-title a:hover { text-decoration: underline; }
+    .ev-quote {
+        font-size: 0.8rem;
+        color: #94a3b8;
+        font-style: italic;
+        margin: 0.4rem 0;
+        padding-left: 0.8rem;
+        border-left: 2px solid rgba(148,163,184,0.15);
+        line-height: 1.5;
+    }
+    .ev-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.4rem;
+    }
+    .ev-tag {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+    .ev-tag-hawk {
+        background: rgba(248,113,113,0.12);
+        color: #f87171;
+        border: 1px solid rgba(248,113,113,0.2);
+    }
+    .ev-tag-dove {
+        background: rgba(96,165,250,0.12);
+        color: #60a5fa;
+        border: 1px solid rgba(96,165,250,0.2);
+    }
+    .ev-tag-src {
+        background: rgba(148,163,184,0.1);
+        color: #94a3b8;
+        border: 1px solid rgba(148,163,184,0.15);
+    }
+
     /* ── Footer ─────────────────────────────────────── */
     .foot {
         text-align: center;
@@ -625,6 +685,65 @@ st.dataframe(
         "2026 Voter": st.column_config.TextColumn(width="small"),
     },
 )
+
+# ══════════════════════════════════════════════════════════════════════════
+# Evidence & Sources
+# ══════════════════════════════════════════════════════════════════════════
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
+st.markdown('<p class="section-hdr">Evidence &amp; Sources</p>', unsafe_allow_html=True)
+st.markdown(
+    '<p class="section-sub">News articles, speeches, and quotes supporting each participant\'s stance classification</p>',
+    unsafe_allow_html=True,
+)
+
+SOURCE_LABELS = {
+    "duckduckgo": "News",
+    "fed_rss": "Fed RSS",
+    "bis_speeches": "BIS Speech",
+}
+
+# Build evidence lookup from history
+for _, row in filtered.iterrows():
+    entries = history.get(row["name"], [])
+    latest = entries[-1] if entries else None
+    ev_list = latest.get("evidence", []) if latest else []
+    if not ev_list:
+        continue
+
+    with st.expander(f"{row['name']}  —  {row['label']} ({row['score']:+.3f})", expanded=False):
+        for ev in ev_list:
+            title_text = ev.get("title", "Untitled")
+            url = ev.get("url", "")
+            quote = ev.get("quote", "")
+            keywords = ev.get("keywords", [])
+            directions = ev.get("directions", [])
+            src_type = SOURCE_LABELS.get(ev.get("source_type", ""), ev.get("source_type", ""))
+
+            # Title with link
+            if url:
+                title_html = f'<a href="{url}" target="_blank">{title_text}</a>'
+            else:
+                title_html = title_text
+
+            # Keyword tags
+            tags_html = ""
+            for kw, direction in zip(keywords, directions):
+                tag_cls = "ev-tag-hawk" if direction == "hawkish" else "ev-tag-dove"
+                tags_html += f'<span class="ev-tag {tag_cls}">{kw}</span>'
+            if src_type:
+                tags_html += f'<span class="ev-tag ev-tag-src">{src_type}</span>'
+
+            # Quote
+            quote_html = f'<p class="ev-quote">"{quote}"</p>' if quote else ""
+
+            st.markdown(
+                f'<div class="ev-card">'
+                f'<p class="ev-title">{title_html}</p>'
+                f'{quote_html}'
+                f'<div class="ev-tags">{tags_html}</div>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
 
 # ══════════════════════════════════════════════════════════════════════════
 # Downloads

@@ -34,7 +34,48 @@
       "date": "2026-02-15",
       "score": -0.335,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Kevin Warsh is the right man for this moment at the Federal Reserve | PERRY O. HOOPER JR.",
+          "url": "https://www.usatoday.com/story/opinion/contributors/2026/02/09/kevin-warsh-is-the-right-man-for-the-federal-reserve-perry-o-hooper-jr/88556836007/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...Federal Reserve needs more than a credentialed academic or a cautious caretaker.",
+          "score": 1.0
+        },
+        {
+          "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
+          "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering. Kevin M. Warsh, whom...",
+          "score": -1.0
+        },
+        {
+          "title": "Why Kevin Warsh Won't Revolutionize the Federal Reserve",
+          "url": "https://www.cfr.org/articles/why-kevin-warsh-wont-revolutionize-the-federal-reserve",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...think a dramatic transformation at the Fed will lead to sudden rate cuts.",
+          "score": -1.0
+        }
+      ]
     }
   ],
   "Jerome H. Powell": [
@@ -110,7 +151,84 @@
       "date": "2026-02-15",
       "score": 0.011,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Jefferson says current policy stance 'well positioned'",
+          "url": "https://www.reuters.com/business/feds-jefferson-says-current-policy-stance-well-positioned-2026-01-16/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...unchanged at the central bank's January 27-28 meeting, saying he is \"cautiously ...",
+          "score": 1.0
+        },
+        {
+          "title": "Fed's Jefferson Says Current Policy Stance 'Well Positioned'",
+          "url": "https://money.usnews.com/investing/news/articles/2026-01-16/feds-jefferson-says-current-policy-stance-well-positioned",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...unchanged at the central bank's January 27-28 meeting, saying he is \"cautiously ...",
+          "score": 1.0
+        },
+        {
+          "title": "The Fed's Big 2026 Debate: What's a Normal Level for Rates?",
+          "url": "https://www.investopedia.com/the-fed-s-big-2026-debate-what-s-a-normal-level-for-rates-11901804",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious",
+            "rate cut"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...rate cuts centers on the uncertain \"neutral rate,\" shaping how cautiously policymakers move as inflation cools.",
+          "score": -0.538
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        },
+        {
+          "title": "Fed's Jefferson cautiously optimistic about economy, sees job market stabilizing, inflation falling",
+          "url": "https://www.msn.com/en-us/money/markets/feds-jefferson-cautiously-optimistic-about-economy-sees-job-market-stabilizing-inflation-falling/ar-AA1VPzlR",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious",
+            "inflation falling"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "Fed's Jefferson cautiously optimistic about economy, sees job market stabilizing, inflation...",
+          "score": 0.0
+        }
+      ]
     }
   ],
   "Michael S. Barr": [
@@ -148,7 +266,54 @@
       "date": "2026-02-15",
       "score": -0.088,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Powell hints at extended pause on rate cuts but stays mum on Trump attacks",
+          "url": "https://www.msn.com/en-us/news/politics/powell-and-the-fed-will-probably-defy-trump-once-again-by-keeping-rates-steady-today/ar-AA1V9s2A",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Powell hints at extended pause on rate cuts but stays mum on Trump attacks The Federal Reserve on Wednesday...",
+          "score": -1.0
+        },
+        {
+          "title": "Kevin Warsh is the right man for this moment at the Federal Reserve | PERRY O. HOOPER JR.",
+          "url": "https://www.usatoday.com/story/opinion/contributors/2026/02/09/kevin-warsh-is-the-right-man-for-the-federal-reserve-perry-o-hooper-jr/88556836007/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...Federal Reserve needs more than a credentialed academic or a cautious caretaker.",
+          "score": 1.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Michelle W. Bowman": [
@@ -184,9 +349,110 @@
     },
     {
       "date": "2026-02-15",
-      "score": -0.369,
+      "score": -0.38,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Bowman still supports rate cuts despite backing pause at recent meeting",
+          "url": "https://www.reuters.com/business/feds-bowman-still-supports-rate-cuts-despite-backing-pause-recent-meeting-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Bowman still supports rate cuts despite backing pause at recent meeting WASHINGTON, Jan 30...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed should be ready to cut rates again amid job market risks, Bowman says",
+          "url": "https://www.reuters.com/business/bowman-says-fed-should-be-ready-cut-rates-again-amid-job-market-risks-2026-01-16/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cut rates",
+            "rate cut",
+            "ready to cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "quote": "Fed should be ready to cut rates again amid job market risks, Bowman says Fed's Bowman says job...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed official signals openness to more interest-rate cuts this year",
+          "url": "https://www.aol.com/finance/fed-official-signals-openness-more-130700694.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed official signals openness to more interest-rate cuts this year According to Federal Reserve Vice Chair Michelle...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed Should Be Ready to Cut Rates Again Amid Job Market Risks, Bowman Says",
+          "url": "https://money.usnews.com/investing/news/articles/2026-01-16/bowman-says-fed-should-be-ready-to-cut-rates-again-amid-job-market-risks",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cut rates",
+            "ready to cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "quote": "Fed Should Be Ready to Cut Rates Again Amid Job Market Risks, Bowman Says FOXBOROUGH, Massachusetts,...",
+          "score": -1.0
+        },
+        {
+          "title": "Federal Reserve official signals openness to more interest-rate cuts this year due to weakening labor market",
+          "url": "https://www.msn.com/en-us/money/markets/federal-reserve-official-signals-openness-to-more-interest-rate-cuts-this-year-due-to-weakening-labor-market/ar-AA1Uwmyf",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Federal Reserve official signals openness to more interest-rate cuts this year due to weakening labor market And the big question...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Bowman Says Officials Can 'Afford to Take Time' With Cuts",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-bowman-says-officials-can-afford-to-take-time-with-cuts/ar-AA1Vm1HP",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...Supervision Michelle Bowman said she saw merit in waiting to lower rates further given elevated inflation and uncertainty over potential...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Bowman Says Policy Still Restrictive",
+          "url": "https://www.morningstar.com/news/dow-jones/2026013010473/feds-bowman-says-policy-still-restrictive",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive",
+            "downside risks"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "Fed's Bowman Says Policy Still Restrictive Fed governor Michelle Bowman still sees monetary policy as moderately...",
+          "score": 0.333
+        }
+      ]
     }
   ],
   "Christopher J. Waller": [
@@ -224,7 +490,74 @@
       "date": "2026-02-15",
       "score": -0.393,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Waller says policy still restrictive, more cuts needed",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-waller-says-policy-still-restrictive-more-cuts-needed/ar-AA1VkyQb",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "Fed's Waller says policy still restrictive, more cuts needed Federal Reserve Governor Christopher Waller...",
+          "score": 1.0
+        },
+        {
+          "title": "Trump reveals next Fed chair nominee, as Waller elaborates about need for rate cuts",
+          "url": "https://www.autoremarketing.com/subprime/trump-reveals-next-fed-chair-nominee-as-waller-elaborates-about-need-for-rate-cuts/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...next Fed chair nominee, as Waller elaborates about need for rate cuts Coinciding with President Trump on Friday announcing his nomination...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Bowman still supports rate cuts despite backing pause at recent meeting",
+          "url": "https://www.reuters.com/business/feds-bowman-still-supports-rate-cuts-despite-backing-pause-recent-meeting-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Bowman still supports rate cuts despite backing pause at recent meeting WASHINGTON, Jan 30...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed holds interest rates steady, pausing rate cuts amid economic uncertainty",
+          "url": "https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-january-2026",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed holds interest rates steady, pausing rate cuts amid economic uncertainty The Federal Reserve on Wednesday...",
+          "score": -1.0
+        },
+        {
+          "title": "Powell hints at extended pause on rate cuts but stays mum on Trump attacks",
+          "url": "https://www.cnn.com/2026/01/28/economy/fed-january-rate-decision",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Powell hints at extended pause on rate cuts but stays mum on Trump attacks The Federal Reserve on Wednesday...",
+          "score": -1.0
+        }
+      ]
     }
   ],
   "Lisa D. Cook": [
@@ -262,7 +595,28 @@
       "date": "2026-02-15",
       "score": -0.775,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Lisa D Cook: Economic outlook",
+          "url": "https://www.bis.org/review/r260209d.htm",
+          "source_type": "bis_speeches",
+          "keywords": [
+            "unemployment",
+            "disinflation",
+            "progress on inflation",
+            "maximum employment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "quote": "...vibrant and growing South Florida economy. The Miami region's unemployment rate is below the national average, and consumers in Florida...",
+          "score": -1.0
+        }
+      ]
     }
   ],
   "Adriana D. Kugler": [
@@ -300,7 +654,28 @@
       "date": "2026-02-15",
       "score": 0.05,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "John C. Williams": [
@@ -336,9 +711,24 @@
     },
     {
       "date": "2026-02-15",
-      "score": -0.334,
+      "score": -0.715,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Musalem says no more rate cuts needed with policy now at neutral level",
+          "url": "https://www.reuters.com/business/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-neutral-level-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Musalem says no more rate cuts needed with policy now at neutral level WASHINGTON, Jan 30...",
+          "score": -1.0
+        }
+      ]
     }
   ],
   "Patrick T. Harker": [
@@ -376,7 +766,67 @@
       "date": "2026-02-15",
       "score": -0.231,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Why Kevin Warsh Won't Revolutionize the Federal Reserve",
+          "url": "https://www.cfr.org/articles/why-kevin-warsh-wont-revolutionize-the-federal-reserve",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...think a dramatic transformation at the Fed will lead to sudden rate cuts.",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Musalem says no more rate cuts needed with policy now at neutral level",
+          "url": "https://www.reuters.com/business/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-neutral-level-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Musalem says no more rate cuts needed with policy now at neutral level WASHINGTON, Jan 30...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed holds key interest rate steady as economic view improves",
+          "url": "https://www.cnbc.com/2026/01/28/fed-rate-decision-january-2026.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...range between 3.5% and 3.75% after a recent run of interest rate cuts. \"Available indicators suggest that economic activity has been...",
+          "score": -1.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Thomas I. Barkin": [
@@ -414,7 +864,41 @@
       "date": "2026-02-15",
       "score": -0.029,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Barkin: Cuts So Far Helped Support Job Market While Waiting on Inflation's 'Last Mile'",
+          "url": "https://money.usnews.com/investing/news/articles/2026-02-03/feds-barkin-cuts-so-far-helped-support-job-market-while-waiting-on-inflations-last-mile",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...Carolina, Feb 3 (Reuters) - The U.S. Federal Reserve's \u200cinterest \u200brate cuts so far \u200chave helped insure the health of the job market while...",
+          "score": -1.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Raphael W. Bostic": [
@@ -452,7 +936,54 @@
       "date": "2026-02-15",
       "score": 0.01,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Atlanta Fed Chair Bostic Recognizes Sectors of Agriculture Are in Crisis",
+          "url": "https://www.agweb.com/news/atlanta-fed-chair-bostic-recognizes-sectors-agriculture-are-crisis",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...2%, the outgoing president and CEO favors a pause on interest-rate reductions while noting AI's potential to shift labor needs",
+          "score": -1.0
+        },
+        {
+          "title": "Atlanta Fed's Bostic expects continuation of 'resilient economy' in 2026",
+          "url": "https://seekingalpha.com/news/4545734-atlanta-feds-bostic-expects-continuation-of-resilient-economy-in-2026",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "sticky inflation"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...in 2026 Atlanta Fed's Bostic sees resilient 2026 growth but sticky inflation near 2%+ as rates, tax cuts and deregulation support demand...",
+          "score": 1.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Mary C. Daly": [
@@ -490,7 +1021,97 @@
       "date": "2026-02-15",
       "score": -0.169,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Exclusive-Fed's Daly sees labor market vulnerabilities, room to cut interest rates",
+          "url": "https://www.msn.com/en-us/money/markets/exclusive-feds-daly-sees-labor-market-vulnerabilities-room-to-cut-interest-rates/ar-AA1VPY8Z",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...Mary Daly on Friday said she thinks one or two more interest rate cuts may be needed to counteract weakness in the labor market,",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Daly says US economic outlook feels 'precarious'",
+          "url": "https://www.msn.com/en-us/money/markets/feds-daly-says-us-economic-outlook-feels-precarious/ar-AA1VPCzW",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...is in a \"precarious\" position. While businesses are largely cautiously optimistic,",
+          "score": 1.0
+        },
+        {
+          "title": "Fed's Daly says U.S. economic outlook feels 'precarious'",
+          "url": "https://www.detroitnews.com/story/business/2026/02/06/feds-daly-says-us-economic-outlook-feels-precarious/88549020007/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...is in a \"precarious\" position. While businesses are largely cautiously optimistic, she said, households are less confident, given...",
+          "score": 1.0
+        },
+        {
+          "title": "Fed's Daly leans towards more rate cuts amid job market vulnerabilities - report",
+          "url": "https://seekingalpha.com/news/4548728-feds-daly-leans-towards-more-rate-cuts-amid-job-market-vulnerabilities---report",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Daly leans towards more rate cuts amid job market vulnerabilities - report Federal Reserve Bank...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Mary Daly comments on economic outlook, says Americans deserve price stability and full employment",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-mary-daly-comments-on-economic-outlook-says-americans-deserve-price-stability-and-full-employment/ar-AA1VPJu4",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "price stability",
+            "cautious",
+            "full employment"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Mary Daly comments on economic outlook, says Americans deserve price stability and full employment San Francisco Federal Reserve Bank President...",
+          "score": 0.333
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Susan M. Collins": [
@@ -528,7 +1149,28 @@
       "date": "2026-02-15",
       "score": 0.11,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Beth M. Hammack": [
@@ -566,7 +1208,102 @@
       "date": "2026-02-15",
       "score": -0.31,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Hammack says interest rates could be on hold 'for quite some time'",
+          "url": "https://www.msn.com/en-us/money/markets/feds-hammack-says-interest-rates-could-be-on-hold-for-quite-some-time/ar-AA1W4u7H",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...urgency to change the setting of interest rates this year amid a \"cautiously optimistic\" outlook for economic activity.",
+          "score": 1.0
+        },
+        {
+          "title": "Fed's Hammack: Monetary policy is in a good place to stay on hold",
+          "url": "https://www.msn.com/en-us/money/economy/fed-s-hammack-monetary-policy-is-in-a-good-place-to-stay-on-hold/ar-AA1W4KPl",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...on the side of patience as it assesses the impact of recent rate reductions.",
+          "score": -1.0
+        },
+        {
+          "title": "Cleveland Fed's Hammack says rates may stay on hold 'for quite some time'",
+          "url": "https://seekingalpha.com/news/4549559-cleveland-feds-hammack-says-rates-may-stay-on-hold-for-quite-some-time",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut",
+            "easing"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "quote": "...stronger U.S. growth and easing inflation, but urges patience on rate cuts amid uncertainty.",
+          "score": -1.0
+        },
+        {
+          "title": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus",
+          "url": "https://www.morningstar.com/news/dow-jones/202602115425/two-fed-officials-signal-the-opposition-further-rate-cuts-could-face-january-jobs-report-in-focus",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus Cuts last year reduced...",
+          "score": -1.0
+        },
+        {
+          "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
+          "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering. Kevin M. Warsh, whom...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Schmid says restrictive rates needed to cool inflation",
+          "url": "https://www.canadianmortgagetrends.com/2026/02/feds-schmid-says-restrictive-rates-needed-to-cool-inflation/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "Fed's Schmid says restrictive rates needed to cool inflation Federal Reserve Bank of Kansas...",
+          "score": 1.0
+        },
+        {
+          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
+          "url": "https://www.courant.com/2026/01/28/federal-reserve-january-rate-decision/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after...",
+          "score": -1.0
+        }
+      ]
     }
   ],
   "Austan D. Goolsbee": [
@@ -604,7 +1341,56 @@
       "date": "2026-02-15",
       "score": -0.391,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Goolsbee says he's uncomfortable front-loading too many rate cuts",
+          "url": "https://www.msn.com/en-my/money/markets/fed-s-goolsbee-explains-vote-against-rate-cut-says-central-bank-should-have-waited/ar-AA1SeaCY",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "quote": "...d's Goolsbee says he's uncomfortable front-loading too many rate cuts Chicago Federal Reserve President Austan Goolsbee on Friday...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed officials send united message on January interest-rate cut",
+          "url": "https://www.aol.com/finance/fed-officials-send-united-message-140700323.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed officials send united message on January interest-rate cut From grocery stores to healthcare facilities and automotive...",
+          "score": -1.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Alberto G. Musalem": [
@@ -642,7 +1428,82 @@
       "date": "2026-02-15",
       "score": -0.252,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Fed's Musalem says no more rate cuts needed with policy now at neutral level",
+          "url": "https://www.reuters.com/business/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-neutral-level-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Musalem says no more rate cuts needed with policy now at neutral level WASHINGTON, Jan 30...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Musalem Says No More Rate Cuts Needed With Policy Now at Neutral Level",
+          "url": "https://money.usnews.com/investing/news/articles/2026-01-30/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-at-neutral-level",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Musalem Says No More Rate Cuts Needed With Policy Now at Neutral Level WASHINGTON, Jan 30...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Musalem Rejects Further Rate Cuts",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-musalem-rejects-further-rate-cuts/ar-AA1Vlwz6",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed's Musalem Rejects Further Rate Cuts St. Louis Fed President Alberto Musalem said he would be reluctant...",
+          "score": -1.0
+        },
+        {
+          "title": "The Fed's Big 2026 Debate: What's a Normal Level for Rates?",
+          "url": "https://www.investopedia.com/the-fed-s-big-2026-debate-what-s-a-normal-level-for-rates-11901804",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious",
+            "rate cut"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...rate cuts centers on the uncertain \"neutral rate,\" shaping how cautiously policymakers move as inflation cools.",
+          "score": -0.538
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Jeffrey R. Schmid": [
@@ -680,7 +1541,89 @@
       "date": "2026-02-15",
       "score": -0.336,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Federal Reserve Bank of Kansas City chief Jeffrey Schmid signals cautious optimism for 2026",
+          "url": "https://www.msn.com/en-us/money/markets/federal-reserve-bank-of-kansas-city-chief-jeffrey-schmid-signals-cautious-optimism-for-2026/ar-AA1We8n2",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "...al Reserve Bank of Kansas City chief Jeffrey Schmid signals cautious optimism for 2026 The United States Federal Reserve Bank of...",
+          "score": 1.0
+        },
+        {
+          "title": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus",
+          "url": "https://www.morningstar.com/news/dow-jones/202602115425/two-fed-officials-signal-the-opposition-further-rate-cuts-could-face-january-jobs-report-in-focus",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus Cuts last year reduced...",
+          "score": -1.0
+        },
+        {
+          "title": "Strong January jobs report impacts outlook for Fed interest-rate cuts",
+          "url": "https://www.msn.com/en-us/money/markets/strong-january-jobs-report-impacts-outlook-for-fed-interest-rate-cuts/ar-AA1WaClk",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "quote": "Strong January jobs report impacts outlook for Fed interest-rate cuts January payrolls rose 130,000 and unemployment fell to 4.3%,...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Jeffrey Schmid: Appropriate to maintain somewhat restrictive policy",
+          "url": "https://www.cnbc.com/video/2026/02/11/feds-jeffrey-schmid-appropriate-to-maintain-somewhat-restrictive-policy.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "Fed's Jeffrey Schmid: Appropriate to maintain somewhat restrictive policy CNBC's Steve Liesman delivers the latest news surrounding...",
+          "score": 1.0
+        },
+        {
+          "title": "KC Fed's Schmid sees any further rate cuts risking inflation persistence",
+          "url": "https://seekingalpha.com/news/4550320-kc-feds-schmid-sees-any-further-rate-cuts-risking-inflation-persistence",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "KC Fed's Schmid sees any further rate cuts risking inflation persistence The Federal Reserve's current...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed holds key interest rate steady as economic view improves",
+          "url": "https://www.cnbc.com/2026/01/28/fed-rate-decision-january-2026.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...range between 3.5% and 3.75% after a recent run of interest rate cuts. \"Available indicators suggest that economic activity has been...",
+          "score": -1.0
+        }
+      ]
     }
   ],
   "Lorie K. Logan": [
@@ -718,7 +1661,67 @@
       "date": "2026-02-15",
       "score": 0.107,
       "label": "Neutral",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
+          "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering. Kevin M. Warsh, whom...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed's Logan: 'cautiously optimistic' that current rate-setting will do the job",
+          "url": "https://www.msn.com/en-us/money/markets/feds-logan-cautiously-optimistic-that-current-rate-setting-will-do-the-job/ar-AA1W4Jlu",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "quote": "Fed's Logan: 'cautiously optimistic' that current rate-setting will do the job Feb...",
+          "score": 1.0
+        },
+        {
+          "title": "Text of Fed's January Monetary Policy Statement",
+          "url": "https://www.marketwatch.com/story/text-of-fed-s-january-monetary-policy-statement-ea2bc28b",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "unemployment"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...expanding at a solid pace. Job gains have remained low, and the unemployment rate has shown some signs of stabilization. Inflation remains...",
+          "score": -1.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "tighten",
+            "tightening",
+            "quantitative tightening",
+            "easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish"
+          ],
+          "quote": "...Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.135
+        }
+      ]
     }
   ],
   "Neel Kashkari": [
@@ -756,7 +1759,48 @@
       "date": "2026-02-15",
       "score": -0.79,
       "label": "Dovish",
-      "source": "live"
+      "source": "live",
+      "evidence": [
+        {
+          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
+          "url": "https://www.courant.com/2026/01/28/federal-reserve-january-rate-decision/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "...The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after...",
+          "score": -1.0
+        },
+        {
+          "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
+          "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering. Kevin M. Warsh, whom...",
+          "score": -1.0
+        },
+        {
+          "title": "Fed, Signaling Little Urgency, Prepares to Pause on Rate Cuts",
+          "url": "https://www.nytimes.com/2026/01/27/business/economy/fed-rate-decision-outlook.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "quote": "Fed, Signaling Little Urgency, Prepares to Pause on Rate Cuts The Federal Reserve is expected to hold interest rates steady...",
+          "score": -1.0
+        }
+      ]
     }
   ]
 }

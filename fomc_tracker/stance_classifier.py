@@ -167,6 +167,47 @@ def classify_text(text: str) -> ClassificationResult:
     )
 
 
+def extract_quote(text: str, term: str, context_chars: int = 120) -> str:
+    """Extract a short quote around a matched keyword in the original text."""
+    idx = text.lower().find(term.lower())
+    if idx == -1:
+        return ""
+    start = max(0, idx - context_chars // 2)
+    end = min(len(text), idx + len(term) + context_chars // 2)
+    # Snap to word boundaries
+    if start > 0:
+        space = text.rfind(" ", 0, start)
+        if space != -1:
+            start = space + 1
+    if end < len(text):
+        space = text.find(" ", end)
+        if space != -1:
+            end = space
+    quote = text[start:end].strip()
+    prefix = "..." if start > 0 else ""
+    suffix = "..." if end < len(text) else ""
+    return f"{prefix}{quote}{suffix}"
+
+
+def classify_text_with_evidence(text: str) -> tuple[ClassificationResult, list[dict]]:
+    """Classify text and return evidence snippets for matched keywords.
+
+    Returns (ClassificationResult, evidence_list) where each evidence item is:
+        {"keyword": str, "direction": "hawkish"|"dovish", "quote": str}
+    """
+    result = classify_text(text)
+    evidence = []
+    for kw in result.hawkish_matches:
+        quote = extract_quote(text, kw)
+        if quote:
+            evidence.append({"keyword": kw, "direction": "hawkish", "quote": quote})
+    for kw in result.dovish_matches:
+        quote = extract_quote(text, kw)
+        if quote:
+            evidence.append({"keyword": kw, "direction": "dovish", "quote": quote})
+    return result, evidence
+
+
 def classify_snippets(snippets: list[str]) -> ClassificationResult:
     """Classify multiple text snippets and return an aggregate result."""
     if not snippets:

@@ -8,7 +8,7 @@ import sys
 from fomc_tracker.historical_data import add_stance, load_history
 from fomc_tracker.news_fetcher import fetch_news_for_participant, load_cached_news
 from fomc_tracker.participants import PARTICIPANTS, get_participant
-from fomc_tracker.stance_classifier import classify_snippets
+from fomc_tracker.stance_classifier import classify_snippets, classify_text_with_evidence
 
 logging.basicConfig(
     level=logging.INFO,
@@ -62,8 +62,35 @@ def process_participant(participant, use_cache=True):
         add_stance(participant.name, score, label, source="historical_lean")
         return score, label
 
-    # Classify
+    # Classify aggregate score
     result = classify_snippets(snippets)
+
+    # Build evidence: classify each news item individually to get keyword quotes
+    evidence = []
+    for r in results:
+        text = f"{r.get('title', '')} {r.get('body', '')}".strip()
+        if not text:
+            continue
+        cls_result, item_evidence = classify_text_with_evidence(text)
+        if not item_evidence:
+            continue
+        # Collect top keywords found in this article
+        keywords = [e["keyword"] for e in item_evidence]
+        directions = [e["direction"] for e in item_evidence]
+        best_quote = item_evidence[0]["quote"]  # Use first match as representative quote
+        evidence.append({
+            "title": r.get("title", ""),
+            "url": r.get("url", ""),
+            "source_type": r.get("source", ""),
+            "keywords": keywords,
+            "directions": directions,
+            "quote": best_quote,
+            "score": cls_result.score,
+        })
+
+    # Keep top 8 evidence items sorted by absolute score (strongest signal first)
+    evidence.sort(key=lambda e: abs(e.get("score", 0)), reverse=True)
+    evidence = evidence[:8]
 
     # Blend with historical lean (70% news, 30% historical baseline)
     blended_score = result.score * 0.7 + participant.historical_lean * 0.3
@@ -75,11 +102,12 @@ def process_participant(participant, use_cache=True):
     elif blended_score < -0.3:
         label = "Dovish"
 
-    add_stance(participant.name, blended_score, label, source="live")
+    add_stance(participant.name, blended_score, label, source="live", evidence=evidence)
 
     logger.info(
         f"  Score: {blended_score:+.3f} ({label}) "
-        f"[{len(result.hawkish_matches)} hawkish, {len(result.dovish_matches)} dovish keywords]"
+        f"[{len(result.hawkish_matches)} hawkish, {len(result.dovish_matches)} dovish keywords] "
+        f"[{len(evidence)} evidence items]"
     )
     return blended_score, label
 
