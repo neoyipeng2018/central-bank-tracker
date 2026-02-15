@@ -523,21 +523,24 @@ st.markdown("---")
 st.markdown("## Stance Heatmap")
 st.caption("Monthly stance scores for all participants (red = hawkish, blue = dovish)")
 
-# Build heatmap matrix
+# Build heatmap matrix using numpy for proper NaN handling
+import numpy as np
+
 all_dates = sorted(set(d for entries in history.values() for d in [e["date"] for e in entries]))
 heatmap_names = [short_name(p.name) for p in PARTICIPANTS]
 full_names = [p.name for p in PARTICIPANTS]
 
-z_data = []
-for name in full_names:
+z_data = np.full((len(full_names), len(all_dates)), np.nan)
+for i, name in enumerate(full_names):
     entries = history.get(name, [])
     date_score = {e["date"]: e["score"] for e in entries}
-    row = [date_score.get(d, None) for d in all_dates]
-    z_data.append(row)
+    for j, d in enumerate(all_dates):
+        if d in date_score:
+            z_data[i][j] = date_score[d]
 
 fig_heatmap = go.Figure(
     go.Heatmap(
-        z=z_data,
+        z=z_data.tolist(),
         x=all_dates,
         y=heatmap_names,
         colorscale=[
@@ -552,6 +555,7 @@ fig_heatmap = go.Figure(
         zmid=0,
         zmin=-1,
         zmax=1,
+        connectgaps=False,
         colorbar=dict(
             title="Score",
             titlefont=dict(color=FONT_COLOR),
@@ -562,7 +566,7 @@ fig_heatmap = go.Figure(
         hovertemplate=(
             "<b>%{y}</b><br>"
             "Date: %{x}<br>"
-            "Score: %{z:+.3f}<br>"
+            "Score: %{z}<br>"
             "<extra></extra>"
         ),
     )
