@@ -604,11 +604,55 @@ st.dataframe(
     },
 )
 
+# ── Download Buttons ───────────────────────────────────────────────────────
+st.markdown("---")
+st.markdown("## Download Data")
+
+dl_col1, dl_col2 = st.columns(2)
+
+# Current stances CSV
+current_csv_df = df[["name", "institution", "title", "voter", "score", "label"]].copy()
+current_csv_df.columns = ["Name", "Institution", "Title", "2026 Voter", "Score", "Stance"]
+current_csv_df = current_csv_df.sort_values("Score", ascending=False).reset_index(drop=True)
+
+with dl_col1:
+    st.download_button(
+        label="Download Current Stances (CSV)",
+        data=current_csv_df.to_csv(index=False),
+        file_name=f"fomc_stances_{datetime.now().strftime('%Y-%m-%d')}.csv",
+        mime="text/csv",
+    )
+
+# Full history CSV
+history_rows = []
+for name, entries in history.items():
+    for entry in entries:
+        p = next((p for p in PARTICIPANTS if p.name == name), None)
+        history_rows.append(
+            {
+                "Name": name,
+                "Institution": p.institution if p else "",
+                "Date": entry["date"],
+                "Score": entry["score"],
+                "Stance": entry["label"],
+                "Source": entry.get("source", ""),
+            }
+        )
+history_csv_df = pd.DataFrame(history_rows).sort_values(["Date", "Name"]).reset_index(drop=True)
+
+with dl_col2:
+    st.download_button(
+        label="Download Full History (CSV)",
+        data=history_csv_df.to_csv(index=False),
+        file_name="fomc_stance_history.csv",
+        mime="text/csv",
+    )
+
 # ── Footer ─────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown(
     "<div style='text-align:center; color:#64748b; font-size:0.85rem;'>"
-    "FOMC Stance Tracker | Data from DuckDuckGo News & Federal Reserve RSS | "
+    "FOMC Stance Tracker | Data from DuckDuckGo News, Federal Reserve RSS &amp; BIS Speeches | "
     "Keyword-based NLP classification | Not financial advice"
     "</div>",
     unsafe_allow_html=True,
