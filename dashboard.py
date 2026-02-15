@@ -685,7 +685,7 @@ with col_r:
 # Chart 4 — Stance Trends
 # ══════════════════════════════════════════════════════════════════════════
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
-st.markdown(f'<p class="section-hdr">Stance Trends — {stance_view}</p>', unsafe_allow_html=True)
+st.markdown('<p class="section-hdr">Stance Trends</p>', unsafe_allow_html=True)
 st.markdown('<p class="section-sub">How each participant\'s stance has evolved over recent months</p>', unsafe_allow_html=True)
 
 all_names = [p.name for p in PARTICIPANTS]
@@ -693,7 +693,12 @@ defaults = [
     "Kevin M. Warsh", "Jerome H. Powell", "Michelle W. Bowman",
     "Christopher J. Waller", "Lisa D. Cook", "Austan D. Goolsbee", "Neel Kashkari",
 ]
-selected = st.multiselect("Select participants", all_names, default=[n for n in defaults if n in all_names])
+
+trend_cols = st.columns([3, 1])
+with trend_cols[0]:
+    selected = st.multiselect("Select participants", all_names, default=[n for n in defaults if n in all_names])
+with trend_cols[1]:
+    trend_mode = st.radio("View", ["Aggregate", "Policy & Balance Sheet"], index=0, horizontal=True, key="trend_mode")
 
 if selected:
     fig4 = go.Figure()
@@ -709,21 +714,54 @@ if selected:
 
     # Track which participants have traces (for mapping click → participant)
     trace_names = []
-    for i, name in enumerate(selected):
-        entries = history.get(name, [])
-        if not entries:
-            continue
-        trace_names.append(name)
-        c = palette[i % len(palette)]
-        fig4.add_trace(go.Scatter(
-            x=[e["date"] for e in entries],
-            y=[e.get(score_key, e.get("score", 0)) for e in entries],
-            mode="lines+markers",
-            name=last_name(name),
-            line=dict(width=2.5, color=c, shape="spline"),
-            marker=dict(size=8, color=c, line=dict(width=1, color="rgba(255,255,255,0.2)")),
-            hovertemplate=f"<b>{name}</b><br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
-        ))
+
+    if trend_mode == "Aggregate":
+        for i, name in enumerate(selected):
+            entries = history.get(name, [])
+            if not entries:
+                continue
+            trace_names.append(name)
+            c = palette[i % len(palette)]
+            fig4.add_trace(go.Scatter(
+                x=[e["date"] for e in entries],
+                y=[e.get(score_key, e.get("score", 0)) for e in entries],
+                mode="lines+markers",
+                name=last_name(name),
+                line=dict(width=2.5, color=c, shape="spline"),
+                marker=dict(size=8, color=c, line=dict(width=1, color="rgba(255,255,255,0.2)")),
+                hovertemplate=f"<b>{name}</b><br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
+            ))
+    else:
+        # Two traces per participant: policy (solid) and balance sheet (dashed)
+        for i, name in enumerate(selected):
+            entries = history.get(name, [])
+            if not entries:
+                continue
+            # Each participant produces two traces; record name for both
+            trace_names.append(name)
+            trace_names.append(name)
+            c = palette[i % len(palette)]
+            ln = last_name(name)
+            fig4.add_trace(go.Scatter(
+                x=[e["date"] for e in entries],
+                y=[e.get("policy_score", e.get("score", 0)) for e in entries],
+                mode="lines+markers",
+                name=f"{ln} (Pol.)",
+                line=dict(width=2.5, color=c, shape="spline"),
+                marker=dict(size=8, color=c, symbol="circle",
+                            line=dict(width=1, color="rgba(255,255,255,0.2)")),
+                hovertemplate=f"<b>{name}</b> — Policy<br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
+            ))
+            fig4.add_trace(go.Scatter(
+                x=[e["date"] for e in entries],
+                y=[e.get("balance_sheet_score", 0) for e in entries],
+                mode="lines+markers",
+                name=f"{ln} (B.S.)",
+                line=dict(width=2.5, color=c, shape="spline", dash="dash"),
+                marker=dict(size=8, color=c, symbol="diamond",
+                            line=dict(width=1, color="rgba(255,255,255,0.2)")),
+                hovertemplate=f"<b>{name}</b> — Balance Sheet<br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
+            ))
 
     fig4.add_hline(y=0, line_width=1, line_color="rgba(148,163,184,0.2)")
     fig4.add_hline(y=1.5, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.15)")

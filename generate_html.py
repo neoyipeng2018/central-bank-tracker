@@ -214,12 +214,21 @@ def fig_voters_vs_alts(df):
     return fig
 
 
-def fig_trends(history):
-    """Stance trends line chart for all participants.
+def _trends_base_layout():
+    """Shared layout properties for trend charts."""
+    return dict(
+        **PLOTLY_LAYOUT, height=520,
+        xaxis=dict(gridcolor=GRID, title=dict(text="Date", font=dict(size=11, color=FONT_DIM))),
+        yaxis=dict(gridcolor=GRID, range=[-5.25, 5.25], tickvals=[-5, -3, -1.5, 0, 1.5, 3, 5],
+                   title=dict(text="Stance Score", font=dict(size=11, color=FONT_DIM))),
+        legend=dict(bgcolor="rgba(15,23,42,0.7)", bordercolor="rgba(148,163,184,0.1)", borderwidth=1,
+                    font=dict(size=11), orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+        margin=dict(l=55, r=30, t=40, b=45),
+    )
 
-    Returns (fig, trace_names) where trace_names maps curve index to full name.
-    """
-    palette = px.colors.qualitative.Plotly + px.colors.qualitative.Set2
+
+def _trends_base_fig():
+    """Create a trend figure with background zones and reference lines."""
     fig = go.Figure()
     fig.add_hrect(y0=1.5, y1=5.0, fillcolor="rgba(248,113,113,0.05)", line_width=0,
                   annotation_text="Hawkish zone", annotation_position="top left",
@@ -227,6 +236,22 @@ def fig_trends(history):
     fig.add_hrect(y0=-5.0, y1=-1.5, fillcolor="rgba(96,165,250,0.05)", line_width=0,
                   annotation_text="Dovish zone", annotation_position="bottom left",
                   annotation_font=dict(color="rgba(96,165,250,0.35)", size=10))
+    return fig
+
+
+def _trends_add_ref_lines(fig):
+    fig.add_hline(y=0, line_width=1, line_color="rgba(148,163,184,0.2)")
+    fig.add_hline(y=1.5, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.15)")
+    fig.add_hline(y=-1.5, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.15)")
+
+
+def fig_trends(history):
+    """Aggregate stance trends line chart.
+
+    Returns (fig, trace_names) where trace_names maps curve index to full name.
+    """
+    palette = px.colors.qualitative.Plotly + px.colors.qualitative.Set2
+    fig = _trends_base_fig()
     names = [p.name for p in PARTICIPANTS]
     trace_names = []
     i = 0
@@ -245,18 +270,51 @@ def fig_trends(history):
             hovertemplate=f"<b>{name}</b><br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
         ))
         i += 1
-    fig.add_hline(y=0, line_width=1, line_color="rgba(148,163,184,0.2)")
-    fig.add_hline(y=1.5, line_width=1, line_dash="dot", line_color="rgba(248,113,113,0.15)")
-    fig.add_hline(y=-1.5, line_width=1, line_dash="dot", line_color="rgba(96,165,250,0.15)")
-    fig.update_layout(
-        **PLOTLY_LAYOUT, height=520,
-        xaxis=dict(gridcolor=GRID, title=dict(text="Date", font=dict(size=11, color=FONT_DIM))),
-        yaxis=dict(gridcolor=GRID, range=[-5.25, 5.25], tickvals=[-5, -3, -1.5, 0, 1.5, 3, 5],
-                   title=dict(text="Stance Score", font=dict(size=11, color=FONT_DIM))),
-        legend=dict(bgcolor="rgba(15,23,42,0.7)", bordercolor="rgba(148,163,184,0.1)", borderwidth=1,
-                    font=dict(size=11), orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
-        margin=dict(l=55, r=30, t=40, b=45),
-    )
+    _trends_add_ref_lines(fig)
+    fig.update_layout(**_trends_base_layout())
+    return fig, trace_names
+
+
+def fig_trends_dimensions(history):
+    """Policy & Balance Sheet stance trends (two lines per participant).
+
+    Returns (fig, trace_names) where trace_names maps curve index to full name
+    (both traces for a participant map to the same name).
+    """
+    palette = px.colors.qualitative.Plotly + px.colors.qualitative.Set2
+    fig = _trends_base_fig()
+    names = [p.name for p in PARTICIPANTS]
+    trace_names = []
+    i = 0
+    for name in names:
+        entries = history.get(name, [])
+        if not entries:
+            continue
+        trace_names.append(name)
+        trace_names.append(name)
+        c = palette[i % len(palette)]
+        ln = last_name(name)
+        fig.add_trace(go.Scatter(
+            x=[e["date"] for e in entries],
+            y=[e.get("policy_score", e.get("score", 0)) for e in entries],
+            mode="lines+markers", name=f"{ln} (Pol.)",
+            line=dict(width=2.5, color=c, shape="spline"),
+            marker=dict(size=8, color=c, symbol="circle",
+                        line=dict(width=1, color="rgba(255,255,255,0.2)")),
+            hovertemplate=f"<b>{name}</b> — Policy<br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
+        ))
+        fig.add_trace(go.Scatter(
+            x=[e["date"] for e in entries],
+            y=[e.get("balance_sheet_score", 0) for e in entries],
+            mode="lines+markers", name=f"{ln} (B.S.)",
+            line=dict(width=2.5, color=c, shape="spline", dash="dash"),
+            marker=dict(size=8, color=c, symbol="diamond",
+                        line=dict(width=1, color="rgba(255,255,255,0.2)")),
+            hovertemplate=f"<b>{name}</b> — Balance Sheet<br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
+        ))
+        i += 1
+    _trends_add_ref_lines(fig)
+    fig.update_layout(**_trends_base_layout())
     return fig, trace_names
 
 
@@ -400,6 +458,8 @@ def generate_html(output_path: str):
     chart_voters = fig_voters_vs_alts(df).to_html(full_html=False, include_plotlyjs=False)
     trends_fig, trace_names = fig_trends(history)
     chart_trends = trends_fig.to_html(full_html=False, include_plotlyjs=False, div_id="trends-chart")
+    trends_dim_fig, trace_names_dim = fig_trends_dimensions(history)
+    chart_trends_dim = trends_dim_fig.to_html(full_html=False, include_plotlyjs=False, div_id="trends-chart-dim")
     chart_heatmap = fig_heatmap(history).to_html(full_html=False, include_plotlyjs=False)
 
     evidence_html = build_evidence_html(df, history)
@@ -411,6 +471,7 @@ def generate_html(output_path: str):
     # Build history JSON for click-to-inspect (only entries with evidence)
     history_json = json.dumps(history, default=str)
     trace_names_json = json.dumps(trace_names)
+    trace_names_dim_json = json.dumps(trace_names_dim)
     source_labels_json = json.dumps(SOURCE_LABELS)
     dim_labels_json = json.dumps(DIM_LABELS)
 
@@ -524,6 +585,21 @@ def generate_html(output_path: str):
   .td-meta {{ font-size: 0.78rem; color: #64748b; margin: 0; }}
   .td-hint {{ font-size: 0.75rem; color: #475569; text-align: center; margin: 0.5rem 0; font-style: italic; }}
 
+  /* Trend toggle */
+  .trend-toggle {{
+    display: inline-flex; gap: 0; border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(148,163,184,0.15); margin-bottom: 0.8rem;
+  }}
+  .trend-toggle button {{
+    padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    border: none; font-family: inherit; transition: all 0.15s ease;
+    background: rgba(30,41,59,0.5); color: #94a3b8;
+  }}
+  .trend-toggle button:hover {{ background: rgba(51,65,85,0.5); }}
+  .trend-toggle button.active {{
+    background: rgba(99,102,241,0.18); color: #818cf8;
+  }}
+
   /* Data Table */
   .data-table {{
     width: 100%; border-collapse: collapse; font-size: 0.85rem;
@@ -614,16 +690,24 @@ def generate_html(output_path: str):
 <hr class="divider">
 <p class="section-hdr">Stance Trends</p>
 <p class="section-sub">How each participant&rsquo;s stance has evolved over recent months &bull; Click any data point for details</p>
-{chart_trends}
+<div class="trend-toggle" id="trend-toggle">
+  <button class="active" data-mode="aggregate" onclick="switchTrendMode('aggregate')">Aggregate</button>
+  <button data-mode="dimensions" onclick="switchTrendMode('dimensions')">Policy &amp; Balance Sheet</button>
+</div>
+<div id="trends-wrap-agg">{chart_trends}</div>
+<div id="trends-wrap-dim" style="display:none">{chart_trends_dim}</div>
 <p class="td-hint">Click a data point on the chart above to see evidence and sources</p>
 <div id="trend-detail"></div>
 
 <script>
 (function() {{
   var historyData = {history_json};
-  var traceNames = {trace_names_json};
+  var traceNamesAgg = {trace_names_json};
+  var traceNamesDim = {trace_names_dim_json};
   var sourceLabels = {source_labels_json};
   var dimLabels = {dim_labels_json};
+
+  var currentMode = 'aggregate';
 
   function scoreColor(s) {{
     if (s > 1.5) return '#f87171';
@@ -641,18 +725,7 @@ def generate_html(output_path: str):
     return d.innerHTML;
   }}
 
-  var trendEl = document.getElementById('trends-chart');
-  if (!trendEl) return;
-
-  trendEl.on('plotly_click', function(data) {{
-    if (!data || !data.points || !data.points.length) return;
-    var pt = data.points[0];
-    var curveIdx = pt.curveNumber;
-    var clickedDate = pt.x;
-    var clickedScore = pt.y;
-
-    if (curveIdx >= traceNames.length) return;
-    var name = traceNames[curveIdx];
+  function buildDetailHtml(name, clickedDate, clickedScore) {{
     var entries = historyData[name] || [];
     var entry = null;
     for (var i = 0; i < entries.length; i++) {{
@@ -724,10 +797,49 @@ def generate_html(output_path: str):
       html += '<p style="color:#64748b;font-size:0.82rem;font-style:italic;margin:0.5rem 0">'
         + 'No evidence articles stored for this data point.</p>';
     }}
+    return html;
+  }}
 
+  function handleClick(traceNames, data) {{
+    if (!data || !data.points || !data.points.length) return;
+    var pt = data.points[0];
+    var curveIdx = pt.curveNumber;
+    var clickedDate = pt.x;
+    var clickedScore = pt.y;
+    if (curveIdx >= traceNames.length) return;
+    var name = traceNames[curveIdx];
+    var html = buildDetailHtml(name, clickedDate, clickedScore);
     document.getElementById('trend-detail').innerHTML = html;
     document.getElementById('trend-detail').scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
-  }});
+  }}
+
+  var trendEl = document.getElementById('trends-chart');
+  var trendDimEl = document.getElementById('trends-chart-dim');
+
+  if (trendEl) {{
+    trendEl.on('plotly_click', function(data) {{ handleClick(traceNamesAgg, data); }});
+  }}
+  if (trendDimEl) {{
+    trendDimEl.on('plotly_click', function(data) {{ handleClick(traceNamesDim, data); }});
+  }}
+
+  /* Toggle logic */
+  window.switchTrendMode = function(mode) {{
+    currentMode = mode;
+    var aggWrap = document.getElementById('trends-wrap-agg');
+    var dimWrap = document.getElementById('trends-wrap-dim');
+    var btns = document.querySelectorAll('#trend-toggle button');
+    btns.forEach(function(b) {{ b.classList.remove('active'); }});
+    document.querySelector('#trend-toggle button[data-mode="' + mode + '"]').classList.add('active');
+    if (mode === 'aggregate') {{
+      aggWrap.style.display = '';
+      dimWrap.style.display = 'none';
+    }} else {{
+      aggWrap.style.display = 'none';
+      dimWrap.style.display = '';
+    }}
+    document.getElementById('trend-detail').innerHTML = '';
+  }};
 }})();
 </script>
 
