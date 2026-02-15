@@ -270,6 +270,17 @@ PLOTLY_LAYOUT = dict(
     font=dict(family="Inter, -apple-system, sans-serif", color=FONT, size=12),
 )
 
+SOURCE_LABELS = {
+    "duckduckgo": "News",
+    "fed_rss": "Fed RSS",
+    "bis_speeches": "BIS Speech",
+}
+
+DIM_LABELS = {
+    "policy": "Policy",
+    "balance_sheet": "Bal. Sheet",
+}
+
 
 def score_color(s: float) -> str:
     if s > 1.5:
@@ -696,10 +707,13 @@ if selected:
 
     palette = px.colors.qualitative.Plotly + px.colors.qualitative.Set2
 
+    # Track which participants have traces (for mapping click → participant)
+    trace_names = []
     for i, name in enumerate(selected):
         entries = history.get(name, [])
         if not entries:
             continue
+        trace_names.append(name)
         c = palette[i % len(palette)]
         fig4.add_trace(go.Scatter(
             x=[e["date"] for e in entries],
@@ -707,8 +721,8 @@ if selected:
             mode="lines+markers",
             name=last_name(name),
             line=dict(width=2.5, color=c, shape="spline"),
-            marker=dict(size=6, color=c, line=dict(width=1, color="rgba(255,255,255,0.2)")),
-            hovertemplate=f"<b>{name}</b><br>Date: %{{x}}<br>Score: %{{y:+.3f}}<extra></extra>",
+            marker=dict(size=8, color=c, line=dict(width=1, color="rgba(255,255,255,0.2)")),
+            hovertemplate=f"<b>{name}</b><br>Date: %{{x}}<br>Score: %{{y:+.3f}}<br><i>Click for details</i><extra></extra>",
         ))
 
     fig4.add_hline(y=0, line_width=1, line_color="rgba(148,163,184,0.2)")
@@ -725,7 +739,84 @@ if selected:
                     font=dict(size=11), orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
         margin=dict(l=55, r=30, t=40, b=45),
     )
-    st.plotly_chart(fig4, use_container_width=True)
+    trend_selection = st.plotly_chart(fig4, use_container_width=True, on_select="rerun", key="trend_click")
+
+    # ── Click-to-inspect: show evidence for selected point ─────────────
+    sel_points = trend_selection.get("selection", {}).get("points", []) if trend_selection else []
+    if sel_points:
+        pt = sel_points[0]
+        curve_idx = pt.get("curve_number", 0)
+        clicked_date = pt.get("x", "")
+        clicked_score = pt.get("y", 0)
+
+        if curve_idx < len(trace_names):
+            clicked_name = trace_names[curve_idx]
+            # Find the matching history entry
+            entries = history.get(clicked_name, [])
+            entry = next((e for e in entries if e["date"] == clicked_date), None)
+
+            stance_lbl = score_label(clicked_score)
+            stance_clr = score_color(clicked_score)
+
+            st.markdown(
+                f'<div style="background:linear-gradient(145deg,rgba(15,23,42,0.7),rgba(30,41,59,0.5));'
+                f'border:1px solid {stance_clr}40;border-radius:16px;padding:1.5rem 1.8rem;margin:1rem 0 0.5rem 0">'
+                f'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">'
+                f'<span style="font-size:1.15rem;font-weight:700;color:#f1f5f9">{clicked_name}</span>'
+                f'<span style="font-size:0.8rem;padding:0.25rem 0.7rem;border-radius:20px;font-weight:600;'
+                f'background:{stance_clr}18;color:{stance_clr};border:1px solid {stance_clr}30">'
+                f'{stance_lbl} &nbsp; {clicked_score:+.3f}</span>'
+                f'</div>'
+                f'<p style="font-size:0.78rem;color:#64748b;margin:0">{clicked_date}'
+                f' &nbsp;&bull;&nbsp; Source: {entry.get("source", "n/a") if entry else "n/a"}'
+                f' &nbsp;&bull;&nbsp; Policy: {entry.get("policy_score", 0):+.2f} &nbsp;|&nbsp; '
+                f'Balance Sheet: {entry.get("balance_sheet_score", 0):+.2f}</p>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+
+            ev_list = entry.get("evidence", []) if entry else []
+            if ev_list:
+                for ev in ev_list:
+                    ev_title = ev.get("title", "Untitled")
+                    ev_url = ev.get("url", "")
+                    ev_quote = ev.get("quote", "")
+                    ev_kws = ev.get("keywords", [])
+                    ev_dirs = ev.get("directions", [])
+                    ev_dims = ev.get("dimensions", ["policy"] * len(ev_kws))
+                    ev_src = SOURCE_LABELS.get(ev.get("source_type", ""), ev.get("source_type", ""))
+                    ev_score = ev.get("score", 0)
+
+                    title_html = f'<a href="{ev_url}" target="_blank">{ev_title}</a>' if ev_url else ev_title
+                    quote_html = f'<p class="ev-quote">"{ev_quote}"</p>' if ev_quote else ""
+
+                    tags_html = ""
+                    for kw, direction, dim in zip(ev_kws, ev_dirs, ev_dims):
+                        tag_cls = "ev-tag-hawk" if direction == "hawkish" else "ev-tag-dove"
+                        dim_label = DIM_LABELS.get(dim, dim)
+                        tags_html += f'<span class="ev-tag {tag_cls}">{kw}</span>'
+                        tags_html += f'<span class="ev-tag ev-tag-dim">{dim_label}</span>'
+                    if ev_src:
+                        tags_html += f'<span class="ev-tag ev-tag-src">{ev_src}</span>'
+                    ev_score_clr = score_color(ev_score)
+                    tags_html += f'<span class="ev-tag" style="background:{ev_score_clr}18;color:{ev_score_clr};border:1px solid {ev_score_clr}30">{ev_score:+.1f}</span>'
+
+                    st.markdown(
+                        f'<div class="ev-card">'
+                        f'<p class="ev-title">{title_html}</p>'
+                        f'{quote_html}'
+                        f'<div class="ev-tags">{tags_html}</div>'
+                        f'</div>',
+                        unsafe_allow_html=True,
+                    )
+            else:
+                source = entry.get("source", "") if entry else ""
+                if source == "seed":
+                    st.caption("This is a seed/baseline data point — no news evidence available.")
+                elif not entry:
+                    st.caption("No data found for this point.")
+                else:
+                    st.caption("No evidence articles stored for this data point.")
 else:
     st.info("Select participants above to view trend lines.")
 
@@ -815,17 +906,6 @@ st.markdown(
     '<p class="section-sub">News articles, speeches, and quotes supporting each participant\'s stance classification</p>',
     unsafe_allow_html=True,
 )
-
-SOURCE_LABELS = {
-    "duckduckgo": "News",
-    "fed_rss": "Fed RSS",
-    "bis_speeches": "BIS Speech",
-}
-
-DIM_LABELS = {
-    "policy": "Policy",
-    "balance_sheet": "Bal. Sheet",
-}
 
 # Build evidence lookup from history
 for _, row in filtered.iterrows():
