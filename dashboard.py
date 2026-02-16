@@ -24,6 +24,7 @@ from fomc_tracker.policy_signal import (
     compute_meeting_drift,
     signal_vs_decisions,
 )
+from fomc_tracker import fred_data
 
 # ── Page Config ────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -388,6 +389,9 @@ SOURCE_LABELS = {
     "duckduckgo": "News",
     "fed_rss": "Fed RSS",
     "bis_speeches": "BIS Speech",
+    "fed_speeches": "Fed Speech",
+    "fomc_minutes": "FOMC Statement",
+    "regional_fed_blog": "Regional Fed",
 }
 
 DIM_LABELS = {
@@ -720,6 +724,102 @@ if _hist_signals:
         f' ({_match_count/_total_count*100:.0f}%)</div>'
     )
     st.markdown(_hist_html, unsafe_allow_html=True)
+
+# ══════════════════════════════════════════════════════════════════════════
+# Economic Context Panel (FRED)
+# ══════════════════════════════════════════════════════════════════════════
+if fred_data.is_available():
+    st.markdown('<hr class="divider">', unsafe_allow_html=True)
+
+    _fred = fred_data.fetch_and_cache()
+    if _fred:
+        st.markdown('<p class="section-hdr">Economic Context</p>', unsafe_allow_html=True)
+        st.markdown(
+            '<p class="section-sub">Key macro indicators from FRED &mdash; context for interpreting stance shifts</p>',
+            unsafe_allow_html=True,
+        )
+
+        # Pick the 4 headline indicators for metric cards
+        _headline_ids = ["CPIAUCSL", "PCEPILFE", "UNRATE", "FEDFUNDS"]
+        _fred_cards_html = '<div class="metric-row">'
+        for _sid in _headline_ids:
+            _ind = _fred.get(_sid)
+            if not _ind or _ind.get("latest") is None:
+                continue
+            _val = _ind["latest"]
+            _change = _ind.get("change")
+            _unit = _ind.get("unit", "")
+            _label = _ind.get("short_name", _sid)
+            _last_date = _ind.get("last_date", "")
+
+            # Color logic: inflation rising = red, falling = green; unemployment inverse
+            if _change is not None:
+                if _ind.get("icon") == "inflation":
+                    _chg_clr = "#f87171" if _change > 0 else "#34d399"
+                    _arrow = "&#9650;" if _change > 0 else "&#9660;"
+                elif _ind.get("icon") == "employment":
+                    _chg_clr = "#f87171" if _change > 0 else "#34d399"
+                    _arrow = "&#9650;" if _change > 0 else "&#9660;"
+                else:
+                    _chg_clr = "#f87171" if _change > 0 else "#60a5fa"
+                    _arrow = "&#9650;" if _change > 0 else "&#9660;"
+                _chg_html = (
+                    f'<span style="color:{_chg_clr};font-size:0.75rem;font-weight:600">'
+                    f'{_arrow} {_change:+.2f}</span>'
+                )
+            else:
+                _chg_html = ""
+
+            _fred_cards_html += (
+                f'<div class="m-card">'
+                f'<p class="m-label">{_label}</p>'
+                f'<p class="m-value" style="color:#e2e8f0;font-size:2.2rem">{_val:.2f}<span style="font-size:0.8rem;color:#64748b"> {_unit}</span></p>'
+                f'<p class="m-sub">{_chg_html} &nbsp; <span style="color:#475569">{_last_date}</span></p>'
+                f'</div>'
+            )
+        _fred_cards_html += '</div>'
+        st.markdown(_fred_cards_html, unsafe_allow_html=True)
+
+        # Sparkline charts for all indicators
+        _spark_ids = ["CPIAUCSL", "PCEPILFE", "UNRATE", "FEDFUNDS", "T10Y2Y", "PAYEMS", "GDP", "DFF"]
+        _spark_available = [_sid for _sid in _spark_ids if _fred.get(_sid, {}).get("observations")]
+        if _spark_available:
+            _n_cols = min(4, len(_spark_available))
+            _spark_cols = st.columns(_n_cols)
+            for _i, _sid in enumerate(_spark_available):
+                _ind = _fred[_sid]
+                _obs = _ind.get("observations", [])
+                if len(_obs) < 2:
+                    continue
+                # Reverse so chronological order
+                _obs_sorted = list(reversed(_obs[:12]))
+                _dates = [o["date"] for o in _obs_sorted]
+                _values = [o["value"] for o in _obs_sorted]
+
+                _spark_fig = go.Figure()
+                _spark_fig.add_trace(go.Scatter(
+                    x=_dates, y=_values,
+                    mode="lines",
+                    line=dict(width=2, color="#818cf8"),
+                    fill="tozeroy",
+                    fillcolor="rgba(129,140,248,0.08)",
+                    hovertemplate="%{x}<br>%{y:.2f}<extra></extra>",
+                ))
+                _spark_fig.update_layout(
+                    **PLOTLY_LAYOUT,
+                    height=120,
+                    margin=dict(l=5, r=5, t=20, b=5),
+                    xaxis=dict(visible=False),
+                    yaxis=dict(visible=False, gridcolor=GRID),
+                    showlegend=False,
+                    title=dict(
+                        text=_ind.get("short_name", _sid),
+                        font=dict(size=10, color=FONT_DIM),
+                        x=0.5, y=0.95,
+                    ),
+                )
+                with _spark_cols[_i % _n_cols]:
+                    st.plotly_chart(_spark_fig, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Chart 1 — Hawk-Dove Spectrum
@@ -1345,8 +1445,10 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown(
     '<div class="foot">'
     "FOMC Stance Tracker &nbsp;&middot;&nbsp; "
-    "Data from DuckDuckGo News, Federal Reserve RSS &amp; "
-    '<a href="https://www.bis.org/cbspeeches/index.htm">BIS Central Banker Speeches</a>'
+    "Data from DuckDuckGo News, Federal Reserve RSS &amp; Speeches, "
+    '<a href="https://www.bis.org/cbspeeches/index.htm">BIS Central Banker Speeches</a>, '
+    "FOMC Statements/Minutes, Regional Fed Blogs &amp; "
+    '<a href="https://fred.stlouisfed.org/">FRED</a>'
     " &nbsp;&middot;&nbsp; Keyword-based NLP classification<br>"
     "Dual-dimension analysis: Policy (rates) + Balance Sheet (QT/QE) &nbsp;&middot;&nbsp; "
     "Vote-weighted policy signal with FOMC meeting calendar<br>"

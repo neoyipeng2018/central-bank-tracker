@@ -1,6 +1,7 @@
 """Fetch recent news for FOMC participants from pluggable data sources.
 
-Built-in sources: DuckDuckGo news, Fed RSS feeds, BIS speeches.
+Built-in sources: DuckDuckGo news, Fed RSS feeds, BIS speeches,
+Fed speeches, FOMC minutes/statements, and regional Fed blogs.
 Add your own with ``register_source()`` or the ``@data_source`` decorator.
 
 Each data source is a callable:
@@ -28,6 +29,7 @@ from bs4 import BeautifulSoup
 from duckduckgo_search import DDGS
 
 from fomc_tracker.participants import Participant
+from fomc_tracker.fed_speeches import find_speeches_for_participant, scrape_speech_text
 
 logger = logging.getLogger(__name__)
 
@@ -261,6 +263,208 @@ def _fetch_bis_speeches(participant: Participant, **kwargs) -> list[dict]:
     return results
 
 
+# ── Fed Speeches source ───────────────────────────────────────────────────────
+
+def _fetch_fed_speeches(participant: Participant, max_results: int = 5, **kwargs) -> list[dict]:
+    """Fetch speeches from the Federal Reserve website for a participant."""
+    results = []
+    try:
+        matches = find_speeches_for_participant(participant.name, limit=max_results)
+        for speech in matches:
+            url = speech.get("url", "")
+            # Scrape full text for richer classification signal
+            if url:
+                time.sleep(RATE_LIMIT_SECONDS)
+                text = scrape_speech_text(url)
+                body = text[:3000] if text else speech.get("description", "")
+            else:
+                body = speech.get("description", "")
+
+            results.append(
+                {
+                    "source": "fed_speeches",
+                    "title": speech.get("title", ""),
+                    "body": body,
+                    "url": url,
+                    "date": "",
+                }
+            )
+    except Exception as e:
+        logger.warning(f"  Fed speeches fetch failed for {participant.name}: {e}")
+
+    return results
+
+
+# ── FOMC Minutes & Statements source ─────────────────────────────────────────
+
+FOMC_KEYWORDS = ["statement", "minutes", "implementation note", "press conference"]
+
+
+def _fetch_fomc_minutes(participant: Participant, max_results: int = 3, **kwargs) -> list[dict]:
+    """Fetch FOMC statements, minutes, and press conference transcripts.
+
+    These are committee-level documents (not filtered by participant name).
+    """
+    results = []
+    feed_url = "https://www.federalreserve.gov/feeds/press_monetary.xml"
+
+    try:
+        feed = feedparser.parse(feed_url)
+        for entry in feed.entries:
+            title = entry.get("title", "")
+            title_lower = title.lower()
+
+            # Only include statements, minutes, implementation notes, press conferences
+            if not any(kw in title_lower for kw in FOMC_KEYWORDS):
+                continue
+
+            link = entry.get("link", "")
+            pub_date = entry.get("published", "")
+            summary = entry.get("summary", "")
+
+            # Scrape full text for richer signal
+            body = summary
+            if link:
+                try:
+                    time.sleep(RATE_LIMIT_SECONDS)
+                    resp = requests.get(link, headers=BIS_HEADERS, timeout=15)
+                    resp.raise_for_status()
+                    soup = BeautifulSoup(resp.text, "lxml")
+                    article = (
+                        soup.select_one("#article")
+                        or soup.select_one(".col-xs-12.col-sm-8.col-md-8")
+                    )
+                    if article:
+                        text = article.get_text(" ", strip=True)
+                    else:
+                        text = " ".join(p.get_text(" ", strip=True) for p in soup.find_all("p"))
+                    text = re.sub(r"\s+", " ", text).strip()
+                    if text:
+                        body = text[:3000]
+                except Exception as e:
+                    logger.debug(f"  Failed to scrape FOMC document {link}: {e}")
+
+            results.append(
+                {
+                    "source": "fomc_minutes",
+                    "title": title,
+                    "body": body,
+                    "url": link,
+                    "date": pub_date,
+                }
+            )
+            if len(results) >= max_results:
+                break
+    except Exception as e:
+        logger.warning(f"  FOMC minutes/statements fetch failed: {e}")
+
+    return results
+
+
+# ── Regional Fed Blogs source ─────────────────────────────────────────────────
+
+REGIONAL_FED_BLOGS = {
+    "FRB New York": [
+        "https://libertystreeteconomics.newyorkfed.org/feed/",
+    ],
+    "FRB San Francisco": [
+        "https://www.frbsf.org/research-and-insights/data/fed-views/rss.xml",
+    ],
+    "FRB Atlanta": [
+        "https://www.atlantafed.org/rss/macroblog",
+    ],
+    "FRB Cleveland": [
+        "https://www.clevelandfed.org/rss/forefront",
+    ],
+    "FRB Richmond": [
+        "https://www.richmondfed.org/rss/feeds/research",
+    ],
+    "FRB Chicago": [
+        "https://www.chicagofed.org/rss",
+    ],
+    "FRB St. Louis": [
+        "https://research.stlouisfed.org/publications/feeds/",
+    ],
+    "FRB Dallas": [
+        "https://www.dallasfed.org/rss",
+    ],
+    "FRB Minneapolis": [
+        "https://www.minneapolisfed.org/rss",
+    ],
+    "FRB Kansas City": [
+        "https://www.kansascityfed.org/rss/",
+    ],
+    "FRB Boston": [
+        "https://www.bostonfed.org/rss",
+    ],
+    "FRB Philadelphia": [
+        "https://www.philadelphiafed.org/rss",
+    ],
+}
+
+
+def _fetch_regional_fed_blogs(
+    participant: Participant, max_results: int = 5, **kwargs
+) -> list[dict]:
+    """Fetch blog posts from regional Fed bank blogs matching a participant.
+
+    Matches by the participant's institution, then filters by author name
+    or last-name mention in title/summary.  Returns empty for Board of
+    Governors members (they don't publish on regional blogs).
+    """
+    # Board of Governors members don't publish on regional blogs
+    if participant.is_governor or participant.institution == "Incoming":
+        return []
+
+    feeds = REGIONAL_FED_BLOGS.get(participant.institution, [])
+    if not feeds:
+        return []
+
+    last_name = participant.name.split()[-1].lower()
+    name_parts = participant.name.split()
+    first_last = f"{name_parts[0]} {name_parts[-1]}".lower() if len(name_parts) >= 2 else ""
+    results = []
+
+    for feed_url in feeds:
+        try:
+            feed = feedparser.parse(feed_url)
+            for entry in feed.entries:
+                title = entry.get("title", "")
+                summary = entry.get("summary", "") or entry.get("description", "")
+                author = entry.get("author", "") or entry.get("dc_creator", "")
+
+                # Check if this entry is by or mentions the participant
+                combined = (title + " " + summary + " " + author).lower()
+                if last_name not in combined and first_last not in combined:
+                    continue
+
+                # Strip HTML from summary
+                if "<" in summary:
+                    soup = BeautifulSoup(summary, "lxml")
+                    summary = soup.get_text(" ", strip=True)
+
+                pub_date = entry.get("published", "") or entry.get("dc_date", "")
+
+                results.append(
+                    {
+                        "source": "regional_fed_blog",
+                        "title": title,
+                        "body": summary[:3000],
+                        "url": entry.get("link", ""),
+                        "date": pub_date,
+                    }
+                )
+                if len(results) >= max_results:
+                    break
+        except Exception as e:
+            logger.warning(f"  Regional Fed blog fetch failed ({feed_url}): {e}")
+
+        if len(results) >= max_results:
+            break
+
+    return results
+
+
 def fetch_news_for_participant(
     participant: Participant, max_results: int = 10
 ) -> list[dict]:
@@ -278,6 +482,18 @@ def fetch_news_for_participant(
             all_results.extend(results)
         except Exception as e:
             logger.warning(f"  Source '{name}' failed for {participant.name}: {e}")
+
+    # Deduplicate by URL (multiple sources may return the same page)
+    seen_urls = set()
+    deduped = []
+    for r in all_results:
+        url = r.get("url", "")
+        if url and url in seen_urls:
+            continue
+        if url:
+            seen_urls.add(url)
+        deduped.append(r)
+    all_results = deduped
 
     # Save to file
     date_str = datetime.now().strftime("%Y-%m-%d")
@@ -306,6 +522,9 @@ def fetch_news_for_participant(
 register_source("duckduckgo", _search_ddg)
 register_source("fed_rss", _fetch_fed_rss)
 register_source("bis_speeches", _fetch_bis_speeches)
+register_source("fed_speeches", _fetch_fed_speeches)
+register_source("fomc_minutes", _fetch_fomc_minutes)
+register_source("regional_fed_blogs", _fetch_regional_fed_blogs)
 
 
 def load_cached_news(participant: Participant) -> list[dict] | None:
