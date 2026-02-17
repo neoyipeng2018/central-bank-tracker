@@ -164,6 +164,70 @@ The Streamlit dashboard (`dashboard.py`) renders six chart sections plus detail 
 
 A **participant details table** and expandable **evidence cards** (with keyword highlights and dimension labels) are shown below the charts.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph sources["Data Sources"]
+        DDG["DuckDuckGo News"]
+        RSS["Fed RSS Feeds"]
+        BIS["BIS Speeches"]
+        CUSTOM["Custom Sources\n(plugin registry)"]
+    end
+
+    subgraph fetch["Fetch Layer"]
+        NF["news_fetcher.py\n(pluggable registry)"]
+        FS["fed_speeches.py\n(speech scraping)"]
+    end
+
+    subgraph classify["Classification"]
+        SC["stance_classifier.py"]
+        subgraph llm["LLM Backends (priority order)"]
+            CB["Cerebras"]
+            GM["Gemini 2.0 Flash"]
+            OA["OpenAI GPT"]
+        end
+        KW["Keyword Fallback\n(38 hawk / 43 dove terms)"]
+    end
+
+    subgraph storage["Storage"]
+        CACHE["data/news/\n(dated JSON cache)"]
+        HIST["data/historical/\nstance_history.json"]
+        SEED["Historical Lean\n(seed data)"]
+    end
+
+    subgraph output["Output"]
+        DASH["dashboard.py\n(Streamlit + Plotly)"]
+        HTML["generate_html.py\n(standalone report)"]
+    end
+
+    DDG --> NF
+    RSS --> NF
+    BIS --> FS --> NF
+    CUSTOM --> NF
+
+    NF --> CACHE
+    CACHE --> SC
+
+    CB --> SC
+    GM --> SC
+    OA --> SC
+    KW --> SC
+
+    SC -- "score per snippet\n(-5 to +5)" --> AGG["Confidence-Weighted\nAggregation"]
+    AGG -- "70% news / 30% historical" --> BLEND["Historical Blending"]
+    SEED --> BLEND
+
+    BLEND -- "final score + label" --> HIST
+    HIST --> DASH
+    HIST --> HTML
+
+    style sources fill:#e8f4f8,stroke:#2196F3
+    style classify fill:#fff3e0,stroke:#FF9800
+    style storage fill:#e8f5e9,stroke:#4CAF50
+    style output fill:#f3e5f5,stroke:#9C27B0
+```
+
 ## Project Structure
 
 ```
