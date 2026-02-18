@@ -180,13 +180,15 @@ def fig_composition(df):
 
 
 def fig_voters_vs_alts(df):
-    """Voters vs Alternates scatter."""
+    """Voters vs Alternates scatter. Returns (fig, va_trace_names)."""
     vdf = df[df.voter]
     adf = df[~df.voter]
     va = vdf["score"].mean()
     aa = adf["score"].mean()
     fig = go.Figure()
+    va_trace_names = []
     for group_df, label in [(vdf, "Voters"), (adf, "Alternates")]:
+        va_trace_names.append(list(group_df["name"]))
         fig.add_trace(go.Scatter(
             x=group_df["score"], y=[label] * len(group_df),
             mode="markers+text",
@@ -194,6 +196,7 @@ def fig_voters_vs_alts(df):
                         line=dict(width=1.5, color="rgba(255,255,255,0.15)")),
             text=group_df["short"], textposition="top center",
             textfont=dict(size=8, color=FONT_DIM),
+            customdata=list(group_df["name"]),
             hovertemplate="<b>%{text}</b><br>Score: %{x:+.3f}<extra></extra>",
             showlegend=False,
         ))
@@ -211,7 +214,7 @@ def fig_voters_vs_alts(df):
         yaxis=dict(gridcolor=GRID),
         margin=dict(l=90, r=30, t=10, b=45),
     )
-    return fig
+    return fig, va_trace_names
 
 
 def _trends_base_layout():
@@ -452,15 +455,16 @@ def generate_html(output_path: str):
     bal_str = f"+{balance}" if balance > 0 else str(balance)
 
     # Generate Plotly chart HTML (with CDN for plotly.js — first chart includes it)
-    chart_spectrum = fig_spectrum(df).to_html(full_html=False, include_plotlyjs="cdn")
-    chart_scatter = fig_scatter_2d(df).to_html(full_html=False, include_plotlyjs=False)
+    chart_spectrum = fig_spectrum(df).to_html(full_html=False, include_plotlyjs="cdn", div_id="spectrum-chart")
+    chart_scatter = fig_scatter_2d(df).to_html(full_html=False, include_plotlyjs=False, div_id="scatter-chart")
     chart_composition = fig_composition(df).to_html(full_html=False, include_plotlyjs=False)
-    chart_voters = fig_voters_vs_alts(df).to_html(full_html=False, include_plotlyjs=False)
+    voters_fig, va_trace_names = fig_voters_vs_alts(df)
+    chart_voters = voters_fig.to_html(full_html=False, include_plotlyjs=False, div_id="voters-chart")
     trends_fig, trace_names = fig_trends(history)
     chart_trends = trends_fig.to_html(full_html=False, include_plotlyjs=False, div_id="trends-chart")
     trends_dim_fig, trace_names_dim = fig_trends_dimensions(history)
     chart_trends_dim = trends_dim_fig.to_html(full_html=False, include_plotlyjs=False, div_id="trends-chart-dim")
-    chart_heatmap = fig_heatmap(history).to_html(full_html=False, include_plotlyjs=False)
+    chart_heatmap = fig_heatmap(history).to_html(full_html=False, include_plotlyjs=False, div_id="heatmap-chart")
 
     evidence_html = build_evidence_html(df, history)
     table_html = build_table_html(df)
@@ -474,6 +478,16 @@ def generate_html(output_path: str):
     trace_names_dim_json = json.dumps(trace_names_dim)
     source_labels_json = json.dumps(SOURCE_LABELS)
     dim_labels_json = json.dumps(DIM_LABELS)
+
+    # Spectrum: ordered names matching bar indices
+    spectrum_names_json = json.dumps(list(df["name"]))
+    # Scatter: ordered names matching point indices
+    scatter_names_json = json.dumps(list(df["name"]))
+    # Voters/Alternates: nested list of names per trace
+    va_trace_names_json = json.dumps(va_trace_names)
+    # Heatmap: last_name → full_name mapping
+    heatmap_name_map = {last_name(p.name): p.name for p in PARTICIPANTS}
+    heatmap_name_map_json = json.dumps(heatmap_name_map)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -567,12 +581,13 @@ def generate_html(output_path: str):
   .ev-details summary::before {{ content: "▸ "; color: #475569; }}
   .ev-details[open] summary::before {{ content: "▾ "; }}
 
-  /* Click-to-inspect detail panel */
-  #trend-detail {{
+  /* Click-to-inspect detail panels */
+  #trend-detail, #spectrum-detail, #scatter-detail, #voters-detail, #heatmap-detail {{
     margin: 1rem 0 0.5rem 0;
     transition: opacity 0.2s;
   }}
-  #trend-detail:empty {{ display: none; }}
+  #trend-detail:empty, #spectrum-detail:empty, #scatter-detail:empty,
+  #voters-detail:empty, #heatmap-detail:empty {{ display: none; }}
   .td-header {{
     background: linear-gradient(145deg, rgba(15,23,42,0.7), rgba(30,41,59,0.5));
     border-radius: 16px; padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;
@@ -661,14 +676,16 @@ def generate_html(output_path: str):
 <hr class="divider">
 <p class="section-hdr">Hawk-Dove Spectrum</p>
 <p class="section-sub">All participants ranked from most dovish to most hawkish &bull;
-<span style="color:#fbbf24">&#9733;</span> = 2026 voting member</p>
+<span style="color:#fbbf24">&#9733;</span> = 2026 voting member &bull; Click any bar for details</p>
 {chart_spectrum}
+<div id="spectrum-detail"></div>
 
 <!-- Chart 2: 2D Scatter -->
 <hr class="divider">
 <p class="section-hdr">2D Stance Map &mdash; Policy vs Balance Sheet</p>
-<p class="section-sub">Each participant plotted by interest rate stance (x) and balance sheet stance (y) &bull; Dot size indicates voter status</p>
+<p class="section-sub">Each participant plotted by interest rate stance (x) and balance sheet stance (y) &bull; Dot size indicates voter status &bull; Click any point for details</p>
 {chart_scatter}
+<div id="scatter-detail"></div>
 
 <!-- Composition + Voters (side by side) -->
 <hr class="divider">
@@ -681,8 +698,9 @@ def generate_html(output_path: str):
     <div>
         <p class="section-hdr">Voters vs Alternates</p>
         <p class="section-sub">Comparing stance distributions &bull;
-        <span style="color:#fbbf24">&#9670;</span> = group average</p>
+        <span style="color:#fbbf24">&#9670;</span> = group average &bull; Click any point for details</p>
         {chart_voters}
+        <div id="voters-detail"></div>
     </div>
 </div>
 
@@ -706,6 +724,10 @@ def generate_html(output_path: str):
   var traceNamesDim = {trace_names_dim_json};
   var sourceLabels = {source_labels_json};
   var dimLabels = {dim_labels_json};
+  var spectrumNames = {spectrum_names_json};
+  var scatterNames = {scatter_names_json};
+  var vaTraceNames = {va_trace_names_json};
+  var heatmapNameMap = {heatmap_name_map_json};
 
   var currentMode = 'aggregate';
 
@@ -728,23 +750,30 @@ def generate_html(output_path: str):
   function buildDetailHtml(name, clickedDate, clickedScore) {{
     var entries = historyData[name] || [];
     var entry = null;
-    for (var i = 0; i < entries.length; i++) {{
-      if (entries[i].date === clickedDate) {{ entry = entries[i]; break; }}
+    if (clickedDate) {{
+      for (var i = 0; i < entries.length; i++) {{
+        if (entries[i].date === clickedDate) {{ entry = entries[i]; break; }}
+      }}
+    }}
+    if (!entry && entries.length > 0) {{
+      entry = entries[entries.length - 1];
     }}
 
-    var lbl = scoreLabel(clickedScore);
-    var clr = scoreColor(clickedScore);
+    var sc = (clickedScore !== null && clickedScore !== undefined) ? clickedScore : (entry ? entry.score || 0 : 0);
+    var lbl = scoreLabel(sc);
+    var clr = scoreColor(sc);
     var policyScore = entry ? (entry.policy_score || 0) : 0;
     var bsScore = entry ? (entry.balance_sheet_score || 0) : 0;
     var source = entry ? (entry.source || 'n/a') : 'n/a';
+    var dateStr = clickedDate || (entry ? entry.date || '' : '');
 
     var html = '<div class="td-header" style="border:1px solid ' + clr + '40">'
       + '<div class="td-header-row">'
       + '<span class="td-name">' + esc(name) + '</span>'
       + '<span class="td-badge" style="background:' + clr + '18;color:' + clr + ';border:1px solid ' + clr + '30">'
-      + lbl + ' &nbsp; ' + (clickedScore >= 0 ? '+' : '') + clickedScore.toFixed(3) + '</span>'
+      + lbl + ' &nbsp; ' + (sc >= 0 ? '+' : '') + sc.toFixed(3) + '</span>'
       + '</div>'
-      + '<p class="td-meta">' + esc(clickedDate)
+      + '<p class="td-meta">' + esc(dateStr)
       + ' &nbsp;&bull;&nbsp; Source: ' + esc(source)
       + ' &nbsp;&bull;&nbsp; Policy: ' + (policyScore >= 0 ? '+' : '') + policyScore.toFixed(2)
       + ' &nbsp;|&nbsp; Balance Sheet: ' + (bsScore >= 0 ? '+' : '') + bsScore.toFixed(2)
@@ -800,27 +829,86 @@ def generate_html(output_path: str):
     return html;
   }}
 
-  function handleClick(traceNames, data) {{
-    if (!data || !data.points || !data.points.length) return;
-    var pt = data.points[0];
-    var curveIdx = pt.curveNumber;
-    var clickedDate = pt.x;
-    var clickedScore = pt.y;
-    if (curveIdx >= traceNames.length) return;
-    var name = traceNames[curveIdx];
-    var html = buildDetailHtml(name, clickedDate, clickedScore);
-    document.getElementById('trend-detail').innerHTML = html;
-    document.getElementById('trend-detail').scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
+  function showDetail(targetId, name, date, score) {{
+    var el = document.getElementById(targetId);
+    if (!el) return;
+    el.innerHTML = buildDetailHtml(name, date, score);
+    el.scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
   }}
 
+  /* Trend charts click handler */
+  function handleTrendClick(traceNames, data) {{
+    if (!data || !data.points || !data.points.length) return;
+    var pt = data.points[0];
+    if (pt.curveNumber >= traceNames.length) return;
+    var name = traceNames[pt.curveNumber];
+    showDetail('trend-detail', name, pt.x, pt.y);
+  }}
+
+  /* Spectrum bar chart */
+  var spectrumEl = document.getElementById('spectrum-chart');
+  if (spectrumEl) {{
+    spectrumEl.on('plotly_click', function(data) {{
+      if (!data || !data.points || !data.points.length) return;
+      var pt = data.points[0];
+      var idx = pt.pointNumber;
+      if (idx < spectrumNames.length) {{
+        showDetail('spectrum-detail', spectrumNames[idx], null, null);
+      }}
+    }});
+  }}
+
+  /* 2D Scatter chart */
+  var scatterEl = document.getElementById('scatter-chart');
+  if (scatterEl) {{
+    scatterEl.on('plotly_click', function(data) {{
+      if (!data || !data.points || !data.points.length) return;
+      var pt = data.points[0];
+      var idx = pt.pointNumber;
+      if (idx < scatterNames.length) {{
+        showDetail('scatter-detail', scatterNames[idx], null, null);
+      }}
+    }});
+  }}
+
+  /* Voters vs Alternates chart */
+  var votersEl = document.getElementById('voters-chart');
+  if (votersEl) {{
+    votersEl.on('plotly_click', function(data) {{
+      if (!data || !data.points || !data.points.length) return;
+      var pt = data.points[0];
+      var curve = pt.curveNumber;
+      var idx = pt.pointNumber;
+      if (curve < vaTraceNames.length && idx < vaTraceNames[curve].length) {{
+        showDetail('voters-detail', vaTraceNames[curve][idx], null, null);
+      }}
+    }});
+  }}
+
+  /* Trend charts */
   var trendEl = document.getElementById('trends-chart');
   var trendDimEl = document.getElementById('trends-chart-dim');
 
   if (trendEl) {{
-    trendEl.on('plotly_click', function(data) {{ handleClick(traceNamesAgg, data); }});
+    trendEl.on('plotly_click', function(data) {{ handleTrendClick(traceNamesAgg, data); }});
   }}
   if (trendDimEl) {{
-    trendDimEl.on('plotly_click', function(data) {{ handleClick(traceNamesDim, data); }});
+    trendDimEl.on('plotly_click', function(data) {{ handleTrendClick(traceNamesDim, data); }});
+  }}
+
+  /* Heatmap chart */
+  var heatmapEl = document.getElementById('heatmap-chart');
+  if (heatmapEl) {{
+    heatmapEl.on('plotly_click', function(data) {{
+      if (!data || !data.points || !data.points.length) return;
+      var pt = data.points[0];
+      var shortName = pt.y;
+      var clickedDate = pt.x;
+      var fullName = heatmapNameMap[shortName] || '';
+      if (fullName) {{
+        showDetail('heatmap-detail', fullName, clickedDate, pt.z);
+      }}
+    }});
   }}
 
   /* Toggle logic */
@@ -846,8 +934,9 @@ def generate_html(output_path: str):
 <!-- Heatmap -->
 <hr class="divider">
 <p class="section-hdr">Stance Heatmap</p>
-<p class="section-sub">Monthly stance scores across all participants</p>
+<p class="section-sub">Monthly stance scores across all participants &bull; Click any cell for details</p>
 {chart_heatmap}
+<div id="heatmap-detail"></div>
 
 <!-- Table -->
 <hr class="divider">
