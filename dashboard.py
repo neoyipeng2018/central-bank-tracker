@@ -400,6 +400,83 @@ DIM_LABELS = {
 }
 
 
+def render_evidence_panel(name: str, history_data: dict, date: str | None = None):
+    """Render evidence cards for a participant. If date is given, show that entry; otherwise latest."""
+    entries = history_data.get(name, [])
+    if not entries:
+        st.caption(f"No history data for {name}.")
+        return
+
+    if date:
+        entry = next((e for e in entries if e["date"] == date), None)
+        if not entry:
+            entry = entries[-1]
+    else:
+        entry = entries[-1]
+
+    sc = entry.get("score", 0)
+    stance_lbl = score_label(sc)
+    stance_clr = score_color(sc)
+
+    st.markdown(
+        f'<div style="background:linear-gradient(145deg,rgba(15,23,42,0.7),rgba(30,41,59,0.5));'
+        f'border:1px solid {stance_clr}40;border-radius:16px;padding:1.5rem 1.8rem;margin:1rem 0 0.5rem 0">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">'
+        f'<span style="font-size:1.15rem;font-weight:700;color:#f1f5f9">{name}</span>'
+        f'<span style="font-size:0.8rem;padding:0.25rem 0.7rem;border-radius:20px;font-weight:600;'
+        f'background:{stance_clr}18;color:{stance_clr};border:1px solid {stance_clr}30">'
+        f'{stance_lbl} &nbsp; {sc:+.3f}</span>'
+        f'</div>'
+        f'<p style="font-size:0.78rem;color:#64748b;margin:0">{entry.get("date", "")}'
+        f' &nbsp;&bull;&nbsp; Source: {entry.get("source", "n/a")}'
+        f' &nbsp;&bull;&nbsp; Policy: {entry.get("policy_score", 0):+.2f} &nbsp;|&nbsp; '
+        f'Balance Sheet: {entry.get("balance_sheet_score", 0):+.2f}</p>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    ev_list = entry.get("evidence", [])
+    if ev_list:
+        for ev in ev_list:
+            ev_title = ev.get("title", "Untitled")
+            ev_url = ev.get("url", "")
+            ev_quote = ev.get("quote", "")
+            ev_kws = ev.get("keywords", [])
+            ev_dirs = ev.get("directions", [])
+            ev_dims = ev.get("dimensions", ["policy"] * len(ev_kws))
+            ev_src = SOURCE_LABELS.get(ev.get("source_type", ""), ev.get("source_type", ""))
+            ev_score = ev.get("score", 0)
+
+            title_html = f'<a href="{ev_url}" target="_blank">{ev_title}</a>' if ev_url else ev_title
+            quote_html = f'<p class="ev-quote">"{ev_quote}"</p>' if ev_quote else ""
+
+            tags_html = ""
+            for kw, direction, dim in zip(ev_kws, ev_dirs, ev_dims):
+                tag_cls = "ev-tag-hawk" if direction == "hawkish" else "ev-tag-dove"
+                dim_label = DIM_LABELS.get(dim, dim)
+                tags_html += f'<span class="ev-tag {tag_cls}">{kw}</span>'
+                tags_html += f'<span class="ev-tag ev-tag-dim">{dim_label}</span>'
+            if ev_src:
+                tags_html += f'<span class="ev-tag ev-tag-src">{ev_src}</span>'
+            ev_score_clr = score_color(ev_score)
+            tags_html += f'<span class="ev-tag" style="background:{ev_score_clr}18;color:{ev_score_clr};border:1px solid {ev_score_clr}30">{ev_score:+.1f}</span>'
+
+            st.markdown(
+                f'<div class="ev-card">'
+                f'<p class="ev-title">{title_html}</p>'
+                f'{quote_html}'
+                f'<div class="ev-tags">{tags_html}</div>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+    else:
+        source = entry.get("source", "")
+        if source == "seed":
+            st.caption("This is a seed/baseline data point — no news evidence available.")
+        else:
+            st.caption("No evidence articles stored for this data point.")
+
+
 def score_color(s: float) -> str:
     if s > 1.5:
         return HAWK
@@ -449,6 +526,10 @@ with st.sidebar:
     )
     dim_cfg = DIMENSION_CONFIG[stance_view]
     score_key = dim_cfg["score_key"]
+
+    st.markdown("---")
+    st.markdown("**Panels**")
+    show_policy_signal = st.checkbox("Show Policy Signal", value=False)
 
     st.markdown("---")
     st.markdown("**Filters**")
@@ -562,168 +643,169 @@ st.markdown(
 # ══════════════════════════════════════════════════════════════════════════
 # Policy Signal Panel
 # ══════════════════════════════════════════════════════════════════════════
-st.markdown('<hr class="divider">', unsafe_allow_html=True)
+if show_policy_signal:
+    st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-_signal = compute_weighted_signal(score_key)
-_action = implied_rate_action(_signal["weighted_score"])
-_drift = compute_meeting_drift(score_key)
-_next_mtg = get_next_meeting()
-_prev_mtg = get_previous_meeting()
-_days_until = days_until_next_meeting()
-_blackout = is_blackout_period()
-_current_rate = get_current_rate()
+    _signal = compute_weighted_signal(score_key)
+    _action = implied_rate_action(_signal["weighted_score"])
+    _drift = compute_meeting_drift(score_key)
+    _next_mtg = get_next_meeting()
+    _prev_mtg = get_previous_meeting()
+    _days_until = days_until_next_meeting()
+    _blackout = is_blackout_period()
+    _current_rate = get_current_rate()
 
-# Action color
-_act_colors = {
-    "easing": ("#60a5fa", "rgba(96,165,250,0.15)", "rgba(96,165,250,0.3)"),
-    "tightening": ("#f87171", "rgba(248,113,113,0.15)", "rgba(248,113,113,0.3)"),
-    "neutral": ("#fbbf24", "rgba(251,191,36,0.15)", "rgba(251,191,36,0.3)"),
-}
-_act_clr, _act_bg, _act_border = _act_colors.get(_action["direction"], _act_colors["neutral"])
+    # Action color
+    _act_colors = {
+        "easing": ("#60a5fa", "rgba(96,165,250,0.15)", "rgba(96,165,250,0.3)"),
+        "tightening": ("#f87171", "rgba(248,113,113,0.15)", "rgba(248,113,113,0.3)"),
+        "neutral": ("#fbbf24", "rgba(251,191,36,0.15)", "rgba(251,191,36,0.3)"),
+    }
+    _act_clr, _act_bg, _act_border = _act_colors.get(_action["direction"], _act_colors["neutral"])
 
-# Drift arrow
-_drift_str = ""
-if _drift:
-    _d = _drift["drift"]
-    if _d > 0:
-        _drift_arrow = "&#9650;"  # ▲
-        _drift_clr = HAWK
-    elif _d < 0:
-        _drift_arrow = "&#9660;"  # ▼
-        _drift_clr = DOVE
-    else:
-        _drift_arrow = "&#9654;"  # ▶
-        _drift_clr = NEUTRAL_C
-    _drift_str = f'<span style="color:{_drift_clr};font-weight:700">{_drift_arrow} {_d:+.2f}</span>'
+    # Drift arrow
+    _drift_str = ""
+    if _drift:
+        _d = _drift["drift"]
+        if _d > 0:
+            _drift_arrow = "&#9650;"  # ▲
+            _drift_clr = HAWK
+        elif _d < 0:
+            _drift_arrow = "&#9660;"  # ▼
+            _drift_clr = DOVE
+        else:
+            _drift_arrow = "&#9654;"  # ▶
+            _drift_clr = NEUTRAL_C
+        _drift_str = f'<span style="color:{_drift_clr};font-weight:700">{_drift_arrow} {_d:+.2f}</span>'
 
-# Blackout badge
-_blackout_html = ""
-if _blackout:
-    _blackout_html = (
-        '<span class="signal-badge" style="background:rgba(239,68,68,0.15);'
-        'color:#ef4444;border:1px solid rgba(239,68,68,0.3);margin-left:0.8rem">'
-        'Blackout Period</span>'
-    )
-
-# Meeting countdown text
-_countdown_html = ""
-if _days_until is not None and _next_mtg:
-    _mtg_date_str = _next_mtg.end_date.strftime("%B %d, %Y")
-    if _days_until == 0:
-        _countdown_html = f'<span style="color:#fbbf24;font-weight:700">Decision Day</span> &mdash; {_mtg_date_str}'
-    elif _days_until <= 7:
-        _countdown_html = f'<span style="color:#f87171;font-weight:700">{_days_until}d</span> to {_mtg_date_str}'
-    else:
-        _countdown_html = f'<span style="color:#e2e8f0;font-weight:700">{_days_until}d</span> to {_mtg_date_str}'
-
-# Rate range string
-_rate_str = ""
-if _current_rate:
-    _rate_str = f"{_current_rate[0]:.2f}% &ndash; {_current_rate[1]:.2f}%"
-
-# Projected rate string
-_proj_str = ""
-if _action["projected_rate"]:
-    _proj_str = f"{_action['projected_rate'][0]:.2f}% &ndash; {_action['projected_rate'][1]:.2f}%"
-elif _action["action"] == "Hold" and _rate_str:
-    _proj_str = _rate_str
-
-# Build signal panel HTML in parts to avoid Streamlit rendering limits
-_prev_decision_str = _prev_mtg.decision.upper() if _prev_mtg and _prev_mtg.decision else "N/A"
-_prev_date_str = _prev_mtg.end_date.strftime("%b %d, %Y") if _prev_mtg else ""
-_prev_note_str = _prev_mtg.statement_note if _prev_mtg else ""
-_proj_note = f"Based on {_action['action'].lower()} from current {_rate_str}" if _proj_str and _rate_str else ""
-_voter_vs = "Voters more hawkish" if _signal["voter_average"] > _signal["simple_average"] + 0.1 else (
-    "Voters more dovish" if _signal["voter_average"] < _signal["simple_average"] - 0.1 else "Closely aligned")
-_drift_val = _drift_str if _drift_str else '<span style="color:#64748b">N/A</span>'
-_drift_dir = _drift["drift_direction"] if _drift else ""
-_sig_clr = score_color(_signal["weighted_score"])
-_sig_title = f"Policy Signal — {stance_view}" if stance_view != "Overall" else "Policy Signal"
-_rate_sub = f"{_rate_str} current" if _rate_str else ""
-
-_signal_html = (
-    f'<div class="signal-panel">'
-    f'<div class="signal-header"><div>'
-    f'<p class="signal-title">{_sig_title}</p>'
-    f'<p class="signal-title-sub">Vote-weighted committee stance with implied rate action</p>'
-    f'</div><div>'
-    f'<span class="signal-badge" style="background:{_act_bg};color:{_act_clr};border:1px solid {_act_border}">{_action["action"]}</span>'
-    f'{_blackout_html}'
-    f'</div></div>'
-    f'<div class="signal-grid">'
-    f'<div class="signal-cell">'
-    f'<p class="signal-cell-label">Weighted Signal</p>'
-    f'<p class="signal-cell-value" style="color:{_sig_clr}">{_signal["weighted_score"]:+.2f}</p>'
-    f'<p class="signal-cell-sub">Chair 3x, VC 1.5x, voters 1x</p></div>'
-    f'<div class="signal-cell">'
-    f'<p class="signal-cell-label">Implied Action</p>'
-    f'<p class="signal-cell-value" style="color:{_act_clr};font-size:1.4rem">{_action["action"]}</p>'
-    f'<p class="signal-cell-sub">{_action["confidence"]} confidence</p></div>'
-    f'<div class="signal-cell">'
-    f'<p class="signal-cell-label">Next Meeting</p>'
-    f'<p class="signal-cell-value" style="color:#e2e8f0;font-size:1.4rem">{_countdown_html}</p>'
-    f'<p class="signal-cell-sub">{_rate_sub}</p></div>'
-    f'<div class="signal-cell">'
-    f'<p class="signal-cell-label">Since Last Meeting</p>'
-    f'<p class="signal-cell-value" style="font-size:1.4rem">{_drift_val}</p>'
-    f'<p class="signal-cell-sub">{_drift_dir}</p></div>'
-    f'</div></div>'
-)
-st.markdown(_signal_html, unsafe_allow_html=True)
-
-# Meeting context row (separate markdown call for reliability)
-_meeting_html = (
-    f'<div class="signal-meeting-row">'
-    f'<div class="signal-meeting-card">'
-    f'<p class="signal-meeting-label">Last Decision</p>'
-    f'<p class="signal-meeting-val">{_prev_decision_str} &mdash; {_prev_date_str}</p>'
-    f'<p class="signal-meeting-note">{_prev_note_str}</p></div>'
-    f'<div class="signal-meeting-card">'
-    f'<p class="signal-meeting-label">Projected Rate (if acted)</p>'
-    f'<p class="signal-meeting-val">{_proj_str if _proj_str else "N/A"}</p>'
-    f'<p class="signal-meeting-note">{_proj_note}</p></div>'
-    f'<div class="signal-meeting-card">'
-    f'<p class="signal-meeting-label">Voter Avg vs Committee</p>'
-    f'<p class="signal-meeting-val">{_signal["voter_average"]:+.2f}'
-    f' <span style="color:#64748b;font-size:0.8rem">vs</span> '
-    f'{_signal["simple_average"]:+.2f}</p>'
-    f'<p class="signal-meeting-note">{_voter_vs}</p></div>'
-    f'</div>'
-)
-st.markdown(_meeting_html, unsafe_allow_html=True)
-
-# ── Signal vs Decisions mini-table ────────────────────────────────────
-_hist_signals = signal_vs_decisions(score_key, n_meetings=6)
-if _hist_signals:
-    st.markdown(
-        '<p class="section-sub" style="margin-top:1rem">Historical signal accuracy: '
-        'weighted stance at each meeting vs actual decision</p>',
-        unsafe_allow_html=True,
-    )
-    _match_count = sum(1 for s in _hist_signals if s["match"])
-    _total_count = len(_hist_signals)
-
-    _hist_html = '<div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.5rem">'
-    for s in _hist_signals:
-        _s_clr = "#22c55e" if s["match"] else "#ef4444"
-        _s_icon = "&#10003;" if s["match"] else "&#10007;"
-        _s_date = datetime.strptime(s["meeting_date"], "%Y-%m-%d").strftime("%b '%y")
-        _hist_html += (
-            f'<div style="background:rgba(15,23,42,0.5);border:1px solid {_s_clr}30;'
-            f'border-radius:10px;padding:0.5rem 0.7rem;text-align:center;min-width:80px">'
-            f'<div style="font-size:0.65rem;color:#64748b;letter-spacing:0.5px">{_s_date}</div>'
-            f'<div style="font-size:0.85rem;font-weight:700;color:#e2e8f0;margin:0.15rem 0">{s["decision"] or "?"}</div>'
-            f'<div style="font-size:0.7rem;color:#94a3b8">Signal: {s["signal_score"]:+.1f}</div>'
-            f'<div style="font-size:0.7rem;color:{_s_clr};font-weight:600">{_s_icon} {s["implied_action"]}</div>'
-            f'</div>'
+    # Blackout badge
+    _blackout_html = ""
+    if _blackout:
+        _blackout_html = (
+            '<span class="signal-badge" style="background:rgba(239,68,68,0.15);'
+            'color:#ef4444;border:1px solid rgba(239,68,68,0.3);margin-left:0.8rem">'
+            'Blackout Period</span>'
         )
-    _hist_html += '</div>'
-    _hist_html += (
-        f'<div style="font-size:0.75rem;color:#64748b">'
-        f'Direction match: <span style="color:#e2e8f0;font-weight:600">{_match_count}/{_total_count}</span>'
-        f' ({_match_count/_total_count*100:.0f}%)</div>'
+
+    # Meeting countdown text
+    _countdown_html = ""
+    if _days_until is not None and _next_mtg:
+        _mtg_date_str = _next_mtg.end_date.strftime("%B %d, %Y")
+        if _days_until == 0:
+            _countdown_html = f'<span style="color:#fbbf24;font-weight:700">Decision Day</span> &mdash; {_mtg_date_str}'
+        elif _days_until <= 7:
+            _countdown_html = f'<span style="color:#f87171;font-weight:700">{_days_until}d</span> to {_mtg_date_str}'
+        else:
+            _countdown_html = f'<span style="color:#e2e8f0;font-weight:700">{_days_until}d</span> to {_mtg_date_str}'
+
+    # Rate range string
+    _rate_str = ""
+    if _current_rate:
+        _rate_str = f"{_current_rate[0]:.2f}% &ndash; {_current_rate[1]:.2f}%"
+
+    # Projected rate string
+    _proj_str = ""
+    if _action["projected_rate"]:
+        _proj_str = f"{_action['projected_rate'][0]:.2f}% &ndash; {_action['projected_rate'][1]:.2f}%"
+    elif _action["action"] == "Hold" and _rate_str:
+        _proj_str = _rate_str
+
+    # Build signal panel HTML in parts to avoid Streamlit rendering limits
+    _prev_decision_str = _prev_mtg.decision.upper() if _prev_mtg and _prev_mtg.decision else "N/A"
+    _prev_date_str = _prev_mtg.end_date.strftime("%b %d, %Y") if _prev_mtg else ""
+    _prev_note_str = _prev_mtg.statement_note if _prev_mtg else ""
+    _proj_note = f"Based on {_action['action'].lower()} from current {_rate_str}" if _proj_str and _rate_str else ""
+    _voter_vs = "Voters more hawkish" if _signal["voter_average"] > _signal["simple_average"] + 0.1 else (
+        "Voters more dovish" if _signal["voter_average"] < _signal["simple_average"] - 0.1 else "Closely aligned")
+    _drift_val = _drift_str if _drift_str else '<span style="color:#64748b">N/A</span>'
+    _drift_dir = _drift["drift_direction"] if _drift else ""
+    _sig_clr = score_color(_signal["weighted_score"])
+    _sig_title = f"Policy Signal — {stance_view}" if stance_view != "Overall" else "Policy Signal"
+    _rate_sub = f"{_rate_str} current" if _rate_str else ""
+
+    _signal_html = (
+        f'<div class="signal-panel">'
+        f'<div class="signal-header"><div>'
+        f'<p class="signal-title">{_sig_title}</p>'
+        f'<p class="signal-title-sub">Vote-weighted committee stance with implied rate action</p>'
+        f'</div><div>'
+        f'<span class="signal-badge" style="background:{_act_bg};color:{_act_clr};border:1px solid {_act_border}">{_action["action"]}</span>'
+        f'{_blackout_html}'
+        f'</div></div>'
+        f'<div class="signal-grid">'
+        f'<div class="signal-cell">'
+        f'<p class="signal-cell-label">Weighted Signal</p>'
+        f'<p class="signal-cell-value" style="color:{_sig_clr}">{_signal["weighted_score"]:+.2f}</p>'
+        f'<p class="signal-cell-sub">Chair 3x, VC 1.5x, voters 1x</p></div>'
+        f'<div class="signal-cell">'
+        f'<p class="signal-cell-label">Implied Action</p>'
+        f'<p class="signal-cell-value" style="color:{_act_clr};font-size:1.4rem">{_action["action"]}</p>'
+        f'<p class="signal-cell-sub">{_action["confidence"]} confidence</p></div>'
+        f'<div class="signal-cell">'
+        f'<p class="signal-cell-label">Next Meeting</p>'
+        f'<p class="signal-cell-value" style="color:#e2e8f0;font-size:1.4rem">{_countdown_html}</p>'
+        f'<p class="signal-cell-sub">{_rate_sub}</p></div>'
+        f'<div class="signal-cell">'
+        f'<p class="signal-cell-label">Since Last Meeting</p>'
+        f'<p class="signal-cell-value" style="font-size:1.4rem">{_drift_val}</p>'
+        f'<p class="signal-cell-sub">{_drift_dir}</p></div>'
+        f'</div></div>'
     )
-    st.markdown(_hist_html, unsafe_allow_html=True)
+    st.markdown(_signal_html, unsafe_allow_html=True)
+
+    # Meeting context row (separate markdown call for reliability)
+    _meeting_html = (
+        f'<div class="signal-meeting-row">'
+        f'<div class="signal-meeting-card">'
+        f'<p class="signal-meeting-label">Last Decision</p>'
+        f'<p class="signal-meeting-val">{_prev_decision_str} &mdash; {_prev_date_str}</p>'
+        f'<p class="signal-meeting-note">{_prev_note_str}</p></div>'
+        f'<div class="signal-meeting-card">'
+        f'<p class="signal-meeting-label">Projected Rate (if acted)</p>'
+        f'<p class="signal-meeting-val">{_proj_str if _proj_str else "N/A"}</p>'
+        f'<p class="signal-meeting-note">{_proj_note}</p></div>'
+        f'<div class="signal-meeting-card">'
+        f'<p class="signal-meeting-label">Voter Avg vs Committee</p>'
+        f'<p class="signal-meeting-val">{_signal["voter_average"]:+.2f}'
+        f' <span style="color:#64748b;font-size:0.8rem">vs</span> '
+        f'{_signal["simple_average"]:+.2f}</p>'
+        f'<p class="signal-meeting-note">{_voter_vs}</p></div>'
+        f'</div>'
+    )
+    st.markdown(_meeting_html, unsafe_allow_html=True)
+
+    # ── Signal vs Decisions mini-table ────────────────────────────────────
+    _hist_signals = signal_vs_decisions(score_key, n_meetings=6)
+    if _hist_signals:
+        st.markdown(
+            '<p class="section-sub" style="margin-top:1rem">Historical signal accuracy: '
+            'weighted stance at each meeting vs actual decision</p>',
+            unsafe_allow_html=True,
+        )
+        _match_count = sum(1 for s in _hist_signals if s["match"])
+        _total_count = len(_hist_signals)
+
+        _hist_html = '<div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.5rem">'
+        for s in _hist_signals:
+            _s_clr = "#22c55e" if s["match"] else "#ef4444"
+            _s_icon = "&#10003;" if s["match"] else "&#10007;"
+            _s_date = datetime.strptime(s["meeting_date"], "%Y-%m-%d").strftime("%b '%y")
+            _hist_html += (
+                f'<div style="background:rgba(15,23,42,0.5);border:1px solid {_s_clr}30;'
+                f'border-radius:10px;padding:0.5rem 0.7rem;text-align:center;min-width:80px">'
+                f'<div style="font-size:0.65rem;color:#64748b;letter-spacing:0.5px">{_s_date}</div>'
+                f'<div style="font-size:0.85rem;font-weight:700;color:#e2e8f0;margin:0.15rem 0">{s["decision"] or "?"}</div>'
+                f'<div style="font-size:0.7rem;color:#94a3b8">Signal: {s["signal_score"]:+.1f}</div>'
+                f'<div style="font-size:0.7rem;color:{_s_clr};font-weight:600">{_s_icon} {s["implied_action"]}</div>'
+                f'</div>'
+            )
+        _hist_html += '</div>'
+        _hist_html += (
+            f'<div style="font-size:0.75rem;color:#64748b">'
+            f'Direction match: <span style="color:#e2e8f0;font-weight:600">{_match_count}/{_total_count}</span>'
+            f' ({_match_count/_total_count*100:.0f}%)</div>'
+        )
+        st.markdown(_hist_html, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Economic Context Panel (FRED)
@@ -882,7 +964,16 @@ fig1.update_layout(
     bargap=0.35,
 )
 
-st.plotly_chart(fig1, use_container_width=True)
+spectrum_selection = st.plotly_chart(fig1, use_container_width=True, on_select="rerun", key="spectrum_click")
+
+# Click-to-inspect for spectrum chart
+_spec_pts = spectrum_selection.get("selection", {}).get("points", []) if spectrum_selection else []
+if _spec_pts:
+    _sp = _spec_pts[0]
+    _sp_idx = _sp.get("point_number", 0)
+    if _sp_idx < len(filtered):
+        _sp_name = filtered.iloc[_sp_idx]["name"]
+        render_evidence_panel(_sp_name, history)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Chart — 2D Stance Scatter (Policy vs Balance Sheet)
@@ -966,7 +1057,16 @@ fig_scatter.update_layout(
     margin=dict(l=70, r=30, t=10, b=55),
 )
 
-st.plotly_chart(fig_scatter, use_container_width=True)
+scatter_selection = st.plotly_chart(fig_scatter, use_container_width=True, on_select="rerun", key="scatter_click")
+
+# Click-to-inspect for 2D scatter
+_scat_pts = scatter_selection.get("selection", {}).get("points", []) if scatter_selection else []
+if _scat_pts:
+    _scp = _scat_pts[0]
+    _scp_idx = _scp.get("point_number", 0)
+    if _scp_idx < len(scatter_df):
+        _scp_name = scatter_df.iloc[_scp_idx]["name"]
+        render_evidence_panel(_scp_name, history)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Chart 2 & 3 — Composition + Voters vs Alternates (side by side)
@@ -1025,7 +1125,9 @@ with col_r:
     aa = adf["score"].mean()
 
     fig3 = go.Figure()
+    _va_trace_names = []  # Track full names per trace for click handling
     for group_df, label in [(vdf, "Voters"), (adf, "Alternates")]:
+        _va_trace_names.append(list(group_df["name"]))
         fig3.add_trace(
             go.Scatter(
                 x=group_df["score"],
@@ -1035,6 +1137,7 @@ with col_r:
                 text=group_df["short"],
                 textposition="top center",
                 textfont=dict(size=8, color=FONT_DIM),
+                customdata=list(group_df["name"]),
                 hovertemplate="<b>%{text}</b><br>Score: %{x:+.3f}<extra></extra>",
                 showlegend=False,
             )
@@ -1059,7 +1162,18 @@ with col_r:
         yaxis=dict(gridcolor=GRID),
         margin=dict(l=90, r=30, t=10, b=45),
     )
-    st.plotly_chart(fig3, use_container_width=True)
+    va_selection = st.plotly_chart(fig3, use_container_width=True, on_select="rerun", key="va_click")
+
+    # Click-to-inspect for voters vs alternates
+    _va_pts = va_selection.get("selection", {}).get("points", []) if va_selection else []
+    if _va_pts:
+        _vp = _va_pts[0]
+        _vp_curve = _vp.get("curve_number", 0)
+        _vp_idx = _vp.get("point_number", 0)
+        # curve 0/1 = voters/alternates scatter, 2/3 = avg diamonds
+        if _vp_curve < len(_va_trace_names) and _vp_idx < len(_va_trace_names[_vp_curve]):
+            _vp_name = _va_trace_names[_vp_curve][_vp_idx]
+            render_evidence_panel(_vp_name, history)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Chart 4 — Stance Trends
@@ -1185,76 +1299,10 @@ if selected:
         pt = sel_points[0]
         curve_idx = pt.get("curve_number", 0)
         clicked_date = pt.get("x", "")
-        clicked_score = pt.get("y", 0)
 
         if curve_idx < len(trace_names):
             clicked_name = trace_names[curve_idx]
-            # Find the matching history entry
-            entries = history.get(clicked_name, [])
-            entry = next((e for e in entries if e["date"] == clicked_date), None)
-
-            stance_lbl = score_label(clicked_score)
-            stance_clr = score_color(clicked_score)
-
-            st.markdown(
-                f'<div style="background:linear-gradient(145deg,rgba(15,23,42,0.7),rgba(30,41,59,0.5));'
-                f'border:1px solid {stance_clr}40;border-radius:16px;padding:1.5rem 1.8rem;margin:1rem 0 0.5rem 0">'
-                f'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">'
-                f'<span style="font-size:1.15rem;font-weight:700;color:#f1f5f9">{clicked_name}</span>'
-                f'<span style="font-size:0.8rem;padding:0.25rem 0.7rem;border-radius:20px;font-weight:600;'
-                f'background:{stance_clr}18;color:{stance_clr};border:1px solid {stance_clr}30">'
-                f'{stance_lbl} &nbsp; {clicked_score:+.3f}</span>'
-                f'</div>'
-                f'<p style="font-size:0.78rem;color:#64748b;margin:0">{clicked_date}'
-                f' &nbsp;&bull;&nbsp; Source: {entry.get("source", "n/a") if entry else "n/a"}'
-                f' &nbsp;&bull;&nbsp; Policy: {entry.get("policy_score", 0):+.2f} &nbsp;|&nbsp; '
-                f'Balance Sheet: {entry.get("balance_sheet_score", 0):+.2f}</p>'
-                f'</div>',
-                unsafe_allow_html=True,
-            )
-
-            ev_list = entry.get("evidence", []) if entry else []
-            if ev_list:
-                for ev in ev_list:
-                    ev_title = ev.get("title", "Untitled")
-                    ev_url = ev.get("url", "")
-                    ev_quote = ev.get("quote", "")
-                    ev_kws = ev.get("keywords", [])
-                    ev_dirs = ev.get("directions", [])
-                    ev_dims = ev.get("dimensions", ["policy"] * len(ev_kws))
-                    ev_src = SOURCE_LABELS.get(ev.get("source_type", ""), ev.get("source_type", ""))
-                    ev_score = ev.get("score", 0)
-
-                    title_html = f'<a href="{ev_url}" target="_blank">{ev_title}</a>' if ev_url else ev_title
-                    quote_html = f'<p class="ev-quote">"{ev_quote}"</p>' if ev_quote else ""
-
-                    tags_html = ""
-                    for kw, direction, dim in zip(ev_kws, ev_dirs, ev_dims):
-                        tag_cls = "ev-tag-hawk" if direction == "hawkish" else "ev-tag-dove"
-                        dim_label = DIM_LABELS.get(dim, dim)
-                        tags_html += f'<span class="ev-tag {tag_cls}">{kw}</span>'
-                        tags_html += f'<span class="ev-tag ev-tag-dim">{dim_label}</span>'
-                    if ev_src:
-                        tags_html += f'<span class="ev-tag ev-tag-src">{ev_src}</span>'
-                    ev_score_clr = score_color(ev_score)
-                    tags_html += f'<span class="ev-tag" style="background:{ev_score_clr}18;color:{ev_score_clr};border:1px solid {ev_score_clr}30">{ev_score:+.1f}</span>'
-
-                    st.markdown(
-                        f'<div class="ev-card">'
-                        f'<p class="ev-title">{title_html}</p>'
-                        f'{quote_html}'
-                        f'<div class="ev-tags">{tags_html}</div>'
-                        f'</div>',
-                        unsafe_allow_html=True,
-                    )
-            else:
-                source = entry.get("source", "") if entry else ""
-                if source == "seed":
-                    st.caption("This is a seed/baseline data point — no news evidence available.")
-                elif not entry:
-                    st.caption("No data found for this point.")
-                else:
-                    st.caption("No evidence articles stored for this data point.")
+            render_evidence_panel(clicked_name, history, date=clicked_date)
 else:
     st.info("Select participants above to view trend lines.")
 
@@ -1319,10 +1367,13 @@ tbl["BS Score"] = tbl["BS Score"].apply(lambda x: f"{x:+.3f}")
 tbl["2026 Voter"] = tbl["2026 Voter"].map({True: "Yes", False: "No"})
 tbl = tbl.sort_values("Score", ascending=False).reset_index(drop=True)
 
-st.dataframe(
+tbl_selection = st.dataframe(
     tbl,
     use_container_width=True,
     hide_index=True,
+    on_select="rerun",
+    selection_mode="single-row",
+    key="tbl_click",
     column_config={
         "Name": st.column_config.TextColumn(width="large"),
         "Institution": st.column_config.TextColumn(width="medium"),
@@ -1334,6 +1385,12 @@ st.dataframe(
         "2026 Voter": st.column_config.TextColumn(width="small"),
     },
 )
+
+# Click-to-inspect for table row
+_tbl_rows = tbl_selection.selection.rows if tbl_selection else []
+if _tbl_rows:
+    _tbl_name = tbl.iloc[_tbl_rows[0]]["Name"]
+    render_evidence_panel(_tbl_name, history)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Evidence & Sources
