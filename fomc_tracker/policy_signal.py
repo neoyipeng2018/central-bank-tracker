@@ -2,6 +2,7 @@
 
 from datetime import date
 
+from fomc_tracker import config as cfg
 from fomc_tracker.participants import PARTICIPANTS, Participant
 from fomc_tracker.historical_data import load_history, get_latest_stance
 from fomc_tracker.meeting_calendar import (
@@ -17,14 +18,7 @@ from fomc_tracker.meeting_calendar import (
 # setting, proposal framing, press conference), Vice Chair carries weight,
 # voters decide, alternates influence through discussion but don't vote.
 
-ROLE_WEIGHTS = {
-    "Chair": 3.0,
-    "Vice Chair": 1.5,
-    "Vice Chair for Supervision": 1.25,
-    "Governor": 1.0,        # Voting governors
-    "President_voter": 1.0,  # Voting bank presidents
-    "President_alt": 0.25,   # Non-voting alternates (participate but don't vote)
-}
+ROLE_WEIGHTS = cfg.ROLE_WEIGHTS
 
 
 def _participant_weight(p: Participant) -> float:
@@ -112,16 +106,7 @@ def compute_weighted_signal(
 # The FOMC is known for incrementalism — even a fairly hawkish committee
 # typically moves in 25bp steps unless conditions are extreme.
 
-_ACTION_THRESHOLDS = [
-    # (min_score, max_score, action_label, direction, magnitude_bp)
-    (-5.0, -3.5, "Cut 50bp",   "easing",     50),
-    (-3.5, -2.0, "Cut 25bp",   "easing",     25),
-    (-2.0, -0.5, "Lean Cut",   "easing",     25),
-    (-0.5,  0.5, "Hold",       "neutral",     0),
-    ( 0.5,  2.0, "Lean Hike",  "tightening", 25),
-    ( 2.0,  3.5, "Hike 25bp",  "tightening", 25),
-    ( 3.5,  5.0, "Hike 50bp",  "tightening", 50),
-]
+_ACTION_THRESHOLDS = cfg.ACTION_THRESHOLDS
 
 
 def implied_rate_action(weighted_score: float) -> dict:
@@ -235,9 +220,9 @@ def compute_meeting_drift(score_key: str = "score") -> dict | None:
     current_signal = current["weighted_score"]
     drift = current_signal - prev_signal
 
-    if drift > 0.3:
+    if drift > cfg.HAWKISH_DRIFT_THRESHOLD:
         drift_direction = "hawkish shift"
-    elif drift < -0.3:
+    elif drift < cfg.DOVISH_DRIFT_THRESHOLD:
         drift_direction = "dovish shift"
     else:
         drift_direction = "stable"

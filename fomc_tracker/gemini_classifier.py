@@ -12,6 +12,7 @@ import time
 from google import genai
 from pydantic import BaseModel
 
+from fomc_tracker import config as cfg
 from fomc_tracker.stance_classifier import ClassificationResult
 
 logger = logging.getLogger(__name__)
@@ -67,11 +68,11 @@ Scoring scale (for each dimension and overall):
 - +5.0 = very hawkish (rates: strongly favors hikes / BS: strongly favors shrinking or continuing QT)
 
 Label thresholds (apply to each dimension independently):
-- "Dovish" if score < -1.5
-- "Neutral" if -1.5 <= score <= 1.5
-- "Hawkish" if score > 1.5
+- "Dovish" if score < {dovish_threshold}
+- "Neutral" if {dovish_threshold} <= score <= {hawkish_threshold}
+- "Hawkish" if score > {hawkish_threshold}
 
-The overall score should be a weighted combination: 70% policy + 30% balance sheet. \
+The overall score should be a weighted combination: {policy_pct}% policy + {bs_pct}% balance sheet. \
 If there is no balance sheet signal, set balance_sheet_score to 0.0 (Neutral).
 
 Extract key phrases from the text that signal hawkish or dovish stance. For each \
@@ -103,11 +104,11 @@ Scoring scale (for each dimension and overall):
 - +5.0 = very hawkish (rates: strongly favors hikes / BS: strongly favors shrinking or continuing QT)
 
 Label thresholds (apply to each dimension independently):
-- "Dovish" if score < -1.5
-- "Neutral" if -1.5 <= score <= 1.5
-- "Hawkish" if score > 1.5
+- "Dovish" if score < {dovish_threshold}
+- "Neutral" if {dovish_threshold} <= score <= {hawkish_threshold}
+- "Hawkish" if score > {hawkish_threshold}
 
-The overall score should be a weighted combination: 70% policy + 30% balance sheet. \
+The overall score should be a weighted combination: {policy_pct}% policy + {bs_pct}% balance sheet. \
 If there is no balance sheet signal, set balance_sheet_score to 0.0 (Neutral).
 
 List the most important hawkish and dovish phrases found across all snippets.
@@ -118,6 +119,17 @@ Set confidence based on how clearly the evidence signals a monetary policy stanc
 SNIPPETS:
 {snippets}
 """
+
+def _prompt_kwargs() -> dict:
+    """Threshold / weight values injected into LLM prompt templates."""
+    pw = int(cfg.POLICY_VS_BS_WEIGHT * 100)
+    return {
+        "hawkish_threshold": cfg.HAWKISH_THRESHOLD,
+        "dovish_threshold": cfg.DOVISH_THRESHOLD,
+        "policy_pct": pw,
+        "bs_pct": 100 - pw,
+    }
+
 
 # ── Constants ────────────────────────────────────────────────────────────────
 
@@ -192,7 +204,7 @@ def _clamp(val: float, lo: float = -5.0, hi: float = 5.0) -> float:
 def classify_text_gemini(text: str) -> ClassificationResult:
     """Classify a single text snippet using Gemini."""
     truncated = text[:SINGLE_TEXT_MAX_CHARS]
-    prompt = SINGLE_TEXT_PROMPT.format(text=truncated)
+    prompt = SINGLE_TEXT_PROMPT.format(text=truncated, **_prompt_kwargs())
     result = _call_gemini(prompt, StanceClassification)
 
     hawkish = [kp.phrase for kp in result.key_phrases if kp.direction == "hawkish"]
@@ -217,7 +229,7 @@ def classify_text_with_evidence_gemini(
 ) -> tuple[ClassificationResult, list[dict]]:
     """Classify a single text and return evidence with quotes from Gemini."""
     truncated = text[:SINGLE_TEXT_MAX_CHARS]
-    prompt = SINGLE_TEXT_PROMPT.format(text=truncated)
+    prompt = SINGLE_TEXT_PROMPT.format(text=truncated, **_prompt_kwargs())
     result = _call_gemini(prompt, StanceClassification)
 
     hawkish = [kp.phrase for kp in result.key_phrases if kp.direction == "hawkish"]
@@ -272,7 +284,7 @@ def classify_snippets_gemini(snippets: list[str]) -> ClassificationResult:
         total_chars += len(chunk)
 
     numbered = "\n\n".join(f"[{i + 1}] {s}" for i, s in enumerate(truncated))
-    prompt = BATCH_PROMPT.format(snippets=numbered)
+    prompt = BATCH_PROMPT.format(snippets=numbered, **_prompt_kwargs())
     result = _call_gemini(prompt, BatchStanceClassification)
 
     return ClassificationResult(

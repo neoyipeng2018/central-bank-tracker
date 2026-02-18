@@ -5,10 +5,14 @@ import argparse
 import logging
 import sys
 
+from fomc_tracker import config as cfg
+from fomc_tracker.loader import load_extensions
 from fomc_tracker.historical_data import add_stance, load_history
 from fomc_tracker.news_fetcher import fetch_news_for_participant, load_cached_news
 from fomc_tracker.participants import PARTICIPANTS, get_participant
 from fomc_tracker.stance_classifier import classify_snippets, classify_text_with_evidence
+
+load_extensions()
 
 logging.basicConfig(
     level=logging.INFO,
@@ -19,11 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def _score_label(score: float) -> str:
-    if score > 1.5:
-        return "Hawkish"
-    elif score < -1.5:
-        return "Dovish"
-    return "Neutral"
+    return cfg.score_label(score)
 
 
 def process_participant(participant, use_cache=True):
@@ -45,8 +45,9 @@ def process_participant(participant, use_cache=True):
         logger.warning(f"  No news found for {participant.name}, using historical lean")
         policy_score = participant.historical_lean
         bs_score = participant.historical_balance_sheet_lean
-        overall_score = 0.7 * policy_score + 0.3 * bs_score
-        overall_score = max(-5.0, min(5.0, overall_score))
+        pw = cfg.POLICY_VS_BS_WEIGHT
+        overall_score = pw * policy_score + (1 - pw) * bs_score
+        overall_score = max(cfg.SCORE_MIN, min(cfg.SCORE_MAX, overall_score))
         label = _score_label(overall_score)
         add_stance(
             participant.name, overall_score, label, source="historical_lean",
@@ -66,8 +67,9 @@ def process_participant(participant, use_cache=True):
         logger.warning(f"  No text content for {participant.name}")
         policy_score = participant.historical_lean
         bs_score = participant.historical_balance_sheet_lean
-        overall_score = 0.7 * policy_score + 0.3 * bs_score
-        overall_score = max(-5.0, min(5.0, overall_score))
+        pw = cfg.POLICY_VS_BS_WEIGHT
+        overall_score = pw * policy_score + (1 - pw) * bs_score
+        overall_score = max(cfg.SCORE_MIN, min(cfg.SCORE_MAX, overall_score))
         label = _score_label(overall_score)
         add_stance(
             participant.name, overall_score, label, source="historical_lean",
@@ -104,20 +106,23 @@ def process_participant(participant, use_cache=True):
             "score": cls_result.score,
         })
 
-    # Keep top 8 evidence items sorted by absolute score (strongest signal first)
+    # Keep top evidence items sorted by absolute score (strongest signal first)
     evidence.sort(key=lambda e: abs(e.get("score", 0)), reverse=True)
-    evidence = evidence[:8]
+    evidence = evidence[:cfg.MAX_EVIDENCE_ITEMS]
 
-    # Blend each dimension independently with historical leans (70% news, 30% historical)
-    blended_policy = result.policy_score * 0.7 + participant.historical_lean * 0.3
-    blended_policy = max(-5.0, min(5.0, blended_policy))
+    # Blend each dimension independently with historical leans
+    nw = cfg.NEWS_WEIGHT
+    hw = cfg.HISTORICAL_WEIGHT
+    blended_policy = result.policy_score * nw + participant.historical_lean * hw
+    blended_policy = max(cfg.SCORE_MIN, min(cfg.SCORE_MAX, blended_policy))
 
-    blended_bs = result.balance_sheet_score * 0.7 + participant.historical_balance_sheet_lean * 0.3
-    blended_bs = max(-5.0, min(5.0, blended_bs))
+    blended_bs = result.balance_sheet_score * nw + participant.historical_balance_sheet_lean * hw
+    blended_bs = max(cfg.SCORE_MIN, min(cfg.SCORE_MAX, blended_bs))
 
-    # Overall: 70% policy + 30% balance sheet
-    blended_score = 0.7 * blended_policy + 0.3 * blended_bs
-    blended_score = max(-5.0, min(5.0, blended_score))
+    # Overall: policy_vs_bs_weight policy + (1-weight) balance sheet
+    pw = cfg.POLICY_VS_BS_WEIGHT
+    blended_score = pw * blended_policy + (1 - pw) * blended_bs
+    blended_score = max(cfg.SCORE_MIN, min(cfg.SCORE_MAX, blended_score))
 
     label = _score_label(blended_score)
     policy_label = _score_label(blended_policy)

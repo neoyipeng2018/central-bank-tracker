@@ -16,3 +16,6 @@ data/stances/
 *.tmp
 *.bak
 .ipynb_checkpoints/
+
+# Local overrides (fork users commit their own local/)
+local/

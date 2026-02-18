@@ -4,6 +4,8 @@ import json
 import os
 from datetime import datetime
 
+from fomc_tracker import config as cfg
+
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 HISTORY_DIR = os.path.join(DATA_DIR, "historical")
 HISTORY_FILE = os.path.join(HISTORY_DIR, "stance_history.json")
@@ -14,11 +16,7 @@ def ensure_dirs():
 
 
 def _score_label(score: float) -> str:
-    if score > 1.5:
-        return "Hawkish"
-    elif score < -1.5:
-        return "Dovish"
-    return "Neutral"
+    return cfg.score_label(score)
 
 
 # Seed data: historical stances for context (synthetic but realistic)
@@ -264,6 +262,24 @@ SEED_DATA: dict[str, list[dict]] = {
          "policy_score": -1.50, "policy_label": "Neutral", "balance_sheet_score": -1.00, "balance_sheet_label": "Neutral"},
     ],
 }
+
+
+def _load_extra_seed_data() -> None:
+    """Merge extra seed data from ``local/seed_data.py`` if present."""
+    try:
+        from local.seed_data import EXTRA_SEED_DATA  # type: ignore[import-not-found]
+        for name, entries in EXTRA_SEED_DATA.items():
+            if name not in SEED_DATA:
+                SEED_DATA[name] = []
+            existing_dates = {e["date"] for e in SEED_DATA[name]}
+            for entry in entries:
+                if entry["date"] not in existing_dates:
+                    SEED_DATA[name].append(entry)
+    except ImportError:
+        pass
+
+
+_load_extra_seed_data()
 
 
 def _backfill_entry(entry: dict) -> dict:

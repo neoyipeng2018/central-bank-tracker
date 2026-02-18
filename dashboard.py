@@ -8,8 +8,12 @@ import plotly.graph_objects as go
 import streamlit as st
 from datetime import datetime
 
+from fomc_tracker import config as cfg
+from fomc_tracker.loader import load_extensions
 from fomc_tracker.participants import PARTICIPANTS, get_voters, get_alternates
 from fomc_tracker.historical_data import load_history, get_latest_stance
+
+load_extensions()
 from fomc_tracker.meeting_calendar import (
     get_next_meeting,
     get_previous_meeting,
@@ -369,15 +373,15 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ── Color Palette ──────────────────────────────────────────────────────────
-HAWK = "#f87171"
-DOVE = "#60a5fa"
-NEUTRAL_C = "#64748b"
-ACCENT = "#fbbf24"
-BG = "rgba(0,0,0,0)"
-GRID = "rgba(148,163,184,0.06)"
-FONT = "#e2e8f0"
-FONT_DIM = "#94a3b8"
+# ── Color Palette (from config) ───────────────────────────────────────────
+HAWK = cfg.COLORS["hawk"]
+DOVE = cfg.COLORS["dove"]
+NEUTRAL_C = cfg.COLORS["neutral"]
+ACCENT = cfg.COLORS["accent"]
+BG = cfg.COLORS["bg"]
+GRID = cfg.COLORS["grid"]
+FONT = cfg.COLORS["font"]
+FONT_DIM = cfg.COLORS["font_dim"]
 
 PLOTLY_LAYOUT = dict(
     paper_bgcolor=BG,
@@ -478,19 +482,11 @@ def render_evidence_panel(name: str, history_data: dict, date: str | None = None
 
 
 def score_color(s: float) -> str:
-    if s > 1.5:
-        return HAWK
-    if s < -1.5:
-        return DOVE
-    return NEUTRAL_C
+    return cfg.score_color(s)
 
 
 def score_label(s: float) -> str:
-    if s > 1.5:
-        return "Hawkish"
-    if s < -1.5:
-        return "Dovish"
-    return "Neutral"
+    return cfg.score_label(s)
 
 
 def last_name(full: str) -> str:

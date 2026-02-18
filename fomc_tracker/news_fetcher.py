@@ -28,6 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 from duckduckgo_search import DDGS
 
+from fomc_tracker import config as cfg
 from fomc_tracker.participants import Participant
 from fomc_tracker.fed_speeches import find_speeches_for_participant, scrape_speech_text
 
@@ -37,14 +38,10 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 NEWS_DIR = os.path.join(DATA_DIR, "news")
 
 # Fed RSS feeds for speeches and press releases
-FED_RSS_FEEDS = [
-    "https://www.federalreserve.gov/feeds/press_monetary.xml",
-    "https://www.federalreserve.gov/feeds/press_speech.xml",
-    "https://www.federalreserve.gov/feeds/press_testimony.xml",
-]
+FED_RSS_FEEDS = cfg.FED_RSS_FEEDS
 
 # BIS central bankers' speeches RSS (includes Fed officials)
-BIS_SPEECHES_RSS = "https://www.bis.org/doclist/cbspeeches.rss?paging_length=50"
+BIS_SPEECHES_RSS = cfg.BIS_SPEECHES_RSS
 
 BIS_HEADERS = {
     "User-Agent": (
@@ -53,7 +50,7 @@ BIS_HEADERS = {
     )
 }
 
-RATE_LIMIT_SECONDS = 1.5
+RATE_LIMIT_SECONDS = cfg.RATE_LIMIT_SECONDS
 
 # ── Data source registry ───────────────────────────────────────────────────────
 
@@ -363,44 +360,7 @@ def _fetch_fomc_minutes(participant: Participant, max_results: int = 3, **kwargs
 
 # ── Regional Fed Blogs source ─────────────────────────────────────────────────
 
-REGIONAL_FED_BLOGS = {
-    "FRB New York": [
-        "https://libertystreeteconomics.newyorkfed.org/feed/",
-    ],
-    "FRB San Francisco": [
-        "https://www.frbsf.org/research-and-insights/data/fed-views/rss.xml",
-    ],
-    "FRB Atlanta": [
-        "https://www.atlantafed.org/rss/macroblog",
-    ],
-    "FRB Cleveland": [
-        "https://www.clevelandfed.org/rss/forefront",
-    ],
-    "FRB Richmond": [
-        "https://www.richmondfed.org/rss/feeds/research",
-    ],
-    "FRB Chicago": [
-        "https://www.chicagofed.org/rss",
-    ],
-    "FRB St. Louis": [
-        "https://research.stlouisfed.org/publications/feeds/",
-    ],
-    "FRB Dallas": [
-        "https://www.dallasfed.org/rss",
-    ],
-    "FRB Minneapolis": [
-        "https://www.minneapolisfed.org/rss",
-    ],
-    "FRB Kansas City": [
-        "https://www.kansascityfed.org/rss/",
-    ],
-    "FRB Boston": [
-        "https://www.bostonfed.org/rss",
-    ],
-    "FRB Philadelphia": [
-        "https://www.philadelphiafed.org/rss",
-    ],
-}
+REGIONAL_FED_BLOGS = cfg.REGIONAL_FED_BLOGS
 
 
 def _fetch_regional_fed_blogs(

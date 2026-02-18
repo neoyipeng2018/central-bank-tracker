@@ -13,75 +13,20 @@ from datetime import datetime, timedelta
 import requests
 from dotenv import load_dotenv
 
+from fomc_tracker import config as cfg
+
 load_dotenv()
 
 logger = logging.getLogger(__name__)
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 CACHE_FILE = os.path.join(DATA_DIR, "fred_indicators.json")
-CACHE_MAX_AGE_HOURS = 6
+CACHE_MAX_AGE_HOURS = cfg.FRED_CACHE_MAX_AGE_HOURS
 
 FRED_BASE_URL = "https://api.stlouisfed.org/fred/series/observations"
 
 # Series we track, with display metadata
-FRED_SERIES = {
-    "CPIAUCSL": {
-        "name": "CPI (All Urban Consumers)",
-        "short_name": "CPI",
-        "unit": "% YoY",
-        "transform": "pct_change_year",
-        "icon": "inflation",
-    },
-    "PCEPILFE": {
-        "name": "Core PCE Price Index",
-        "short_name": "Core PCE",
-        "unit": "% YoY",
-        "transform": "pct_change_year",
-        "icon": "inflation",
-    },
-    "UNRATE": {
-        "name": "Unemployment Rate",
-        "short_name": "Unemployment",
-        "unit": "%",
-        "transform": "level",
-        "icon": "employment",
-    },
-    "FEDFUNDS": {
-        "name": "Effective Federal Funds Rate",
-        "short_name": "Fed Funds",
-        "unit": "%",
-        "transform": "level",
-        "icon": "rates",
-    },
-    "T10Y2Y": {
-        "name": "10Y-2Y Treasury Spread",
-        "short_name": "Yield Spread",
-        "unit": "%",
-        "transform": "level",
-        "icon": "rates",
-    },
-    "PAYEMS": {
-        "name": "Nonfarm Payrolls",
-        "short_name": "Payrolls",
-        "unit": "K jobs",
-        "transform": "change",
-        "icon": "employment",
-    },
-    "GDP": {
-        "name": "Real GDP",
-        "short_name": "GDP",
-        "unit": "% QoQ",
-        "transform": "pct_change_quarter",
-        "icon": "growth",
-    },
-    "DFF": {
-        "name": "Daily Fed Funds Rate",
-        "short_name": "Daily FFR",
-        "unit": "%",
-        "transform": "level",
-        "icon": "rates",
-    },
-}
+FRED_SERIES = cfg.FRED_SERIES
 
 
 def is_available() -> bool:
@@ -96,8 +41,10 @@ def _get_api_key() -> str:
     return key
 
 
-def _fetch_series(series_id: str, limit: int = 24) -> list[dict]:
+def _fetch_series(series_id: str, limit: int | None = None) -> list[dict]:
     """Fetch recent observations for a FRED series."""
+    if limit is None:
+        limit = cfg.FRED_FETCH_LIMIT
     api_key = _get_api_key()
     params = {
         "series_id": series_id,

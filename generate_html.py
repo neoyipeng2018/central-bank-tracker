@@ -14,18 +14,22 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 
+from fomc_tracker import config as cfg
+from fomc_tracker.loader import load_extensions
 from fomc_tracker.participants import PARTICIPANTS
 from fomc_tracker.historical_data import load_history
 
-# ── Color Palette (mirrors dashboard.py) ────────────────────────────────
-HAWK = "#f87171"
-DOVE = "#60a5fa"
-NEUTRAL_C = "#64748b"
-ACCENT = "#fbbf24"
-BG = "rgba(0,0,0,0)"
-GRID = "rgba(148,163,184,0.06)"
-FONT = "#e2e8f0"
-FONT_DIM = "#94a3b8"
+load_extensions()
+
+# ── Color Palette (from config) ─────────────────────────────────────────
+HAWK = cfg.COLORS["hawk"]
+DOVE = cfg.COLORS["dove"]
+NEUTRAL_C = cfg.COLORS["neutral"]
+ACCENT = cfg.COLORS["accent"]
+BG = cfg.COLORS["bg"]
+GRID = cfg.COLORS["grid"]
+FONT = cfg.COLORS["font"]
+FONT_DIM = cfg.COLORS["font_dim"]
 
 PLOTLY_LAYOUT = dict(
     paper_bgcolor=BG,
@@ -42,19 +46,11 @@ DIM_LABELS = {"policy": "Policy", "balance_sheet": "Bal. Sheet"}
 
 
 def score_color(s: float) -> str:
-    if s > 1.5:
-        return HAWK
-    if s < -1.5:
-        return DOVE
-    return NEUTRAL_C
+    return cfg.score_color(s)
 
 
 def score_label(s: float) -> str:
-    if s > 1.5:
-        return "Hawkish"
-    if s < -1.5:
-        return "Dovish"
-    return "Neutral"
+    return cfg.score_label(s)
 
 
 def last_name(full: str) -> str:
@@ -732,13 +728,13 @@ def generate_html(output_path: str):
   var currentMode = 'aggregate';
 
   function scoreColor(s) {{
-    if (s > 1.5) return '#f87171';
-    if (s < -1.5) return '#60a5fa';
-    return '#64748b';
+    if (s > {cfg.HAWKISH_THRESHOLD}) return '{HAWK}';
+    if (s < {cfg.DOVISH_THRESHOLD}) return '{DOVE}';
+    return '{NEUTRAL_C}';
   }}
   function scoreLabel(s) {{
-    if (s > 1.5) return 'Hawkish';
-    if (s < -1.5) return 'Dovish';
+    if (s > {cfg.HAWKISH_THRESHOLD}) return 'Hawkish';
+    if (s < {cfg.DOVISH_THRESHOLD}) return 'Dovish';
     return 'Neutral';
   }}
   function esc(str) {{

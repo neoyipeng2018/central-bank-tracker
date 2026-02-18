@@ -99,6 +99,22 @@ MEETINGS: list[FOMCMeeting] = [
 ]
 
 
+def _load_extra_meetings() -> None:
+    """Append extra meetings from ``local/meetings.py`` if present."""
+    try:
+        from local.meetings import EXTRA_MEETINGS  # type: ignore[import-not-found]
+        existing = {(m.start_date, m.end_date) for m in MEETINGS}
+        for m in EXTRA_MEETINGS:
+            if (m.start_date, m.end_date) not in existing:
+                MEETINGS.append(m)
+        MEETINGS.sort(key=lambda m: m.end_date)
+    except ImportError:
+        pass
+
+
+_load_extra_meetings()
+
+
 def _blackout_start(meeting: FOMCMeeting) -> date:
     """Blackout begins the second Saturday before the meeting start date."""
     days_to_saturday = (meeting.start_date.weekday() - 5) % 7

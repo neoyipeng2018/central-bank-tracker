@@ -14,6 +14,8 @@ from dataclasses import dataclass
 
 from dotenv import load_dotenv
 
+from fomc_tracker import config as cfg
+
 load_dotenv()
 
 logger = logging.getLogger(__name__)
@@ -165,11 +167,7 @@ class ClassificationResult:
 
 def _score_label(score: float) -> str:
     """Convert a score to a label."""
-    if score > 1.5:
-        return "Hawkish"
-    elif score < -1.5:
-        return "Dovish"
-    return "Neutral"
+    return cfg.score_label(score)
 
 
 def _normalize(text: str) -> str:
@@ -224,12 +222,12 @@ def classify_text_keyword(text: str) -> ClassificationResult:
         normalized, BS_HAWKISH_TERMS, BS_DOVISH_TERMS
     )
 
-    # Combined overall score: 70% policy + 30% balance sheet
+    # Combined overall score: policy_vs_bs_weight policy + (1-weight) balance sheet
     # If no BS keywords found, overall = policy only
     if bs_conf == 0:
         overall_score = policy_score
     else:
-        overall_score = 0.7 * policy_score + 0.3 * bs_score
+        overall_score = cfg.POLICY_VS_BS_WEIGHT * policy_score + (1 - cfg.POLICY_VS_BS_WEIGHT) * bs_score
 
     # Combined confidence
     total_conf = policy_conf + bs_conf
@@ -262,8 +260,10 @@ def classify_text_keyword(text: str) -> ClassificationResult:
     )
 
 
-def extract_quote(text: str, term: str, context_chars: int = 120) -> str:
+def extract_quote(text: str, term: str, context_chars: int | None = None) -> str:
     """Extract a short quote around a matched keyword in the original text."""
+    if context_chars is None:
+        context_chars = cfg.QUOTE_CONTEXT_CHARS
     idx = text.lower().find(term.lower())
     if idx == -1:
         return ""

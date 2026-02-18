@@ -208,6 +208,21 @@ PARTICIPANTS: list[Participant] = [
 ]
 
 
+def _load_extra_participants() -> None:
+    """Append extra participants from ``local/participants.py`` if present."""
+    try:
+        from local.participants import EXTRA_PARTICIPANTS  # type: ignore[import-not-found]
+        existing_names = {p.name for p in PARTICIPANTS}
+        for p in EXTRA_PARTICIPANTS:
+            if p.name not in existing_names:
+                PARTICIPANTS.append(p)
+    except ImportError:
+        pass
+
+
+_load_extra_participants()
+
+
 def get_participant(name: str) -> Participant | None:
     """Find a participant by partial name match (case-insensitive)."""
     name_lower = name.lower()
