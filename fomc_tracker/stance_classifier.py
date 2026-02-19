@@ -11,6 +11,7 @@ import logging
 import os
 import re
 from dataclasses import dataclass
+from typing import Callable
 
 from dotenv import load_dotenv
 
@@ -163,6 +164,109 @@ class ClassificationResult:
     policy_label: str = "Neutral"
     balance_sheet_score: float = 0.0  # -5.0 to +5.0 (QT/QE stance)
     balance_sheet_label: str = "Neutral"
+
+
+# ── Classifier backend registry ───────────────────────────────────────────────
+
+# Type aliases for the three classifier callables.
+ClassifyTextFn = Callable[[str], ClassificationResult]
+ClassifyTextWithEvidenceFn = Callable[[str], tuple[ClassificationResult, list[dict]]]
+ClassifySnippetsFn = Callable[[list[str]], ClassificationResult]
+
+# Registry: list of (name, classify_text, classify_text_with_evidence, classify_snippets, enabled).
+_CLASSIFIERS: list[
+    tuple[str, ClassifyTextFn, ClassifyTextWithEvidenceFn, ClassifySnippetsFn, bool]
+] = []
+
+
+def register_classifier(
+    name: str,
+    classify_text_fn: ClassifyTextFn,
+    classify_text_with_evidence_fn: ClassifyTextWithEvidenceFn,
+    classify_snippets_fn: ClassifySnippetsFn,
+    *,
+    enabled: bool = True,
+) -> None:
+    """Register a classifier backend.
+
+    Args:
+        name: Human-readable name (used in logs).
+        classify_text_fn: (text) -> ClassificationResult
+        classify_text_with_evidence_fn: (text) -> (ClassificationResult, evidence_list)
+        classify_snippets_fn: (snippets) -> ClassificationResult
+        enabled: Set False to register but skip during classification.
+
+    Example::
+
+        register_classifier(
+            "my_llm",
+            my_classify_text,
+            my_classify_with_evidence,
+            my_classify_snippets,
+        )
+    """
+    _CLASSIFIERS.append((
+        name,
+        classify_text_fn,
+        classify_text_with_evidence_fn,
+        classify_snippets_fn,
+        enabled,
+    ))
+    logger.debug(f"Registered classifier backend: {name} (enabled={enabled})")
+
+
+def classifier_backend(name: str, *, enabled: bool = True):
+    """Decorator to register a class as a classifier backend.
+
+    The decorated class must have three static/class methods:
+    ``classify_text``, ``classify_text_with_evidence``, ``classify_snippets``.
+
+    Example::
+
+        @classifier_backend("my_llm")
+        class MyClassifier:
+            @staticmethod
+            def classify_text(text: str) -> ClassificationResult: ...
+
+            @staticmethod
+            def classify_text_with_evidence(text: str) -> tuple[ClassificationResult, list[dict]]: ...
+
+            @staticmethod
+            def classify_snippets(snippets: list[str]) -> ClassificationResult: ...
+    """
+    def decorator(cls):
+        register_classifier(
+            name,
+            cls.classify_text,
+            cls.classify_text_with_evidence,
+            cls.classify_snippets,
+            enabled=enabled,
+        )
+        return cls
+    return decorator
+
+
+def list_classifiers() -> list[tuple[str, bool]]:
+    """Return registered classifier names and their enabled status."""
+    return [(name, enabled) for name, _, _, _, enabled in _CLASSIFIERS]
+
+
+def enable_classifier(name: str) -> None:
+    """Enable a previously registered classifier by name."""
+    for i, (n, ct, ce, cs, _) in enumerate(_CLASSIFIERS):
+        if n == name:
+            _CLASSIFIERS[i] = (n, ct, ce, cs, True)
+            return
+    raise KeyError(f"No classifier named '{name}'")
+
+
+def disable_classifier(name: str) -> None:
+    """Disable a registered classifier by name (keeps it in the registry)."""
+    for i, (n, ct, ce, cs, _) in enumerate(_CLASSIFIERS):
+        if n == name:
+            _CLASSIFIERS[i] = (n, ct, ce, cs, False)
+            return
+    raise KeyError(f"No classifier named '{name}'")
 
 
 def _score_label(score: float) -> str:
@@ -375,7 +479,7 @@ def classify_snippets_keyword(snippets: list[str]) -> ClassificationResult:
 
 
 # ── LLM / keyword routing ────────────────────────────────────────────────────
-# Priority: Cerebras (fastest) → Gemini → OpenAI → keyword fallback
+# Priority: Registered plugins → Cerebras → Gemini → OpenAI → keyword fallback
 
 
 def _cerebras_available() -> bool:
@@ -394,7 +498,14 @@ def _openai_available() -> bool:
 
 
 def classify_text(text: str) -> ClassificationResult:
-    """Classify text using LLM if available, otherwise keyword fallback."""
+    """Classify text using registered plugins, then LLM, then keyword fallback."""
+    for name, ct_fn, _, _, enabled in _CLASSIFIERS:
+        if not enabled:
+            continue
+        try:
+            return ct_fn(text)
+        except Exception as e:
+            logger.warning(f"Classifier plugin '{name}' failed: {e}")
     if _cerebras_available():
         try:
             from fomc_tracker.cerebras_classifier import classify_text_cerebras
@@ -420,7 +531,14 @@ def classify_text(text: str) -> ClassificationResult:
 
 
 def classify_text_with_evidence(text: str) -> tuple[ClassificationResult, list[dict]]:
-    """Classify text with evidence using LLM if available, otherwise keyword fallback."""
+    """Classify text with evidence using registered plugins, then LLM, then keyword fallback."""
+    for name, _, ce_fn, _, enabled in _CLASSIFIERS:
+        if not enabled:
+            continue
+        try:
+            return ce_fn(text)
+        except Exception as e:
+            logger.warning(f"Classifier plugin '{name}' failed: {e}")
     if _cerebras_available():
         try:
             from fomc_tracker.cerebras_classifier import classify_text_with_evidence_cerebras
@@ -446,7 +564,14 @@ def classify_text_with_evidence(text: str) -> tuple[ClassificationResult, list[d
 
 
 def classify_snippets(snippets: list[str]) -> ClassificationResult:
-    """Classify snippets using LLM if available, otherwise keyword fallback."""
+    """Classify snippets using registered plugins, then LLM, then keyword fallback."""
+    for name, _, _, cs_fn, enabled in _CLASSIFIERS:
+        if not enabled:
+            continue
+        try:
+            return cs_fn(snippets)
+        except Exception as e:
+            logger.warning(f"Classifier plugin '{name}' failed: {e}")
     if _cerebras_available():
         try:
             from fomc_tracker.cerebras_classifier import classify_snippets_cerebras

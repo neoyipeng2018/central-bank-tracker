@@ -59,6 +59,7 @@ tests/                  # Unit tests
 1. `participants.py` defines the FOMC roster (no dependencies)
 2. `news_fetcher.py` + `fed_speeches.py` fetch data from web
 3. `stance_classifier.py` scores text on -5.0 (dovish) to +5.0 (hawkish)
+   - Routing: registered plugins → Cerebras → Gemini → OpenAI → keyword fallback
 4. `historical_data.py` persists stances over time with seed data
 5. `fetch_data.py` orchestrates fetch → classify → store
 6. `dashboard.py` visualizes everything via Streamlit + Plotly
@@ -104,6 +105,7 @@ cp -r local.example local
 ### Extension hooks
 - `local/config.py` — override thresholds, weights, FRED series, URLs, colours
 - `local/sources.py` — register custom data sources via `@data_source`
+- `local/classifier.py` — register custom LLM classifier via `@classifier_backend`
 - `local/participants.py` — export `EXTRA_PARTICIPANTS` list to add roster entries
 - `local/seed_data.py` — export `EXTRA_SEED_DATA` dict to add historical data
 - `local/meetings.py` — export `EXTRA_MEETINGS` list to add meeting dates
