@@ -264,6 +264,10 @@ python fetch_data.py --name "Jerome Powell"
 
 # Force re-fetch (skip cache)
 python fetch_data.py --no-cache
+
+# Generate standalone HTML report
+python generate_html.py                 # writes fomc_report_YYYY-MM-DD.html
+python generate_html.py -o report.html  # custom output path
 ```
 
 ## LLM Configuration
