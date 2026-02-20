@@ -17,6 +17,7 @@ streamlit = "^1.40"
 plotly = "^5.24"
 python-dotenv = "^1.0"
 lxml = "^5.0"
+pdfplumber = ">=0.10"
 google-genai = ">=1.0"
 langchain-openai = ">=0.3"
 
