@@ -160,6 +160,120 @@
           "score": -0.714
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.003,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -1.465,
+      "policy_label": "Neutral",
+      "balance_sheet_score": 0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound",
+          "url": "https://seekingalpha.com/article/4867376-bank-of-england-moves-closer-to-rate-cuts-march-real-turning-point-for-monetary-policy-pound",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound The...",
+          "score": -5.0
+        },
+        {
+          "title": "Why the Bank of England is holding rates despite a weakening economy",
+          "url": "https://www.theguardian.com/business/2026/feb/05/why-bank-of-england-holding-rates-weakening-economy-inflation",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rising unemployment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Bank of England is holding rates despite a weakening economy Rising unemployment and falling inflation made a strong case for a cut but Andrew...",
+          "score": -5.0
+        },
+        {
+          "title": "Challenges to financial stability - speech by Andrew Bailey",
+          "url": "https://www.bankofengland.co.uk/speech/2025/october/andrew-bailey-keynote-speech-at-klaas-knott-farewell-symposium",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "recession"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...seen in the past. Likewise, we have not had a major and lasting recession during these recent shocks. But, this all reminds us that bad...",
+          "score": -5.0
+        },
+        {
+          "title": "The meaning of reserve currency \u2212 remarks by Andrew Bailey",
+          "url": "https://www.bankofengland.co.uk/speech/2025/july/meaning-of-reserve-currency-remarks-andrew-bailey",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...international economic policy and central banking. He also had a quite incautious side too. He was a practitioner of one of his favourite phrases...",
+          "score": 5.0
+        },
+        {
+          "title": "The UK economy in an unpredictable world \u2013 speech by Andrew Bailey",
+          "url": "https://www.bankofengland.co.uk/speech/2025/june/andrew-bailey-keynote-speech-at-the-british-chambers-of-commerce-global-annual-conference",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "price stability"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...constrained would be both ineffective and counterproductive. Achieving price stability, by contrast, creates the environment that is supportive for...",
+          "score": 5.0
+        },
+        {
+          "title": "The world today \u2013 remarks by Andrew Bailey",
+          "url": "https://www.bankofengland.co.uk/speech/2026/february/andrew-bailey-speech-at-the-imf-saudi-ministry-of-finance",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "cautious",
+            "accommodative"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...think a number of factors at work. First, markets have become cautious in their reactions since not all of the initial announcements...",
+          "score": -0.714
+        }
+      ]
     }
   ],
   "Sarah Breeden": [
@@ -215,6 +329,120 @@
     },
     {
       "date": "2026-02-20",
+      "score": -1.998,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.854,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.0,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank of England keeps interest rates at 3.75% as inflation concerns persist",
+          "url": "https://www.theguardian.com/business/2026/feb/05/bank-of-england-interest-rates-held-inflation-concerns",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...anti-inflation measures in Rachel Reeves's budget likely to pave way for rate cuts in months ahead",
+          "score": -5.0
+        },
+        {
+          "title": "Bank of England holds rates at 3.75% in knife-edge vote",
+          "url": "https://www.ft.com/content/99e4bcbc-cea5-40e6-b9f5-c0eed8fcaa69",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...knife-edge decision as it signalled that a further interest rate reduction could come as soon as March.",
+          "score": -5.0
+        },
+        {
+          "title": "Talking \u2019bout next generation \u2212 speech by Sarah Breeden",
+          "url": "https://www.bankofengland.co.uk/speech/2026/february/sarah-breeden-keynote-speech-at-the-city-financial-annual-payments-regulation-and-innovation-summit",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...offering savings particularly for small businesses. And people increasingly make payments between different banks using only the recipient\u2019s...",
+          "score": -5.0
+        },
+        {
+          "title": "Not just token gestures \u2212 speech by Sarah Breeden",
+          "url": "https://www.bankofengland.co.uk/speech/2025/october/sarah-breeden-panellist-at-fintech-foundation-2025-dc-fiintech-week",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...payments more deeply, automatically and efficiently into our increasingly digital lives. They could enhance online shopping by enabling...",
+          "score": -5.0
+        },
+        {
+          "title": "Building trust and supporting innovation in the multi-moneyverse \u2212 speech by Sarah Breeden",
+          "url": "https://www.bankofengland.co.uk/speech/2025/september/sarah-breeden-keynote-speech-at-the-boe-and-warwick-business-school",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...unlocked fundamentally new ways of transferring money in increasingly cheaper, more convenient and faster ways, today new technology...",
+          "score": -5.0
+        },
+        {
+          "title": "Bumps in the road? \u2212 speech by Sarah Breeden",
+          "url": "https://www.bankofengland.co.uk/speech/2025/september/sarah-breeden-speech-cardiff-business-school-afternoon-briefing",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "restrictive",
+            "disinflation",
+            "gradual"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...significantly since it hit double figures in late 2022, supported by the restrictive stance of monetary policy. But the road has not been smooth....",
+          "score": -0.882
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
       "score": -1.998,
       "label": "Dovish",
       "source": "live",
@@ -406,6 +634,56 @@
           "score": 5.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.396,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -1.994,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.0,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank of England set to hold interest rates",
+          "url": "https://www.msn.com/en-us/money/economy/bank-of-england-set-to-hold-interest-rates/ar-AA1VntIl",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "sticky inflation"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...per cent next week as policymakers continue to battle against sticky inflation. At the monetary policy committee (MPC)'s first meeting of the...",
+          "score": 5.0
+        },
+        {
+          "title": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound",
+          "url": "https://seekingalpha.com/article/4867376-bank-of-england-moves-closer-to-rate-cuts-march-real-turning-point-for-monetary-policy-pound",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "inflation falling",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...falling below the 2% target as early as April, significantly increasing the ...",
+          "score": -5.0
+        }
+      ]
     }
   ],
   "Dave Ramsden": [
@@ -461,6 +739,66 @@
     },
     {
       "date": "2026-02-20",
+      "score": -2.63,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.725,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank of England holds rates at 3.75% in knife-edge vote",
+          "url": "https://www.ft.com/content/99e4bcbc-cea5-40e6-b9f5-c0eed8fcaa69",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...knife-edge decision as it signalled that a further interest rate reduction could come as soon as March.",
+          "score": -5.0
+        },
+        {
+          "title": "Bank of England keeps interest rates at 3.75% as inflation concerns persist",
+          "url": "https://www.theguardian.com/business/2026/feb/05/bank-of-england-interest-rates-held-inflation-concerns",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...anti-inflation measures in Rachel Reeves's budget likely to pave way for rate cuts in months ahead",
+          "score": -5.0
+        },
+        {
+          "title": "The evolution of the Bank\u2019s approach to resolution \u2212 speech by Dave Ramsden",
+          "url": "https://www.bankofengland.co.uk/speech/2026/january/dave-ramsden-speech-at-kings-college-london-the-evolution-of-resolution",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...to be viewed in terms of how our approach to resolution increasingly has to look beyond banks (and building societies) to the evolution...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
       "score": -2.63,
       "label": "Dovish",
       "source": "live",
@@ -702,6 +1040,135 @@
           "score": 0.974
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -0.714,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -1.191,
+      "policy_label": "Neutral",
+      "balance_sheet_score": 0.401,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank of England chief economist: We cut interest rates too fast",
+          "url": "https://www.telegraph.co.uk/business/2026/02/13/bank-england-chief-economist-cut-interest-rates-too-fast/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...cutting rates 18 months ago. He suggested the Bank's aggressive rate cuts may have led to higher price rises than otherwise.",
+          "score": -5.0
+        },
+        {
+          "title": "BoE chief economist urges 'caution' before further rate cuts",
+          "url": "https://www.ft.com/content/6f09228b-8e69-454e-a768-74346404c27a",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "BoE chief economist urges 'caution' before further rate cuts High interest rates are not the reason for \"lacklustre\" UK...",
+          "score": -5.0
+        },
+        {
+          "title": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound",
+          "url": "https://seekingalpha.com/article/4867376-bank-of-england-moves-closer-to-rate-cuts-march-real-turning-point-for-monetary-policy-pound",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound The...",
+          "score": -5.0
+        },
+        {
+          "title": "Bank of England to Cut Rates in March, Timing of Further Cuts Unclear: Reuters Poll",
+          "url": "https://money.usnews.com/investing/news/articles/2026-02-16/bank-of-england-to-cut-rates-in-march-timing-of-further-cuts-unclear-reuters-poll",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cut rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Bank of England to Cut Rates in March, Timing of Further Cuts Unclear: Reuters Poll At its...",
+          "score": -5.0
+        },
+        {
+          "title": "Bank of England's Pill says restrictive policy impact harder to gauge",
+          "url": "https://in.investing.com/news/economy-news/bank-of-englands-pill-says-restrictive-policy-impact-harder-to-gauge-93CH-5240033",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive",
+            "unemployment"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Bank of England's Pill says restrictive policy impact harder to gauge Regarding the labor market, Pill...",
+          "score": 1.364
+        },
+        {
+          "title": "On QT \u2212 remarks by Huw Pill",
+          "url": "https://www.bankofengland.co.uk/speech/2025/september/huw-pill-fireside-chat-at-the-inaugural-pictet-research-institute-symposium",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "quantitative tightening",
+            "tighten",
+            "tightening",
+            "unwind",
+            "easing",
+            "gradual",
+            "quantitative easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "balance_sheet",
+            "policy",
+            "policy",
+            "balance_sheet",
+            "policy",
+            "policy",
+            "balance_sheet"
+          ],
+          "quote": "...which central banks should shrink their balance sheets via \u2018quantitative tightening\u2019 (QT). QT entails reducing the stock of bonds (typically government...",
+          "score": 0.974
+        }
+      ]
     }
   ],
   "Megan Greene": [
@@ -842,6 +1309,94 @@
           "score": -2.143
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.119,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -1.663,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.15,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank of England keeps interest rates at 3.75% as inflation concerns persist",
+          "url": "https://www.theguardian.com/business/2026/feb/05/bank-of-england-interest-rates-held-inflation-concerns",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...anti-inflation measures in Rachel Reeves's budget likely to pave way for rate cuts in months ahead",
+          "score": -5.0
+        },
+        {
+          "title": "The supply side demands more attention \u2212 speech by Megan Greene",
+          "url": "https://www.bankofengland.co.uk/speech/2025/september/megan-greene-university-of-glasgow-business-school",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "above target",
+            "recession"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...A rise in energy prices also contributed to inflation being above target between 2010 and 2013. footnote [1] Figure 1: Inflation, Bank...",
+          "score": -3.276
+        },
+        {
+          "title": "Forks in the Curve: whether and how to respond to monetary policy divergence - speech by Megan Greene",
+          "url": "https://www.bankofengland.co.uk/speech/2026/january/megan-greene-speech-at-the-resolution-foundation-worlds-apart",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "rate hike",
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...that markets expect even more monetary policy divergence, with rate hikes priced in for the Reserve Bank of Australia, Reserve Bank of...",
+          "score": -2.368
+        },
+        {
+          "title": "Bank of England's Greene says she is still worried about inflation pressures",
+          "url": "https://www.msn.com/en-gb/money/other/bank-of-england-s-greene-says-she-is-still-worried-about-inflation-pressures/ar-AA1UOd3J",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "wage growth",
+            "rate cut"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...on Friday she remained concerned about signs of the pace of wage growth ahead and inflation expectations, warranting a slower path of...",
+          "score": -2.143
+        }
+      ]
     }
   ],
   "Catherine L Mann": [
@@ -935,6 +1490,107 @@
             "policy"
           ],
           "quote": "UK minimum wage is raising youth unemployment, Bank of England's Mann says LONDON, Feb 15 (Reuters) - A sharp...",
+          "score": -5.0
+        },
+        {
+          "title": "UK minimum wage is raising youth unemployment: Bank of England's policymaker Catherine Mann",
+          "url": "https://www.msn.com/en-in/money/general/uk-minimum-wage-is-raising-youth-unemployment-bank-of-england-s-policymaker-catherine-mann/ar-AA1Wogd2",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "unemployment"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "UK minimum wage is raising youth unemployment: Bank of England's policymaker Catherine Mann Britain's youth...",
+          "score": -5.0
+        },
+        {
+          "title": "Explaining the consumption gap - speech by Catherine L Mann",
+          "url": "https://www.bankofengland.co.uk/speech/2025/october/catherine-l-mann-keynote-speech-at-resolution-foundation",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "restrictive",
+            "downside risks"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Report is playing out; and I argued that policy needed to remain restrictive for longer both to squeeze out inflation persistence, but also...",
+          "score": -1.667
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.457,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -2.21,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.3,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "BOE holds rate but narrow vote fuels expectations of spring rate cut",
+          "url": "https://www.msn.com/en-us/money/markets/boe-holds-rate-but-narrow-vote-fuels-expectations-of-spring-rate-cut/ar-AA1VNlFy",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "BOE holds rate but narrow vote fuels expectations of spring rate cut The Bank of England opted to keep its benchmark interest rate...",
+          "score": -5.0
+        },
+        {
+          "title": "UK minimum wage is raising youth unemployment, Bank of England's Mann says",
+          "url": "https://www.msn.com/en-gb/money/other/uk-minimum-wage-is-raising-youth-unemployment-bank-of-englands-mann-says/ar-AA1WoiOi",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "unemployment"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "UK minimum wage is raising youth unemployment, Bank of England's Mann says LONDON, Feb 15 (Reuters) - A sharp...",
+          "score": -5.0
+        },
+        {
+          "title": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound",
+          "url": "https://seekingalpha.com/article/4867376-bank-of-england-moves-closer-to-rate-cuts-march-real-turning-point-for-monetary-policy-pound",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "inflation falling",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...falling below the 2% target as early as April, significantly increasing the ...",
           "score": -5.0
         },
         {
@@ -1120,6 +1776,123 @@
           "score": 5.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.685,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.278,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.3,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Will the Bank of England give any clues to the path of interest rates?",
+          "url": "https://www.ft.com/content/40b04ff2-9a46-42f6-9c3e-4ec503a5b797",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "wage growth"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...shift in the balance of views among rate-setters around future wage growth and the economy, which could potentially alter the expected...",
+          "score": 5.0
+        },
+        {
+          "title": "Bank of England keeps interest rates at 3.75% as inflation concerns persist",
+          "url": "https://www.theguardian.com/business/2026/feb/05/bank-of-england-interest-rates-held-inflation-concerns",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...anti-inflation measures in Rachel Reeves's budget likely to pave way for rate cuts in months ahead",
+          "score": -5.0
+        },
+        {
+          "title": "Bank of England holds rates at 3.75% in knife-edge vote",
+          "url": "https://www.ft.com/content/99e4bcbc-cea5-40e6-b9f5-c0eed8fcaa69",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...knife-edge decision as it signalled that a further interest rate reduction could come as soon as March.",
+          "score": -5.0
+        },
+        {
+          "title": "Bank Of England Moves Closer To Rate Cuts: March A Real Turning Point For Monetary Policy And Pound",
+          "url": "https://seekingalpha.com/article/4867376-bank-of-england-moves-closer-to-rate-cuts-march-real-turning-point-for-monetary-policy-pound",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "inflation falling",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...falling below the 2% target as early as April, significantly increasing the ...",
+          "score": -5.0
+        },
+        {
+          "title": "BoE holds rates at 3.75% in yet another close decision",
+          "url": "https://www.centralbanking.com/central-banks/monetary-policy/monetary-policy-decisions/7974962/boe-holds-rates-at-375-in-yet-another-close-decision",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...as policy-makers continue to disagree on the pace of monetary easing amid cooling inflation and sluggish demand.",
+          "score": -5.0
+        },
+        {
+          "title": "Tariffed with the same brush: confronting today\u2019s challenges to trade \u2212 speech by Swati Dhingra",
+          "url": "https://www.bankofengland.co.uk/speech/2025/october/swati-dhingra-speech-at-the-central-bank-of-ireland-escb-cluster-2-academic-conference",
+          "source_type": "boe_speeches",
+          "keywords": [
+            "more restrictive",
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...( Colantone et al., 2022 ). Chart 1: Trade policy has become more restrictive in recent years US average effective tariff (LHS) (%) and trade...",
+          "score": 5.0
+        }
+      ]
     }
   ],
   "Alan Taylor": [
@@ -1229,6 +2002,101 @@
             "policy"
           ],
           "quote": "...knife-edge decision as it signalled that a further interest rate reduction could come as soon as March.",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.249,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.149,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.15,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Bank of England keeps interest rates at 3.75% as inflation concerns persist",
+          "url": "https://www.theguardian.com/business/2026/feb/05/bank-of-england-interest-rates-held-inflation-concerns",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...anti-inflation measures in Rachel Reeves's budget likely to pave way for rate cuts in months ahead",
+          "score": -5.0
+        },
+        {
+          "title": "Why the Bank of England is holding rates despite a weakening economy",
+          "url": "https://www.theguardian.com/business/2026/feb/05/why-bank-of-england-holding-rates-weakening-economy-inflation",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rising unemployment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Bank of England is holding rates despite a weakening economy Rising unemployment and falling inflation made a strong case for a cut but Andrew...",
+          "score": -5.0
+        },
+        {
+          "title": "Will the Bank of England give any clues to the path of interest rates?",
+          "url": "https://www.ft.com/content/40b04ff2-9a46-42f6-9c3e-4ec503a5b797",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "wage growth"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...shift in the balance of views among rate-setters around future wage growth and the economy, which could potentially alter the expected...",
+          "score": 5.0
+        },
+        {
+          "title": "Bank of England holds rates at 3.75% in knife-edge vote",
+          "url": "https://www.ft.com/content/99e4bcbc-cea5-40e6-b9f5-c0eed8fcaa69",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...knife-edge decision as it signalled that a further interest rate reduction could come as soon as March.",
+          "score": -5.0
+        },
+        {
+          "title": "BoE holds rates at 3.75% in yet another close decision",
+          "url": "https://www.centralbanking.com/central-banks/monetary-policy/monetary-policy-decisions/7974962/boe-holds-rates-at-375-in-yet-another-close-decision",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...as policy-makers continue to disagree on the pace of monetary easing amid cooling inflation and sluggish demand.",
           "score": -5.0
         }
       ]

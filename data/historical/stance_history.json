@@ -552,6 +552,116 @@
           "score": -2.273
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.228,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -2.075,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.75,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Kevin Warsh is the right man for this moment at the Federal Reserve | PERRY O. HOOPER JR.",
+          "url": "https://www.usatoday.com/story/opinion/contributors/2026/02/09/kevin-warsh-is-the-right-man-for-the-federal-reserve-perry-o-hooper-jr/88556836007/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...Federal Reserve needs more than a credentialed academic or a cautious caretaker.",
+          "score": 5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Trump picks former Fed Gov. Kevin Warsh as new Federal Reserve chair",
+          "url": "https://www.usatoday.com/story/money/2026/01/30/trump-picks-former-fed-governor-kevin-warsh-new-fed-chair/88428889007/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious",
+            "lower rates"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...is seen as a comparatively moderate figure and notably more cautious about deploying heavy monetary stimulus despite his preference...",
+          "score": -2.273
+        }
+      ]
     }
   ],
   "Jerome H. Powell": [
@@ -955,6 +1065,113 @@
     },
     {
       "date": "2026-02-20",
+      "score": -2.375,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.425,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed meeting recap: Interest rates hold steady, Jerome Powell stays silent on major controversies",
+          "url": "https://www.businessinsider.com/fed-meeting-january-interest-rates-jerome-powell-live-updates-2026-01",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cut rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...January. Fed Chair Jerome Powell has faced pressure from Trump to cut rates, and from a DOJ probe.",
+          "score": -5.0
+        },
+        {
+          "title": "Mr. Powell: Leaving With Things Much Better Than Anyone Could Have Expected",
+          "url": "https://seekingalpha.com/article/4871704-mr-powell-leaving-with-things-much-better-than-anyone-could-have-expected",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "soft landing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...Expected Jerome Powell's term as Fed chair ends in May, with a soft landing nearly achieved but not yet secured. Read the full analysis...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
       "score": -2.375,
       "label": "Dovish",
       "source": "live",
@@ -1750,6 +1967,135 @@
           "score": 0.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.271,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.212,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "US Fed FOMC meeting minutes releasing today",
+          "url": "https://www.financialexpress.com/business/investing-abroad-us-fed-fomc-meeting-minutes-releasing-today-4147074/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "US Fed FOMC meeting minutes releasing today Market participants will be closely watching the minutes...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Jefferson cautiously optimistic about economy, sees job market stabilizing, inflation falling",
+          "url": "https://www.msn.com/en-us/money/markets/feds-jefferson-cautiously-optimistic-about-economy-sees-job-market-stabilizing-inflation-falling/ar-AA1VPzlR",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious",
+            "inflation falling"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Fed's Jefferson cautiously optimistic about economy, sees job market stabilizing, inflation...",
+          "score": 0.0
+        }
+      ]
     }
   ],
   "Michael S. Barr": [
@@ -2266,6 +2612,148 @@
           ],
           "quote": "Can an A.I. Productivity Boom Clear a Path for More Rate Cuts? Trump's Fed Pick Thinks So. As Federal Reserve chair, Kevin...",
           "score": -5.0
+        },
+        {
+          "title": "Fed's Barr wants proof goods inflation is retreating before additional rate cuts",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-barr-wants-proof-goods-inflation-is-retreating-before-additional-rate-cuts/ar-AA1WxuDC",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...wants proof goods inflation is retreating before additional rate cuts Federal Reserve governor said the job market might be \"especially...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.458,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.446,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.15,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed's Barr says central bank likely on hold for some time as it watches for easing inflation",
+          "url": "https://www.msn.com/en-us/money/markets/feds-barr-says-central-bank-likely-on-hold-for-some-time-as-it-watches-for-easing-inflation/ar-AA1WxHT1",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...central bank likely on hold for some time as it watches for easing inflation By Michael S. Derby NEW YORK, Feb 17 (Reuters) - Federal...",
+          "score": -5.0
+        },
+        {
+          "title": "Minutes reveal Federal Reserve division over path of interest rate cuts",
+          "url": "https://www.baltimoresun.com/2026/02/19/minutes-reveal-federal-reserve-division-over-path-of-interest-rate-cuts/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...nutes reveal Federal Reserve division over path of interest rate cuts Federal Reserve officials were divided at last month's policy...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Barr signals patience on rates, warns AI boom could be inflationary in the near term",
+          "url": "https://www.investmentnews.com/fintech/feds-barr-signals-patience-on-rates-warns-ai-boom-could-be-inflationary-in-the-near-term/265319",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "vigilant"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...must prepare for potential disruptions, and the Fed must remain vigilant before adjusting monetary settings in response to these structural...",
+          "score": 5.0
         },
         {
           "title": "Fed's Barr wants proof goods inflation is retreating before additional rate cuts",
@@ -3043,6 +3531,151 @@
           "score": 1.667
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.086,
+      "label": "Neutral",
+      "source": "live",
+      "policy_score": -1.776,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.525,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed's Bowman still supports rate cuts despite backing pause at recent meeting",
+          "url": "https://www.reuters.com/business/feds-bowman-still-supports-rate-cuts-despite-backing-pause-recent-meeting-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Bowman still supports rate cuts despite backing pause at recent meeting WASHINGTON, Jan 30...",
+          "score": -5.0
+        },
+        {
+          "title": "US Fed FOMC meeting minutes releasing today",
+          "url": "https://www.financialexpress.com/business/investing-abroad-us-fed-fomc-meeting-minutes-releasing-today-4147074/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "US Fed FOMC meeting minutes releasing today Market participants will be closely watching the minutes...",
+          "score": -5.0
+        },
+        {
+          "title": "Text of Fed's January Monetary Policy Statement",
+          "url": "https://www.marketwatch.com/story/text-of-fed-s-january-monetary-policy-statement-ea2bc28b",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "unemployment"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...expanding at a solid pace. Job gains have remained low, and the unemployment rate has shown some signs of stabilization. Inflation remains...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Bowman Says Policy Still Restrictive",
+          "url": "https://www.wsj.com/economy/central-banking/feds-bowman-says-policy-still-restrictive-c0c53443",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive",
+            "downside risks"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Fed's Bowman Says Policy Still Restrictive Fed governor Michelle Bowman still sees monetary policy as moderately...",
+          "score": 1.667
+        }
+      ]
     }
   ],
   "Christopher J. Waller": [
@@ -3689,6 +4322,164 @@
           "score": -5.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.559,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.42,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.45,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Minutes reveal Federal Reserve division over path of interest rate cuts",
+          "url": "https://www.baltimoresun.com/2026/02/19/minutes-reveal-federal-reserve-division-over-path-of-interest-rate-cuts/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...nutes reveal Federal Reserve division over path of interest rate cuts Federal Reserve officials were divided at last month's policy...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Waller says policy still restrictive, more cuts needed",
+          "url": "https://www.msn.com/en-us/money/markets/fed-s-waller-says-policy-still-restrictive-more-cuts-needed/ar-AA1VkyQb",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Waller says policy still restrictive, more cuts needed (Bloomberg) -- Federal Reserve Governor Christopher...",
+          "score": 5.0
+        },
+        {
+          "title": "Fed holds interest rates steady, pausing rate cuts amid economic uncertainty",
+          "url": "https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-january-2026",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed holds interest rates steady, pausing rate cuts amid economic uncertainty The Federal Reserve on Wednesday...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
+          "url": "https://www.ocregister.com/2026/01/28/federal-reserve-january-rate-decision/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after...",
+          "score": -5.0
+        },
+        {
+          "title": "US Fed FOMC meeting minutes releasing today",
+          "url": "https://www.financialexpress.com/business/investing-abroad-us-fed-fomc-meeting-minutes-releasing-today-4147074/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "US Fed FOMC meeting minutes releasing today Market participants will be closely watching the minutes...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
     }
   ],
   "Lisa D. Cook": [
@@ -3936,6 +4727,116 @@
       "balance_sheet_score": -0.225,
       "balance_sheet_label": "Neutral",
       "evidence": [
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.135,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.954,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.225,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Trump picks Kevin Warsh to chair Federal Reserve amid pressure campaign to cut rates",
+          "url": "https://www.cbsnews.com/news/trump-kevin-warsh-federal-reserve-chair-nominee-announced/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cut rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...Kevin Warsh to chair Federal Reserve amid pressure campaign to cut rates President Trump says he is nominating Kevin Warsh to be the...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Lisa Cook says inflation is still too hot \u2014 and a 'K-shaped' economy is leaving low-income Americans behind",
+          "url": "https://www.msn.com/en-us/money/economy/fed-s-lisa-cook-says-inflation-is-still-too-hot-and-a-k-shaped-economy-is-leaving-low-income-americans-behind/ar-AA1VJM2m",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious",
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Americans behind Federal Reserve Governor Lisa Cook signaled a cautious \"wait and see\" approach to monetary policy on Wednesday, describing...",
+          "score": 5.0
+        },
         {
           "title": "Federal Reserve issues FOMC statement",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
@@ -4443,6 +5344,141 @@
           ],
           "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
           "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.023,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.858,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "2 Dividend Stocks that Could Run if the Federal Reserve Cuts Interest Rates in 2026",
+          "url": "https://247wallst.com/investing/2026/01/27/2-dividend-stocks-that-could-run-if-the-federal-reserve-cuts-interest-rates-in-2026/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...that could be richly rewarded if the Federal Reserve moves to rate cutting in the second half of 2026. Jerome Powell is currently the...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve Watch: Monetary Easing",
+          "url": "https://seekingalpha.com/article/4860563-federal-reserve-watch-monetary-easing",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "quantitative tightening",
+            "tighten",
+            "tightening",
+            "easing",
+            "quantitative easing"
+          ],
+          "directions": [
+            "hawkish",
+            "hawkish",
+            "hawkish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "balance_sheet",
+            "policy",
+            "policy",
+            "policy",
+            "balance_sheet"
+          ],
+          "quote": "...Reserve Watch: Monetary Easing The Federal Reserve shifted from quantitative tightening to quantitative easing as of November 26, 2025, adding $37.4...",
+          "score": 0.0
         }
       ]
     }
@@ -5219,6 +6255,148 @@
           "score": -5.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.458,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.575,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.15,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "US Fed FOMC meeting minutes releasing today",
+          "url": "https://www.financialexpress.com/business/investing-abroad-us-fed-fomc-meeting-minutes-releasing-today-4147074/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "US Fed FOMC meeting minutes releasing today Market participants will be closely watching the minutes...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed, Signaling Little Urgency, Prepares to Pause on Rate Cuts",
+          "url": "https://www.nytimes.com/2026/01/27/business/economy/fed-rate-decision-outlook.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed, Signaling Little Urgency, Prepares to Pause on Rate Cuts The Federal Reserve is expected to hold interest rates steady...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "The Zero Lower Bound Remains a Medium\u2011Term Risk",
+          "url": "https://libertystreeteconomics.newyorkfed.org/2025/07/the-zero-lower-bound-remains-a-medium-term-risk/",
+          "source_type": "regional_fed_blog",
+          "keywords": [
+            "recession"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...States\u2014followed this trend, while also varying with cycles of economic recessions and expansions.",
+          "score": -5.0
+        }
+      ]
     }
   ],
   "Patrick T. Harker": [
@@ -5668,6 +6846,129 @@
             "policy"
           ],
           "quote": "...range between 3.5% and 3.75% after a recent run of interest rate cuts. \"Available indicators suggest that economic activity has been...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.322,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.35,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed's Logan sees inflation easing, says rate policy 'well positioned' for risks",
+          "url": "https://www.msn.com/en-us/money/markets/feds-logan-sees-inflation-easing-says-rate-policy-well-positioned-for-risks/ar-AA1WL99F",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Logan sees inflation easing, says rate policy 'well positioned' for risks By Michael S....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve Watch: No Rate Changes In Near Future",
+          "url": "https://seekingalpha.com/article/4873027-federal-reserve-watch-no-rate-changes-in-near-future",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...Near Future The Federal Reserve now expects less aggressive rate cuts in 2024; recent economic data has shown stronger performance....",
+          "score": -5.0
+        },
+        {
+          "title": "2 Dividend Stocks that Could Run if the Federal Reserve Cuts Interest Rates in 2026",
+          "url": "https://247wallst.com/investing/2026/01/27/2-dividend-stocks-that-could-run-if-the-federal-reserve-cuts-interest-rates-in-2026/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...that could be richly rewarded if the Federal Reserve moves to rate cutting in the second half of 2026. Jerome Powell is currently the...",
           "score": -5.0
         },
         {
@@ -6255,6 +7556,132 @@
           "score": 0.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.978,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.891,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.15,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "US inflation isn't subsiding. It's heating up again",
+          "url": "https://www.reuters.com/markets/us-inflation-isnt-subsiding-its-heating-up-again-2026-02-05/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...Federal Reserve has not caused markets to price in deeper interest rate cuts is perhaps the simplest: U.S. inflation is just too high to...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Barkin says hard to know how long higher productivity will last",
+          "url": "https://www.reuters.com/business/feds-barkin-cuts-so-far-helped-support-job-market-while-waiting-inflations-last-2026-02-03/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "above target",
+            "rate cut"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...future trends uncertain Fed pauses rate cuts, inflation has been above target since 2021 Higher productivity key to rate-cut arguments of...",
+          "score": -1.667
+        }
+      ]
     }
   ],
   "Raphael W. Bostic": [
@@ -6756,6 +8183,145 @@
           ],
           "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
           "score": -5.0
+        },
+        {
+          "title": "Bostic sees Fed at neutral in maybe one or two rate cuts",
+          "url": "https://www.msn.com/en-gb/money/economy/bostic-sees-fed-at-neutral-in-maybe-one-or-two-rate-cuts/vi-AA1VwdPQ",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Bostic sees Fed at neutral in maybe one or two rate cuts Federal Reserve Bank of Atlanta President Raphael Bostic offers...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.937,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.734,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.075,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Atlanta Fed Chair Bostic Recognizes Sectors of Agriculture Are in Crisis",
+          "url": "https://www.agweb.com/news/atlanta-fed-chair-bostic-recognizes-sectors-agriculture-are-crisis",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...2%, the outgoing president and CEO favors a pause on interest-rate reductions while noting AI's potential to shift labor needs",
+          "score": -5.0
+        },
+        {
+          "title": "Warsh to face 'tall task' as Fed chief, Bostic says",
+          "url": "https://www.reuters.com/world/warsh-face-tall-task-fed-chair-bostic-says-2026-02-02/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...rates this year Warsh picked by Trump in part for his support of lower rates Fed voted 10-2 last week to maintain current borrowing costs...",
+          "score": -5.0
+        },
+        {
+          "title": "Bostic says it's prudent to have 'mildly restrictive' Fed policy",
+          "url": "https://www.msn.com/en-gb/money/general/bostic-says-it-s-prudent-to-have-mildly-restrictive-fed-policy/vi-AA1WKDSU",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Bostic says it's prudent to have 'mildly restrictive' Fed policy Federal Reserve Bank of Atlanta President Raphael...",
+          "score": 5.0
         },
         {
           "title": "Bostic sees Fed at neutral in maybe one or two rate cuts",
@@ -7387,6 +8953,119 @@
           "score": -3.182
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.43,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.407,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.15,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed Policy Is in a Good Place, Daly Says",
+          "url": "https://money.usnews.com/investing/news/articles/2026-02-19/fed-policy-is-in-a-good-place-daly-says",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...the labor \u200cmarket in a \u200cbetter place because \u2060of \u2060the Fed's rate cuts last year, and \u200bwith inflation expected to resume its decline...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Daly Says Policy 'In a Good Place' as Officials Assess AI's Effect on Economy",
+          "url": "https://www.morningstar.com/news/dow-jones/2026021915406/feds-daly-says-policy-in-a-good-place-as-officials-assess-ais-effect-on-economy",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "wage growth",
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "hawkish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...decreasing household savings due to expectations of stronger real wage growth and higher lifetime earnings.",
+          "score": -3.182
+        }
+      ]
     }
   ],
   "Susan M. Collins": [
@@ -7677,6 +9356,97 @@
     },
     {
       "date": "2026-02-20",
+      "score": -2.397,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.425,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.0,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
       "score": -2.397,
       "label": "Dovish",
       "source": "live",
@@ -8425,6 +10195,152 @@
           "score": -5.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.532,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.284,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.225,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed's Hammack says interest rates could be on hold 'for quite some time'",
+          "url": "https://www.msn.com/en-us/money/markets/feds-hammack-says-interest-rates-could-be-on-hold-for-quite-some-time/ar-AA1W4u7H",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...urgency to change the setting of interest rates this year amid a \"cautiously optimistic\" outlook for economic activity.",
+          "score": 5.0
+        },
+        {
+          "title": "Fed's Hammack: Monetary policy is in a good place to stay on hold",
+          "url": "https://www.msn.com/en-us/money/economy/fed-s-hammack-monetary-policy-is-in-a-good-place-to-stay-on-hold/ar-AA1W4KPl",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate reduction"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...on the side of patience as it assesses the impact of recent rate reductions.",
+          "score": -5.0
+        },
+        {
+          "title": "Cleveland Fed's Hammack says rates may stay on hold 'for quite some time'",
+          "url": "https://seekingalpha.com/news/4549559-cleveland-feds-hammack-says-rates-may-stay-on-hold-for-quite-some-time",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...time' Cleveland Fed's Hammack sees stronger U.S. growth and easing inflation, but urges patience on rate cuts amid uncertainty...",
+          "score": -5.0
+        },
+        {
+          "title": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus",
+          "url": "https://www.morningstar.com/news/dow-jones/202602115425/two-fed-officials-signal-the-opposition-further-rate-cuts-could-face-january-jobs-report-in-focus",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus Cuts last year reduced...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Schmid says restrictive rates needed to cool inflation",
+          "url": "https://www.canadianmortgagetrends.com/2026/02/feds-schmid-says-restrictive-rates-needed-to-cool-inflation/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Schmid says restrictive rates needed to cool inflation Federal Reserve Bank of Kansas...",
+          "score": 5.0
+        },
+        {
+          "title": "Federal Reserve keeps interest rates unchanged even as Trump continues to insist they be lowered",
+          "url": "https://www.courant.com/2026/01/28/federal-reserve-january-rate-decision/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...The Federal Reserve pushed the pause button on its interest rate cuts Wednesday, leaving its key rate unchanged at about 3.6% after...",
+          "score": -5.0
+        },
+        {
+          "title": "CPI Report Live: Today's Inflation Data Was a 'Welcome Surprise'",
+          "url": "https://www.investopedia.com/cpi-inflation-report-live-january-2026-11906012",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...a key factor in whether the Federal Reserve resumes interest rate cuts. Follow along with our live coverage here.",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        }
+      ]
     }
   ],
   "Austan D. Goolsbee": [
@@ -8861,6 +10777,116 @@
     },
     {
       "date": "2026-02-20",
+      "score": -2.907,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -4.025,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.3,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "US Fed FOMC meeting minutes releasing today",
+          "url": "https://www.financialexpress.com/business/investing-abroad-us-fed-fomc-meeting-minutes-releasing-today-4147074/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "US Fed FOMC meeting minutes releasing today Market participants will be closely watching the minutes...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
       "score": -2.907,
       "label": "Dovish",
       "source": "live",
@@ -9613,6 +11639,161 @@
           "score": -5.0
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.12,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.125,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.225,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed's Musalem says no more rate cuts needed with policy now at neutral level",
+          "url": "https://www.reuters.com/business/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-neutral-level-2026-01-30/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Musalem says no more rate cuts needed with policy now at neutral level WASHINGTON, Jan 30...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Musalem Says No More Rate Cuts Needed With Policy Now at Neutral Level",
+          "url": "https://money.usnews.com/investing/news/articles/2026-01-30/feds-musalem-says-no-more-rate-cuts-needed-with-policy-now-at-neutral-level",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Musalem Says No More Rate Cuts Needed With Policy Now at Neutral Level WASHINGTON, Jan 30...",
+          "score": -5.0
+        },
+        {
+          "title": "St. Louis Fed president says policy is 'well positioned' amid rate cut speculation",
+          "url": "https://www.msn.com/en-us/movies/news/st-louis-fed-president-says-policy-is-well-positioned-amid-rate-cut-speculation/vi-AA1WLykD",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": ".... Louis Fed president says policy is 'well positioned' amid rate cut speculation St. Louis Federal Reserve President Alberto Musalem...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Musalem Rejects Further Rate Cuts",
+          "url": "https://www.wsj.com/economy/central-banking/feds-musalem-rejects-further-rate-cuts-6611cff8",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Musalem Rejects Further Rate Cuts St. Louis Fed President Alberto Musalem said Friday that he...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
     }
   ],
   "Jeffrey R. Schmid": [
@@ -10273,6 +12454,158 @@
             "policy"
           ],
           "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.525,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.339,
+      "policy_label": "Dovish",
+      "balance_sheet_score": 0.375,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Federal Reserve Bank of Kansas City chief Jeffrey Schmid signals cautious optimism for 2026",
+          "url": "https://www.msn.com/en-us/money/markets/federal-reserve-bank-of-kansas-city-chief-jeffrey-schmid-signals-cautious-optimism-for-2026/ar-AA1We8n2",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...al Reserve Bank of Kansas City chief Jeffrey Schmid signals cautious optimism for 2026 The United States Federal Reserve Bank of...",
+          "score": 5.0
+        },
+        {
+          "title": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus",
+          "url": "https://www.morningstar.com/news/dow-jones/202602115425/two-fed-officials-signal-the-opposition-further-rate-cuts-could-face-january-jobs-report-in-focus",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Two Fed Officials Signal the Opposition Further Rate Cuts Could Face; January Jobs Report in Focus Cuts last year reduced...",
+          "score": -5.0
+        },
+        {
+          "title": "Strong January jobs report impacts outlook for Fed interest-rate cuts",
+          "url": "https://www.msn.com/en-us/money/markets/strong-january-jobs-report-impacts-outlook-for-fed-interest-rate-cuts/ar-AA1WaClk",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "Strong January jobs report impacts outlook for Fed interest-rate cuts January payrolls rose 130,000 and unemployment fell to 4.3%,...",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Jeffrey Schmid: Appropriate to maintain somewhat restrictive policy",
+          "url": "https://www.cnbc.com/video/2026/02/11/feds-jeffrey-schmid-appropriate-to-maintain-somewhat-restrictive-policy.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "restrictive"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Jeffrey Schmid: Appropriate to maintain somewhat restrictive policy CNBC's Steve Liesman delivers the latest news surrounding...",
+          "score": 5.0
+        },
+        {
+          "title": "KC Fed's Schmid sees any further rate cuts risking inflation persistence",
+          "url": "https://seekingalpha.com/news/4550320-kc-feds-schmid-sees-any-further-rate-cuts-risking-inflation-persistence",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "KC Fed's Schmid sees any further rate cuts risking inflation persistence The Federal Reserve's current...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve holds interest rates steady at its first FOMC meeting of 2026",
+          "url": "https://www.cbsnews.com/news/fed-meeting-fomc-interest-rate-decision-january-28/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "rate cut"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...marking the central bank's first pause after three consecutive rate cuts last year. The Fed maintained its federal funds rate \u2014 what...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
           "score": -5.0
         }
       ]
@@ -10937,6 +13270,148 @@
           "score": -0.882
         }
       ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -1.962,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -2.674,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.3,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Fed's Logan sees inflation easing, says rate policy 'well positioned' for risks",
+          "url": "https://www.msn.com/en-us/money/markets/feds-logan-sees-inflation-easing-says-rate-policy-well-positioned-for-risks/ar-AA1WL99F",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Logan sees inflation easing, says rate policy 'well positioned' for risks By Michael S....",
+          "score": -5.0
+        },
+        {
+          "title": "Fed's Logan is 'cautiously optimistic' inflation will continue to wane",
+          "url": "https://www.msn.com/en-us/money/markets/feds-logan-is-cautiously-optimistic-inflation-will-continue-to-wane/ar-AA1WKM4F",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "cautious"
+          ],
+          "directions": [
+            "hawkish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "Fed's Logan is 'cautiously optimistic' inflation will continue to wane NEW YORK, Feb...",
+          "score": 5.0
+        },
+        {
+          "title": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering.",
+          "url": "https://www.nytimes.com/2026/01/30/business/trump-kevin-warsh-fed-rates.html",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "lower rates"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "President Trump Wants Lower Rates. Warsh Could Have a Hard Time Delivering. Kevin M. Warsh, whom...",
+          "score": -5.0
+        },
+        {
+          "title": "US Fed FOMC meeting minutes releasing today",
+          "url": "https://www.financialexpress.com/business/investing-abroad-us-fed-fomc-meeting-minutes-releasing-today-4147074/",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "easing",
+            "rate cut"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "US Fed FOMC meeting minutes releasing today Market participants will be closely watching the minutes...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
     }
   ],
   "Neel Kashkari": [
@@ -11485,6 +13960,97 @@
             "policy"
           ],
           "quote": "...benchmark policy rate, implying there may be little room left to cut rates.",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy"
+          ],
+          "quote": "...Inflation remains somewhat elevated. The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run....",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+          "source_type": "fomc_minutes",
+          "keywords": [
+            "downside risks",
+            "maximum employment",
+            "unemployment"
+          ],
+          "directions": [
+            "dovish",
+            "dovish",
+            "dovish"
+          ],
+          "dimensions": [
+            "policy",
+            "policy",
+            "policy"
+          ],
+          "quote": "...the risks to both sides of its dual mandate and judges that downside risks to employment rose in recent months. In support of its goals...",
+          "score": -5.0
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "score": -2.855,
+      "label": "Dovish",
+      "source": "live",
+      "policy_score": -3.95,
+      "policy_label": "Dovish",
+      "balance_sheet_score": -0.3,
+      "balance_sheet_label": "Neutral",
+      "evidence": [
+        {
+          "title": "Minneapolis Fed's Kashkari sees monetary policy as 'pretty close to neutral'",
+          "url": "https://seekingalpha.com/news/4553960-minneapolis-feds-kashkari-sees-monetary-policy-as-pretty-close-to-neutral",
+          "source_type": "duckduckgo",
+          "keywords": [
+            "full employment"
+          ],
+          "directions": [
+            "dovish"
+          ],
+          "dimensions": [
+            "policy"
+          ],
+          "quote": "...is close to achieving its dual mandate of stable prices and full employment, but is still short of both its goals, Minneapolis Fed President...",
           "score": -5.0
         },
         {
